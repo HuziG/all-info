@@ -1,21 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import HotNews from './components/HotNews';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+        <div className="w-full px-5 py-10 md:w-9/12 md:m-auto md:px-0">
+            <HotNews />
+        </div>
     </div>
   );
 }
