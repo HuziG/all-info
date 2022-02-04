@@ -25,22 +25,21 @@ function HotNews() {
     })();
   }, [])
 
-  console.log(news)
-
   return (
-    <div className="relative rounded-md overflow-x-hidden lg:w-4/12">
-      <div className="absolute w-full top-0 z-10 left-0 py-5 px-5 bg-gray-300">
-        HotNews
+    <div className="relative rounded-md overflow-x-hidden lg:float-left lg:w-4/12">
+      <div className="absolute w-full font-bold bg-red-600 text-white top-0 z-10 left-0 py-5 px-5">
+        新浪新闻
       </div>
 
-      <div className="mt-16 bg-gray-200 overflow-y-auto h-96 p-3 w-full">
+      <div className="mt-16 bg-white overflow-y-auto h-96 p-3 w-full">
         {
-          news !== null && news.items.map((item) => (
+          news !== null && news.items.map((item, index) => (
             <div
               className="
               truncate py-4 cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
             "
-            ><a title={item.title} href={item.url}>{item.title}</a></div>
+              key={index}
+            ><a title={item.title} href={item.url} key={item.url}>{item.title}</a></div>
           ))
         }
       </div>
