@@ -1,10 +1,17 @@
 import {Button, Menu, MenuItem} from "@material-ui/core";
-import {useState} from "react";
+import React, {forwardRef, useImperativeHandle, useState} from "react";
 
-function StyleMenu(props: any) {
+function StylePageMenu(props: any, ref: any) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [page, setPage] = useState(1);
-  const [pageArr, setPageArr] = useState<[number] | null>(null)
+  const [pageArr, setPageArr] = useState<number[] | null>(null)
+
+  useImperativeHandle(ref, () => ({
+    handleSetPage: (totalPage: number) => {
+      const array = Array.from(Array(totalPage)).fill('')
+      setPageArr(array)
+    }
+  }));
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -20,10 +27,6 @@ function StyleMenu(props: any) {
       page
     })
   };
-
-  const handleSetPage = (page: number) => {
-    setPage(page)
-  }
 
   return (
     <div className="inline-block">
@@ -47,9 +50,9 @@ function StyleMenu(props: any) {
         onClose={handleClose}
       >
         {
-          pageArr !== null && pageArr.map(item => (
-            <MenuItem onClick={handleClose} key={item}>
-              <span onClick={() => handleCloseSelect(item)}>{item}</span>
+          pageArr !== null && pageArr.map((item, index) => (
+            <MenuItem onClick={handleClose} key={index}>
+              <span onClick={() => handleCloseSelect(index+1)}>{index+1}</span>
             </MenuItem>
           ))
         }
@@ -58,4 +61,4 @@ function StyleMenu(props: any) {
   )
 }
 
-export default StyleMenu
+export default forwardRef(StylePageMenu)

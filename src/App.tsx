@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import "swiper/css";
 import HotNews from './components/HotNews';
 import Index from "./components/TaoNvLang/index";
 import Footer from "./components/Footer";
