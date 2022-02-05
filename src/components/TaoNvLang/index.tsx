@@ -9,6 +9,7 @@ import "./swiper.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Navigation, Lazy } from "swiper";
 import "swiper/css/lazy";
+import {debug} from "util";
 
 interface CurShowInfo {
   city: string;
@@ -17,12 +18,13 @@ interface CurShowInfo {
   avatarUrl: string;
 }
 
+let showColIndex = 0
+
 function Index(this: any) {
   const [page, setPage] = useState(1);
   const [nvLangData, setNvLangData] = useState<object | NvLangData | null>(null);
   const [showRowIndex, setShowRowIndex] = useState(0)
-  const [showColIndex, setShowColIndex] = useState(0)
-  const [showColData, setShowColData] = useState<NvLangItemData | null>(null)
+  const [showColData, setShowColData] = useState<NvLangItemData[] | null>(null)
   const [showRowData, setShowRowData] = useState<string[] | null>(null)
   const [curShowInfo, setCurShowInfo] = useState<CurShowInfo | null>(null)
   const [style, setStyle] = useState('日系');
@@ -31,7 +33,6 @@ function Index(this: any) {
 
   useEffect(() => {
     (async function anyNameFunction() {
-      console.log('useEffect')
       await handleGetNvLangPicture()
     })();
   }, [style])
@@ -42,21 +43,15 @@ function Index(this: any) {
   const handleGetNvLangPicture = async () => {
     const data = await getNvLangPicture(style, page)
 
-    const curInfo = data.showapi_res_body.pagebean.contentlist[showColIndex]
+    const contentlist = data.showapi_res_body.pagebean.contentlist
 
     setNvLangData({data, ...nvLangData})
-    setShowColData(data.showapi_res_body.pagebean.contentlist)
-    setShowRowData(curInfo.imgList)
-    setCurShowInfo({
-      height: curInfo.height,
-      realName: curInfo.realName,
-      city: curInfo.city,
-      avatarUrl: curInfo.avatarUrl
-    })
-    setShowRowIndex(0)
-    setShowColIndex(0)
+    setShowColData(contentlist.filter((item: { imgList: string | any[]; }) => item.imgList.length !== 0))
 
-    console.log('showRowData', showRowData)
+    const curInfo = contentlist[showColIndex]
+
+    setShowRowData(curInfo.imgList)
+    handleSetUserInfo()
 
     // 设置 page menu 子组件
     if (data.showapi_res_body) {
@@ -70,6 +65,60 @@ function Index(this: any) {
 
   const childSetPage = (params: StylePageMenuParams) => {
     setPage(params.page)
+  }
+
+  /**
+   * swiper 抵达末尾
+   */
+  const swiperNearEnd = () => {
+    showColIndex += 1
+
+    if (showColData && showRowData !== null) {
+      setShowRowData([...showRowData, ...showColData[showColIndex].imgList])
+    }
+  }
+
+  /**
+   * swiper 抵达开始
+   */
+  // const swiperOnReachBeginning = () => {
+  //   if (showColIndex !== 0) {
+  //     setShowColIndex(showColIndex - 1)
+  //   }
+  // }
+
+  function handleSetUserInfo() {
+    if (showColData) {
+      const curInfo = showColData[showColIndex]
+      setCurShowInfo({
+        height: curInfo.height,
+        realName: curInfo.realName,
+        city: curInfo.city,
+        avatarUrl: curInfo.avatarUrl
+      })
+    }
+  }
+
+  /**
+   * swiper 改变时
+   * @param e
+   */
+  const swiperSlideChange = (e: any) => {
+    setShowRowIndex(e.activeIndex)
+
+    /**
+     * 接近末尾，追加图片
+     */
+    // @ts-ignore
+    if (e.activeIndex === showRowData.length - 2) {
+      swiperNearEnd()
+    }
+
+    // @ts-ignore
+    if (e.activeIndex > showColData[showColIndex].imgList.length) {
+      debugger
+      handleSetUserInfo()
+    }
   }
 
   return (
@@ -106,11 +155,12 @@ function Index(this: any) {
             navigation={true}
             modules={[Lazy, Mousewheel, Navigation]}
             className="mySwiper"
+            onSlideChange={(e) => swiperSlideChange(e)}
           >
             {
               showRowData !== null &&
-              showRowData.map(url => (
-                <SwiperSlide key={url}>
+              showRowData.map((url, index) => (
+                <SwiperSlide key={index}>
                   <img
                     src={url}
                     className="swiper-lazy"
@@ -121,12 +171,6 @@ function Index(this: any) {
               ))
             }
           </Swiper>
-
-        <img
-          className="object-cover"
-          alt="error"
-          src={showRowData ? showRowData[showRowIndex] : ''}
-        />
 
         {
           curShowInfo !== null &&
@@ -140,6 +184,17 @@ function Index(this: any) {
               <div className="mr-5"><LocationCityIcon fontSize="small" />{curShowInfo.city}</div>
             }
             <AccessibilityIcon fontSize="small" /> {curShowInfo.height} cm
+          </div>
+        }
+
+        {
+          showRowData &&
+          <div className="
+            absolute flex align-center z-20
+            justify-center bottom-2 left-2 font-bold text-sm text-black rounded-md
+            bg-opacity-75 bg-white px-4 py-2"
+          >
+            {showRowIndex + 1} / {showRowData.length}
           </div>
         }
       </div>

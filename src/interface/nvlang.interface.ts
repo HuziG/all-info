@@ -3,7 +3,7 @@ export interface NvLangItemData {
   cardUrl: string;
   city: string;
   height: number;
-  imgList: [string];
+  imgList: string[];
   realName: string;
   totalFanNum: number;
   totalFavorNum: number;
@@ -21,7 +21,7 @@ export interface NvLangData {
   showapi_res_body: {
     ret_code: number,
     pagebean: {
-      contentlist: [NvLangItemData];
+      contentlist: NvLangItemData[];
       "allNum": number;
       "allPages": number;
       "currentPage": number;
