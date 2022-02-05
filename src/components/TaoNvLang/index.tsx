@@ -122,11 +122,11 @@ function Index(this: any) {
             }
           </Swiper>
 
-        {/*<img*/}
-        {/*  className="object-cover"*/}
-        {/*  alt="error"*/}
-        {/*  src={showRowData ? showRowData[showRowIndex] : ''}*/}
-        {/*/>*/}
+        <img
+          className="object-cover"
+          alt="error"
+          src={showRowData ? showRowData[showRowIndex] : ''}
+        />
 
         {
           curShowInfo !== null &&
