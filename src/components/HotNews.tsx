@@ -26,7 +26,7 @@ function HotNews() {
   }, [])
 
   return (
-    <div className="relative rounded-md overflow-x-hidden lg:float-left lg:w-4/12">
+    <div className="relative rounded-md overflow-x-hidden lg:float-left lg:w-5/12">
       <div className="absolute w-full font-bold bg-red-600 text-white top-0 z-10 left-0 py-5 px-5">
         新浪新闻
       </div>
@@ -39,7 +39,7 @@ function HotNews() {
               truncate py-4 cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
             "
               key={index}
-            ><a title={item.title} href={item.url} key={item.url}>{item.title}</a></div>
+            ><a title={item.title} href={item.url} key={item.url} target='_blank'>{item.title}</a></div>
           ))
         }
       </div>
