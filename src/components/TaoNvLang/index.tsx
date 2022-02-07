@@ -166,7 +166,7 @@ function Index(this: any) {
               peoplePicData !== null &&
               <SwiperSlide>
                 <Button variant="contained" color="primary" onClick={() => setPeopleIndex(peopleIndex + 1)}>
-                  Next People
+                  下一位
                 </Button>
               </SwiperSlide>
             }
