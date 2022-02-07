@@ -4,7 +4,7 @@ import {NvLangItemData, StyleMenuParams, StylePageMenuParams} from "../../interf
 import StyleMenu from "./styleMenu";
 import StylePageMenu from "./stylePageMenu";
 import "./swiper.css";
-import { Swiper, SwiperSlide } from "swiper/react";
+import {Swiper, SwiperSlide} from "swiper/react";
 import {Mousewheel, Manipulation, Lazy, FreeMode} from "swiper";
 import "swiper/css/lazy";
 import {Button} from "@material-ui/core";
@@ -43,11 +43,17 @@ function Index(this: any) {
     }
   }
 
+  /**
+   * 设置人物图片
+   */
   useEffect(() => {
     peopleData && setPeoplePicData(peopleData[peopleIndex].imgList)
     setPeoplePicIndex(0)
   }, [peopleData, peopleIndex])
 
+  /**
+   * 滚动至前
+   */
   useEffect(() => {
     if (peoplePicData) {
       setTimeout(() => {
@@ -87,6 +93,7 @@ function Index(this: any) {
 
       <div className="relative mt-16 bg-white">
         <div className="py-3 px-2">
+          {/* 头像 swiper */}
           <Swiper
             slidesPerView={5}
             spaceBetween={30}
@@ -103,14 +110,17 @@ function Index(this: any) {
                 <SwiperSlide key={item.avatarUrl}>
                   <div className="cursor-pointer" onClick={() => setPeopleIndex(index)}>
                     <img
-                      className={`h-12 w-12 rounded-full object-cover box-border ${index === peopleIndex ? 'border-2' : ''}`}
+                      className={`w-10 h-10 rounded-full object-cover box-border ${index === peopleIndex ? 'border-2' : ''}
+                      sm:w-14 sm:h-14
+                      lg:w-16 lg:h-16
+                      `}
                       style={{
                         borderColor: '#FE682F'
                       }}
                       src={item.avatarUrl}
                       alt={'error'}
                     />
-                    <div className="text-xs text-center pt-1 font-bold text-gray-800">{item.realName}</div>
+                    <div className="text-xs text-center pt-1 text-gray-800">{item.realName}</div>
                   </div>
                 </SwiperSlide>
               ))
@@ -118,7 +128,8 @@ function Index(this: any) {
           </Swiper>
         </div>
 
-        <div id="NvLangImgSwiper" className="flex flex-col align-center justify-center h-70vh bg-black">
+        {/* 图片 swiper */}
+        <div id="NvLangImgSwiper" className="flex flex-col align-center justify-center h-60vh lg:h-70vh bg-black">
           <Swiper
             onSwiper={setSwiperRef}
             direction={"vertical"}
@@ -162,6 +173,7 @@ function Index(this: any) {
           </Swiper>
         </div>
 
+        {/* 图片进度 */}
         {
           peoplePicData &&
           <div className="

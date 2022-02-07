@@ -1,5 +1,9 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getNews} from "../api/news";
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Popover from '@material-ui/core/Popover';
+import Typography from '@material-ui/core/Typography';
+import LinkIcon from '@material-ui/icons/Link';
 
 interface NewsItem {
   title: string,
@@ -15,8 +19,24 @@ interface News {
   version: string
 }
 
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    typography: {
+      padding: theme.spacing(2),
+      width: '400px'
+    },
+  }),
+);
+
 function HotNews() {
+  const classes = useStyles();
   const [news, setNews] = useState<News | null>(null)
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
+  const [popoverIndex, setPopoverIndex] = useState<number | null>(null)
+  const [fullTitle, setFullTitle] = useState<string | null>(null)
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   useEffect( () => {
     (async function anyNameFunction() {
@@ -24,6 +44,17 @@ function HotNews() {
       setNews({ ...data, news })
     })();
   }, [])
+
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, index: number, fullTitle: string) => {
+    // @ts-ignore
+    setAnchorEl(event.currentTarget)
+    setPopoverIndex(index)
+    setFullTitle(fullTitle)
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <div className="relative rounded-md overflow-x-hidden lg:float-left lg:w-5/12">
@@ -36,10 +67,51 @@ function HotNews() {
           news !== null && news.items.map((item, index) => (
             <div
               className="
-              truncate py-4 cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
-            "
+                truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
+              "
               key={index}
-            ><a title={item.title} href={item.url} key={item.url} target='_blank'>{item.title}</a></div>
+            >
+              <a
+                className="py-4 inline-block"
+                title={item.title}
+                key={item.url}
+                target='_blank'
+                onClick={(e) => handleClick(e, index, item.title)}
+              >{item.title}</a>
+              {
+                popoverIndex === index &&
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorReference={'anchorEl'}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                  anchorPosition={{
+                    left: 400,
+                    top: 200
+                  }}
+                >
+                  <Typography className={classes.typography}>
+                    <div>
+                      {fullTitle}
+                      <a
+                        href={item.url}
+                        onClick={() => handleClose()}
+                        target='_blank'
+                      ><span className="text-sm text-indigo-600 font-bold"><LinkIcon /> 查看更多</span></a>
+                    </div>
+                  </Typography>
+                </Popover>
+              }
+            </div>
           ))
         }
       </div>
