@@ -8,9 +8,12 @@ import {Swiper, SwiperSlide} from "swiper/react";
 import {Mousewheel, Manipulation, Lazy, FreeMode} from "swiper";
 import "swiper/css/lazy";
 import {Button} from "@material-ui/core";
+import LoadingMask from "../Loading";
 
 function Index(this: any) {
-  const [swiperRef, setSwiperRef] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [photoSwiperRef, setPhotoSwiperRef] = useState<any>(null);
+  const [avatarSwiperRef, setAvatarSwiperRef] = useState<any>(null);
   const [page, setPage] = useState(1)
   const [peopleIndex, setPeopleIndex] = useState(0)
   const [peoplePicIndex, setPeoplePicIndex] = useState(0)
@@ -37,6 +40,8 @@ function Index(this: any) {
       (item: { imgList: string | any[]; }) => item.imgList.length !== 0)
     )
 
+    setLoading(false)
+
     // 设置 page menu 子组件
     if (data.showapi_res_body) {
       (childPageMenuRef.current as any).handleSetPage(data.showapi_res_body.pagebean.allPages)
@@ -51,13 +56,18 @@ function Index(this: any) {
     setPeoplePicIndex(0)
   }, [peopleData, peopleIndex])
 
+  useEffect(() => {
+    avatarSwiperRef && avatarSwiperRef.slideTo(0)
+    setPeopleIndex(0)
+  }, [style])
+
   /**
    * 滚动至前
    */
   useEffect(() => {
     if (peoplePicData) {
       setTimeout(() => {
-        swiperRef.slideTo(0)
+        photoSwiperRef.slideTo(0)
       }, 200)
     }
   }, [peoplePicData])
@@ -71,7 +81,9 @@ function Index(this: any) {
   }
 
   return (
-    <div className="relative rounded-md bg-black overflow-hidden ml-0 mt-5 lg:mt-0 lg:ml-5 lg:float-left lg:w-6/12">
+    <div className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
+      { loading && <LoadingMask /> }
+
       <div
         className="absolute w-full font-bold text-white top-0 z-10 left-0 h-16 leading-16 px-5"
         style={{
@@ -95,6 +107,7 @@ function Index(this: any) {
         <div className="py-3 px-2">
           {/* 头像 swiper */}
           <Swiper
+            onSwiper={setAvatarSwiperRef}
             slidesPerView={5}
             spaceBetween={30}
             freeMode={true}
@@ -131,7 +144,7 @@ function Index(this: any) {
         {/* 图片 swiper */}
         <div id="NvLangImgSwiper" className="flex flex-col align-center justify-center h-60vh lg:h-70vh bg-black">
           <Swiper
-            onSwiper={setSwiperRef}
+            onSwiper={setPhotoSwiperRef}
             direction={"vertical"}
             slidesPerView={1}
             spaceBetween={20}
@@ -150,12 +163,13 @@ function Index(this: any) {
               peoplePicData.map((url, index) => (
                 <SwiperSlide key={index}>
                   <img
-                    src='https://swiperjs.com/demos/images/nature-1.jpg'
+                    src={url}
                     className="swiper-lazy"
-                    style={{
-                      height: 'auto',
-                    }}
+                    data-example="https://swiperjs.com/demos/images/nature-1.jpg"
                     alt={'error'}
+                    style={{
+                      width: 'auto',
+                    }}
                   />
                   <div className="swiper-lazy-preloader swiper-lazy-preloader-white"/>
                 </SwiperSlide>

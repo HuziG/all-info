@@ -4,6 +4,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import LinkIcon from '@material-ui/icons/Link';
+import LoadingMask from "./Loading";
 
 interface NewsItem {
   title: string,
@@ -30,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 function HotNews() {
   const classes = useStyles();
+  const [loading, setLoading] = useState(true)
   const [news, setNews] = useState<News | null>(null)
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const [popoverIndex, setPopoverIndex] = useState<number | null>(null)
@@ -42,6 +44,7 @@ function HotNews() {
     (async function anyNameFunction() {
       const data = await getNews()
       setNews({ ...data, news })
+      setLoading(false)
     })();
   }, [])
 
@@ -57,10 +60,12 @@ function HotNews() {
   };
 
   return (
-    <div className="relative rounded-md overflow-x-hidden lg:float-left lg:w-5/12">
+    <div className="relative rounded-md overflow-x-hidden w-full">
       <div className="absolute w-full font-bold bg-red-600 text-white top-0 z-10 left-0 py-5 px-5">
         新浪新闻
       </div>
+
+      { loading && <LoadingMask /> }
 
       <div className="mt-16 bg-white overflow-y-auto h-96 p-3 w-full">
         {
