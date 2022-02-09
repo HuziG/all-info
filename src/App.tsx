@@ -5,6 +5,7 @@ import HotNews from './components/HotNews';
 import TaoNvLang from "./components/TaoNvLang/index";
 import Footer from "./components/Footer";
 import MaoYan from "./components/MaoYan";
+import WangYiYun from "./components/WangYiYun";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           </div>
           <div className="lg:ml-5 lg:float-left lg:w-6/12">
             <TaoNvLang />
+            <WangYiYun />
           </div>
         </div>
       <Footer />

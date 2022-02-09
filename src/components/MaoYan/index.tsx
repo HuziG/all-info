@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { getHotFilm, getComingFilm } from "../../api/maoyan";
 import LoadingMask from "../Loading";
+import moment from "moment";
 
 interface Film {
   cat: string;
@@ -19,6 +20,7 @@ function MaoYan() {
   const [hotFilms, setHotFilms] = useState<Film[] | null>(null)
   const [comingFilms, setComingFilms] = useState<Film[] | null>(null)
   const [listState, setListState] = useState('hot')
+  const momentTime = moment()
 
   useEffect( () => {
     (async function anyNameFunction() {
@@ -34,13 +36,12 @@ function MaoYan() {
 
   const getFilmTemplate = (item: Film, index: number) => {
     return (
-      <a href={`https://www.maoyan.com/films/${item.id}`} target={'_target'}>
+      <a href={`https://www.maoyan.com/films/${item.id}`} target={'_target'} key={index}>
         <div
           className="
                 flex flex-row p-2 cursor-pointer border-gray-300 mb-3
                 hover:bg-gray-100 rounded-xl
               "
-          key={index}
         >
           <img
             className={'rounded-xl'}
@@ -64,7 +65,7 @@ function MaoYan() {
   }
 
   return (
-    <div className="mt-10 relative rounded-md overflow-x-hidden w-full">
+    <div className="mt-5 relative rounded-md overflow-x-hidden w-full">
       <div
         className="w-full flex flex-row align-center justify-between font-bold text-white py-5 px-5"
         style={{
@@ -73,7 +74,7 @@ function MaoYan() {
       >
         <div>电影</div>
 
-        <div>2022 年 02 月 08 日</div>
+        <div>{`${momentTime.year()} 年 ${momentTime.month() + 1} 月 ${momentTime.date()} 日`}</div>
       </div>
 
       { loading && <LoadingMask /> }
