@@ -2,6 +2,7 @@ import LoadingMask from "../Loading";
 import {useEffect, useState} from "react";
 import {getWangYiYunComment} from "../../api/wangyiyun";
 import moment from "moment";
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 
 interface Comment {
   avatar: string;
@@ -29,7 +30,7 @@ function WangYiYun() {
 
   const commentTemplate = (item: Comment) => {
     return (
-      <div className={'py-1 px-3'}>
+      <div className={'py-1 px-3'} key={item.time}>
         <div className={`relative w-8/12 rounded-xl text-sm pr-5 pt-3 pb-3 pl-16 mt-8 mb-8 ml-12`} style={{
           backgroundColor: '#2A2A2A'
         }}>
@@ -54,11 +55,25 @@ function WangYiYun() {
           </div>
 
           <div className={'mt-3 flex'}>
-            <img
-              src={item.songPic}
-              className={'w-12 h-12 rounded-md bg-gray-300'}
-              alt={'error'}
-            />
+            <div className={'relative  rounded-md overflow-hidden'}>
+              <div
+                className={'absolute cursor-pointer z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}
+              >
+                <a href={`https://music.163.com/#/search/m/?s=${item.songName}&type=1`} target="_blank">
+                  <PlayCircleOutlineIcon style={{
+                    color: '#DD001B'
+                  }}/>
+                </a>
+              </div>
+              <div className={'absolute w-full h-full bg-black bg-opacity-20 top-0 left-0'}>
+
+              </div>
+              <img
+                src={item.songPic}
+                className={'w-12 h-12 bg-gray-300'}
+                alt={'error'}
+              />
+            </div>
 
             <div className={'ml-4 text-xs'}>
               <div className={'my-1'} style={{color: '#eeeeee'}}>{item.songName}</div>
@@ -93,7 +108,7 @@ function WangYiYun() {
 
       {
         comments !== null &&
-        comments.map(item => commentTemplate(item))
+        comments.map((item) => commentTemplate(item))
       }
     </div>
   )

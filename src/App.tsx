@@ -2,10 +2,10 @@ import React from 'react';
 import './App.css';
 import "swiper/css";
 import HotNews from './components/HotNews';
-import TaoNvLang from "./components/TaoNvLang/index";
 import Footer from "./components/Footer";
 import MaoYan from "./components/MaoYan";
 import WangYiYun from "./components/WangYiYun";
+import MeiZi from "./components/MeiZi";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
             <MaoYan />
           </div>
           <div className="lg:ml-5 lg:float-left lg:w-6/12">
-            <TaoNvLang />
+            <MeiZi />
             <WangYiYun />
           </div>
         </div>
