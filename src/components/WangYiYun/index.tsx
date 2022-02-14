@@ -21,66 +21,80 @@ function WangYiYun() {
   useEffect(() => {
     (async function anyNameFunction() {
       const data = await getWangYiYunComment()
-      const value = []
-      value.push(data.data)
-      setComments([...value])
+      setComments([...data[0].dataJsonString.map((item: any) => (item.code === 200 ? item.data : undefined))])
       setLoading(false)
     })();
   }, [])
 
   const commentTemplate = (item: Comment) => {
     return (
-      <div className={'py-1 px-3'} key={item.time}>
-        <div className={`relative w-8/12 rounded-xl text-sm pr-5 pt-3 pb-3 pl-16 mt-8 mb-8 ml-12`} style={{
-          backgroundColor: '#2A2A2A'
-        }}>
-          <img
-            className={'absolute w-16 h-16 rounded-full bg-gray-300 -top-4 -left-5'}
-            src={item.avatar}
-            alt={'error'}
-          />
+      <div>
+        {
+          item &&
+          <div className={'py-1 px-3'} key={item.time}>
+          <div
+            className={`relative w-10/12 ml rounded-xl text-sm pr-5 pt-3 pb-3 pl-16 mt-8 mb-8`}
+            style={{
+              backgroundColor: '#2A2A2A',
+              marginLeft: (() => {
+                return 10 + (Math.ceil(Math.random() * 4) * 10) + 'px'
+              })()
+            }}
+          >
+            <img
+              className={'absolute w-16 h-16 rounded-full bg-gray-300 -top-4 -left-5'}
+              src={item.avatar}
+              alt={'error'}
+            />
 
-          <div className={'border-b-2 border-gray-400 pb-2'}>
-            <div style={{ color: '#85B9E6' }}>
-              {item.nickname}
-            </div>
-
-            <div className={'my-2 text-white tracking-wide'}>
-              {item.content}
-            </div>
-
-            <div className={'mt-3 text-right text-xs'} style={{color: '#cccccc'}}>
-              {moment(Number(item.time)).format('YYYY年MM月DD hh:mm')}
-            </div>
-          </div>
-
-          <div className={'mt-3 flex'}>
-            <div className={'relative  rounded-md overflow-hidden'}>
-              <div
-                className={'absolute cursor-pointer z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}
-              >
-                <a href={`https://music.163.com/#/search/m/?s=${item.songName}&type=1`} target="_blank">
-                  <PlayCircleOutlineIcon style={{
-                    color: '#DD001B'
-                  }}/>
-                </a>
+            <div className={'border-b-2 border-gray-400 pb-2'}>
+              <div style={{ color: '#85B9E6' }}>
+                {item.nickname}
               </div>
-              <div className={'absolute w-full h-full bg-black bg-opacity-20 top-0 left-0'}>
 
+              <div className={'my-2 text-white tracking-wide'}>
+                {item.content}
               </div>
-              <img
-                src={item.songPic}
-                className={'w-12 h-12 bg-gray-300'}
-                alt={'error'}
-              />
+
+              <div className={'mt-3 text-right text-xs'} style={{color: '#cccccc'}}>
+                {moment(Number(item.time)).format('YYYY年MM月DD hh:mm')}
+              </div>
             </div>
 
-            <div className={'ml-4 text-xs'}>
-              <div className={'my-1'} style={{color: '#eeeeee'}}>{item.songName}</div>
-              <div style={{color: '#cccccc'}}>{item.songAutho}</div>
+            <div className={'mt-3 flex'}>
+              <div className={'relative  rounded-md overflow-hidden'}>
+                <div
+                  className={'absolute cursor-pointer z-30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'}
+                >
+                  <a href={`https://music.163.com/#/search/m/?s=${item.songName}&type=1`} target="_blank">
+                    <PlayCircleOutlineIcon style={{
+                      color: '#DD001B'
+                    }}/>
+                  </a>
+                </div>
+                <div className={'absolute w-full h-full bg-black bg-opacity-20 top-0 left-0'}>
+
+                </div>
+                <img
+                  src={item.songPic}
+                  className={'w-12 h-12 bg-gray-300'}
+                  alt={'error'}
+                />
+              </div>
+
+              <div className={'ml-4 text-xs'}>
+                <div className={'my-1'} style={{color: '#eeeeee'}}>{item.songName}</div>
+                <div style={{color: '#cccccc'}}>{item.songAutho}</div>
+              </div>
             </div>
           </div>
         </div>
+        }
+
+        {
+          !item &&
+          <div>error</div>
+        }
       </div>
     )
   }
@@ -106,10 +120,12 @@ function WangYiYun() {
         </div>
       </div>
 
-      {
-        comments !== null &&
-        comments.map((item) => commentTemplate(item))
-      }
+      <div className={'h-96 overflow-y-auto'}>
+        {
+          comments !== null &&
+          comments.map((item) => commentTemplate(item))
+        }
+      </div>
     </div>
   )
 }

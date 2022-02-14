@@ -32,3 +32,7 @@
     transform: rotate(360deg);
   }
 }
+
+.bilibili-carton:hover .title{
+  color: #FB7199;
+}
