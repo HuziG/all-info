@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {getNewest, getWeek} from "../../api/bilibiliCarton";
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime' // import plugin
 
 interface carton {
   pic: string;
@@ -17,6 +19,8 @@ interface newestCarton {
 }
 
 function BilibiliCarton() {
+  dayjs.extend(relativeTime)
+
   const [weekCarton, setWeekCarton] = useState<carton[] | null>(null)
   const [newestCarton, setNewestCarton] = useState<newestCarton[] | null>(null)
 
@@ -48,8 +52,13 @@ function BilibiliCarton() {
 
           <img src={item.pic} alt={'error'} className={'rounded-xl'} />
           <div className={'text-lg pt-1 title'}>{item.title}</div>
-          <div className={'text-md py-1'}>播放量：{item.play} 万</div>
-          <div className={'text-sm text-gray-500'}>最近更新：{item.create}</div>
+          <div className={'text-md py-1'}>播放量：{(() => {
+            return (item.play / 10000 + '').slice(0,6)
+          })()} 万</div>
+          <div className={'text-sm text-gray-500'}>最近更新：{(() => {
+            const b = dayjs(item.create)
+            return b.fromNow()
+          })()}</div>
         </div>
       </a>
     )
@@ -57,7 +66,7 @@ function BilibiliCarton() {
 
   const newestCartonTemplate = (item: newestCarton) => {
     return (
-      <div className={'relative mb-16 w-5/12 cursor-pointer bilibili-carton transition-all'}>
+      <div className={'relative mb-16 cursor-pointer bilibili-carton transition-all sm:w-5/12'}>
         <img className={'rounded-md w-full'} src={item.cover} alt={'error'} />
         <div className={'text-lg pt-1 title'}>{item.title}</div>
         <div className={'text-sm text-gray-500'}>{item.lastupdate_at} 更新</div>
@@ -92,10 +101,12 @@ function BilibiliCarton() {
           </div>
         </div>
 
-        <div className={cardStyle + ' mt-10'}>
+        <div className={'inline-block w-5'} />
+
+        <div className={cardStyle + ' mt-5'}>
           {titleHeader('最新上映')}
 
-          <div className={'flex flex-wrap justify-between overflow-y-auto h-96 pt-10 px-16'}>
+          <div className={'flex flex-wrap justify-between overflow-y-auto h-96 pt-10 px-10'}>
             {
               newestCarton &&
               newestCarton.map(item => newestCartonTemplate(item))

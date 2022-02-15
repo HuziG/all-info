@@ -8,6 +8,10 @@ import WangYiYun from "./components/WangYiYun";
 import MeiZi from "./components/MeiZi";
 import BilibiliCarton from "./components/BilibiliCarton";
 
+import * as dayjs from 'dayjs'
+require('dayjs/locale/zh-cn')
+dayjs.locale('zh-cn')
+
 function App() {
   return (
     <div>
