@@ -5,6 +5,7 @@ import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import LinkIcon from '@material-ui/icons/Link';
 import LoadingMask from "./Loading";
+import { Resizable } from "re-resizable";
 
 interface NewsItem {
   title: string,
@@ -36,6 +37,8 @@ function HotNews() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const [popoverIndex, setPopoverIndex] = useState<number | null>(null)
   const [fullTitle, setFullTitle] = useState<string | null>(null)
+  const [width, setWidth] = useState(500)
+  const [height, setHeight] = useState(500)
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -60,67 +63,76 @@ function HotNews() {
   };
 
   return (
-    <div className="relative rounded-md overflow-x-hidden w-full">
-      <div className="absolute w-full font-bold bg-red-600 text-white top-0 z-10 left-0 py-5 px-5">
-        新浪新闻
-      </div>
+    <Resizable
+      className={'scroll-hidden'}
+      size={{ width, height }}
+      onResizeStop={(e, direction, ref, d) => {
+        setWidth(width + d.width);
+        setHeight(height + d.height);
+      }}
+    >
+      <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
+        <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold handle'}>
+          新浪新闻
+        </div>
 
-      { loading && <LoadingMask /> }
+        { loading && <LoadingMask /> }
 
-      <div className="mt-16 bg-white overflow-y-auto h-96 p-3 w-full">
-        {
-          news !== null && news.items.map((item, index) => (
-            <div
-              className="
-                truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
-              "
-              key={index}
-            >
-              <a
-                className="py-4 inline-block"
-                title={item.title}
-                key={item.url}
-                target='_blank'
-                onClick={(e) => handleClick(e, index, item.title)}
-              >{item.title}</a>
-              {
-                popoverIndex === index &&
-                <Popover
-                  id={id}
-                  open={open}
-                  anchorEl={anchorEl}
-                  onClose={handleClose}
-                  anchorReference={'anchorEl'}
-                  anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'left',
-                  }}
-                  anchorPosition={{
-                    left: 400,
-                    top: 200
-                  }}
-                >
-                  <Typography className={classes.typography}>
-                    <div>
-                      {fullTitle}
-                      <a
-                        href={item.url}
-                        onClick={() => handleClose()}
-                        target='_blank'
-                      ><span className="text-sm text-indigo-600 font-bold"><LinkIcon /> 查看更多</span></a>
-                    </div>
-                  </Typography>
-                </Popover>
-              }
-            </div>
-          ))
-        }
+        <div className="bg-white overflow-y-auto h-full p-3 w-full">
+          {
+            news !== null && news.items.map((item, index) => (
+              <div
+                className="
+                  truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
+                "
+                key={index}
+              >
+                <a
+                  className="py-4 inline-block"
+                  title={item.title}
+                  key={item.url}
+                  target='_blank'
+                  onClick={(e) => handleClick(e, index, item.title)}
+                >{item.title}</a>
+                {
+                  popoverIndex === index &&
+                  <Popover
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorReference={'anchorEl'}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    anchorPosition={{
+                      left: 400,
+                      top: 200
+                    }}
+                  >
+                    <Typography className={classes.typography}>
+                      <div>
+                        {fullTitle}
+                        <a
+                          href={item.url}
+                          onClick={() => handleClose()}
+                          target='_blank'
+                        ><span className="text-sm text-indigo-600 font-bold"><LinkIcon /> 查看更多</span></a>
+                      </div>
+                    </Typography>
+                  </Popover>
+                }
+              </div>
+            ))
+          }
+        </div>
       </div>
-    </div>
+    </Resizable>
   )
 }
 

@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {getWangYiYunComment} from "../../api/wangyiyun";
 import moment from "moment";
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import { Resizable } from "re-resizable";
 
 interface Comment {
   avatar: string;
@@ -17,6 +18,8 @@ interface Comment {
 function WangYiYun() {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState<Comment[] | null>([]);
+  const [width, setWidth] = useState(500);
+  const [height, setHeight] = useState(500)
 
   useEffect(() => {
     (async function anyNameFunction() {
@@ -57,7 +60,7 @@ function WangYiYun() {
               </div>
 
               <div className={'mt-3 text-right text-xs'} style={{color: '#cccccc'}}>
-                {moment(Number(item.time)).format('YYYY年MM月DD hh:mm')}
+                {moment(Number(item.time)).format('YYYY年MM月DD日 hh:mm')}
               </div>
             </div>
 
@@ -100,33 +103,48 @@ function WangYiYun() {
   }
 
   return (
-    <div className={'mt-5 relative rounded-md overflow-hidden ml-0'}
-      style={{
-        backgroundColor: '#333333'
+    <Resizable
+      className={'scroll-hidden'}
+      size={{ width, height }}
+      onResizeStop={(e, direction, ref, d) => {
+        setWidth(width + d.width);
+        setHeight(height + d.height);
       }}
     >
-      { loading && <LoadingMask /> }
-
       <div
-        className="w-full font-bold text-white top-0 z-10 left-0 h-16 leading-16 px-5"
+        className="relative bg-white rounded-md overflow-hidden w-full h-full"
         style={{
-          backgroundColor: '#DD001B'
+          backgroundColor: '#333333'
         }}
       >
-        <div className="inline-block flex align-center justify-between">
-          网易云热评
+        { loading && <LoadingMask /> }
 
-          <button>刷新</button>
+        <div
+          className="w-full font-bold text-white top-0 z-10 left-0 h-16 leading-16 px-5"
+          style={{
+            backgroundColor: '#DD001B'
+          }}
+        >
+          <div className="inline-block flex align-center justify-between handle">
+            网易云热评
+
+            <button>刷新</button>
+          </div>
+        </div>
+
+        <div
+          className={'overflow-y-auto h-full p-3 w-full pb-20'}
+          style={{
+            backgroundColor: '#333333'
+          }}
+        >
+          {
+            comments !== null &&
+            comments.map((item) => commentTemplate(item))
+          }
         </div>
       </div>
-
-      <div className={'h-96 overflow-y-auto'}>
-        {
-          comments !== null &&
-          comments.map((item) => commentTemplate(item))
-        }
-      </div>
-    </div>
+    </Resizable>
   )
 }
 
