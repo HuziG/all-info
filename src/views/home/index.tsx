@@ -7,9 +7,10 @@ import {IconButton} from "@material-ui/core";
 import {parse} from "querystring";
 import {Settings} from "@material-ui/icons";
 
+const OtherComponent = React.lazy(() => import('../../components/HotNews'));
+
 function Home() {
   const [drawer, setDrawer] = useState(false)
-  const OtherComponent = React.lazy(() => import('../../components/HotNews'));
   const [cmps, setCmps] = useState<any[] | null>(null)
 
   console.log('load Home')
