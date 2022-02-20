@@ -1,12 +1,18 @@
 import Drawer from '@material-ui/core/Drawer';
-import { useState } from 'react';
+import React, {useState, Suspense, useEffect} from 'react';
 import Draggable from 'react-draggable';
-import HotNews from '../../components/HotNews';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import HotNews from '../../components/HotNews';
 import {IconButton} from "@material-ui/core";
+import {parse} from "querystring";
+import {Settings} from "@material-ui/icons";
 
 function Home() {
   const [drawer, setDrawer] = useState(false)
+  const OtherComponent = React.lazy(() => import('../../components/HotNews'));
+  const [cmps, setCmps] = useState<any[] | null>(null)
+
+  console.log('load Home')
 
   return (
     <div>
@@ -26,15 +32,28 @@ function Home() {
         </div>
       </Drawer>
 
-      <Draggable
-        axis="both"
-        handle=".handle"
-        defaultPosition={{x: 25, y: 25}}
-        grid={[25, 25]}
-        scale={1}
-      >
-        <div><HotNews /></div>
-      </Draggable>
+      {
+        [{x: 25, y: 25}, {x: 50, y: 50}].map((item, index) => {
+          return (
+            <Draggable
+              axis="both"
+              handle=".handle"
+              defaultPosition={{x: item.x, y: item.y}}
+              grid={[25, 25]}
+              scale={1}
+              key={index}
+            >
+              <div>
+                <Suspense fallback={<div>Loading...</div>}>
+                  <OtherComponent />
+                </Suspense>
+              </div>
+            </Draggable>
+          )
+        })
+      }
+
+      {/*<div><HotNews /></div>*/}
     </div>
   )
 }
