@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {getNews} from "../api/news";
+import {getNews} from "../../api/news";
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import LinkIcon from '@material-ui/icons/Link';
-import LoadingMask from "./Loading";
+import LoadingMask from "../Loading";
 import { Resizable } from "re-resizable";
+import {HomeComponent} from "../../interface/home.component.interface";
 
 interface NewsItem {
   title: string,
@@ -30,15 +31,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function HotNews() {
+function Index(props: HomeComponent) {
   const classes = useStyles();
   const [loading, setLoading] = useState(true)
   const [news, setNews] = useState<News | null>(null)
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
   const [popoverIndex, setPopoverIndex] = useState<number | null>(null)
   const [fullTitle, setFullTitle] = useState<string | null>(null)
-  const [width, setWidth] = useState(500)
-  const [height, setHeight] = useState(500)
+  const [width, setWidth] = useState(props.width)
+  const [height, setHeight] = useState(props.height)
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
@@ -73,10 +74,10 @@ function HotNews() {
     >
       <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
         <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold handle'}>
-          新浪新闻
+          {/*新浪新闻*/}
         </div>
 
-        { loading && <LoadingMask /> }
+        {/*{ loading && <LoadingMask /> }*/}
 
         <div className="bg-white overflow-y-auto h-full p-3 w-full">
           {
@@ -136,4 +137,4 @@ function HotNews() {
   )
 }
 
-export default HotNews
+export default Index
