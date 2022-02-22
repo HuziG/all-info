@@ -52,11 +52,5 @@
     "f2elint": "^2.2.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "f2elint commit-file-scan",
-      "commit-msg": "f2elint commit-msg-scan"
-    }
   }
 }

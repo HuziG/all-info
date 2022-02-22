@@ -51,7 +51,7 @@ function StylePageMenu(props: any, ref: any) {
       >
         {pageArr !== null &&
           pageArr.map((item, index) => (
-            <MenuItem onClick={handleClose} key={index}>
+            <MenuItem onClick={handleClose} key={item}>
               <span onClick={() => {
                 setPage(index + 1)
                 handleCloseSelect()

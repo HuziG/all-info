@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { getHotFilm, getComingFilm } from '../../api/maoyan';
+import React, {useEffect, useState} from 'react';
+import {getHotFilm, getComingFilm} from '../../api/maoyan';
 import LoadingMask from '../Loading';
 import moment from 'moment';
+import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
 interface Film {
   cat: string;
@@ -15,7 +16,7 @@ interface Film {
   showInfo: string;
 }
 
-function MaoYan() {
+function MaoYan(props: HomeDrawerComponent) {
   const [loading, setLoading] = useState(true);
   const [hotFilms, setHotFilms] = useState<Film[] | null>(null);
   const [comingFilms, setComingFilms] = useState<Film[] | null>(null);
@@ -43,11 +44,16 @@ function MaoYan() {
                 hover:bg-gray-100 rounded-xl
               "
         >
-          <img className={'rounded-xl'} src={item.img.replace('w.h', '140.150')} alt={'error'} />
+          <img
+            className={'rounded-xl'}
+            src={item.img.replace('w.h', '140.150')}
+            referrerPolicy="no-referrer"
+            alt={'error'}
+          />
 
           <div className="ml-5 flex flex-col">
             <div className={'font-bold text-xl text-black'}>{item.nm}</div>
-            <div className={'text-sm mt-1 text-gray-800'}>{item.desc || '主演:' + item.star}</div>
+            <div className={'text-sm mt-1 text-gray-800'}>{item.desc || `主演:${item.star}`}</div>
             <div className={'text-sm mt-1 text-gray-800'}>{item.cat}</div>
             {item.mk && (
               <div className={'text-sm mt-1 text-xl font-bold text-yellow-500'}>
@@ -62,7 +68,7 @@ function MaoYan() {
   };
 
   return (
-    <div className="mt-5 relative rounded-md overflow-x-hidden w-full">
+    <div id={`ALLINFO_${props.name}`} className="mt-5 relative rounded-md overflow-x-hidden w-full">
       <div
         className="w-full flex flex-row align-center justify-between font-bold text-white py-5 px-5"
         style={{
@@ -74,7 +80,7 @@ function MaoYan() {
         <div>{`${momentTime.year()} 年 ${momentTime.month() + 1} 月 ${momentTime.date()} 日`}</div>
       </div>
 
-      {loading && <LoadingMask />}
+      {loading && <LoadingMask/>}
 
       <div className="bg-white overflow-y-auto h-96 p-3 w-full">
         <div className={'flex flex-row items-center font-bold justify-around mb-3'}>
@@ -89,7 +95,7 @@ function MaoYan() {
           </div>
           <div
             className={`px-3 cursor-pointer ${listState === 'coming' ? 'border-b-2' : ''}`}
-            style={{ borderColor: '#EF4238' }}
+            style={{borderColor: '#EF4238'}}
             onClick={() => setListState('coming')}
           >
             即将上映

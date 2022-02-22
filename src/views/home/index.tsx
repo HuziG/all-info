@@ -1,45 +1,32 @@
 import Drawer from '@material-ui/core/Drawer';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import Draggable from 'react-draggable';
-
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
+import {COMPONENT_DATA_KEY} from "../../utils/env";
 
-const GetComponents = () => {
-  return [
-    {
-      name: 'HotNews',
-      params: {
-        width: 500,
-        height: 300,
-        x: 50,
-        y: 50,
-      },
-    },
-  ].map((item) => (
-    <Draggable
-      axis="both"
-      handle=".handle"
-      defaultPosition={{x: item.params.x, y: item.params.y}}
-      grid={[25, 25]}
-      scale={1}
-      key={item.name}
-    >
-      <div>
-        <AsyncComponent name={item.name} params={item.params}/>
-      </div>
-    </Draggable>
-  ));
-};
+const LocalStorageComponentData = localStorage.getItem(COMPONENT_DATA_KEY) || []
+
+// const handleSaveToLocal = (data: HomeDrawerComponent[]) => {
+//   localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(data))
+// }
 
 function Home() {
   const [drawer, setDrawer] = useState(false);
+  const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(
+    typeof LocalStorageComponentData === 'string' ? JSON.parse(LocalStorageComponentData) : []
+  );
 
-  const handleSelect = (e: HomeDrawerComponent) => {
-    console.log(e);
+  const handleSelect = (cmp: HomeDrawerComponent) => {
+    console.log(cmp);
+    setComponentsList([...componentsList, cmp])
   };
+
+  useEffect(() => {
+    console.log(componentsList);
+  }, [componentsList])
 
   return (
     <div>
@@ -59,10 +46,24 @@ function Home() {
         <DrawerSelect handleSelect={handleSelect}/>
       </Drawer>
 
-      {GetComponents()}
+      {
+        componentsList.length > 0 && componentsList.map((item: HomeDrawerComponent) => (
+          <Draggable
+            axis="both"
+            handle=".handle"
+            defaultPosition={{x: item.params.x, y: item.params.y}}
+            grid={[25, 25]}
+            scale={1}
+            key={item.name}
+          >
+            <div>
+              <AsyncComponent name={item.name} data={item}/>
+            </div>
+          </Draggable>
+        ))
+      }
     </div>
   );
 }
 
-// @ts-ignore
 export default Home;

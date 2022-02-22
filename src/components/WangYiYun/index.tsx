@@ -4,6 +4,7 @@ import {getWangYiYunComment} from '../../api/wangyiyun';
 import moment from 'moment';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import {Resizable} from 're-resizable';
+import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
 interface Comment {
   avatar: string;
@@ -15,7 +16,7 @@ interface Comment {
   songPic: string;
 }
 
-function WangYiYun() {
+function WangYiYun(props: HomeDrawerComponent) {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState<Comment[] | null>([]);
   const [width, setWidth] = useState(500);
@@ -41,7 +42,7 @@ function WangYiYun() {
               style={{
                 backgroundColor: '#2A2A2A',
                 marginLeft: (() => {
-                  return `${10 + Math.ceil(Math.random() * 4) * 10  }px`;
+                  return `${10 + Math.ceil(Math.random() * 4) * 10}px`;
                 })(),
               }}
             >
@@ -111,6 +112,7 @@ function WangYiYun() {
       }}
     >
       <div
+        id={`ALLINFO_${props.name}`}
         className="relative bg-white rounded-md overflow-hidden w-full h-full"
         style={{
           backgroundColor: '#333333',

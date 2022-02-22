@@ -5,8 +5,9 @@ import {Mousewheel, Manipulation, Lazy} from 'swiper';
 import 'swiper/css/lazy';
 import LoadingMask from '../Loading';
 import {getMeiZi} from '../../api/meizi';
+import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
-function Index(this: any) {
+function Index(props: HomeDrawerComponent) {
   const [loading, setLoading] = useState(true);
   const [peopleData, setPeopleData] = useState<any[] | null>(null);
 
@@ -26,7 +27,7 @@ function Index(this: any) {
   };
 
   return (
-    <div className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
+    <div id={`ALLINFO_${props.name}`} className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
       {loading && <LoadingMask/>}
 
       <div className="relative bg-white">

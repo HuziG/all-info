@@ -13,8 +13,9 @@ import {Mousewheel, Manipulation, Lazy, FreeMode} from 'swiper';
 import 'swiper/css/lazy';
 import {Button} from '@material-ui/core';
 import LoadingMask from '../Loading';
+import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
-function Index(this: any) {
+function Index(props: HomeDrawerComponent) {
   const [loading, setLoading] = useState(true);
   const [photoSwiperRef, setPhotoSwiperRef] = useState<any>(null);
   const [avatarSwiperRef, setAvatarSwiperRef] = useState<any>(null);
@@ -87,7 +88,7 @@ function Index(this: any) {
   };
 
   return (
-    <div className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
+    <div id={`ALLINFO_${props.name}`} className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
       {loading && <LoadingMask/>}
 
       <div

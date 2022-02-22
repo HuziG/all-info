@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import LinkIcon from '@material-ui/icons/Link';
 import LoadingMask from '../Loading';
 import {Resizable} from 're-resizable';
-import {HomeComponent} from '../../interface/home.component.interface';
+import {HomeDrawerComponent} from '../../interface/home.component.interface';
 
 interface NewsItem {
   title: string;
@@ -31,15 +31,15 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function Index(props: HomeComponent) {
+function Index(props: HomeDrawerComponent) {
   const classes = useStyles();
   const [loading, setLoading] = useState(true);
   const [news, setNews] = useState<News | null>(null);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const [popoverIndex, setPopoverIndex] = useState<number | null>(null);
   const [fullTitle, setFullTitle] = useState<string | null>(null);
-  const [width, setWidth] = useState(props.width);
-  const [height, setHeight] = useState(props.height);
+  const [width, setWidth] = useState(props.params.width);
+  const [height, setHeight] = useState(props.params.height);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
