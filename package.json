@@ -31,13 +31,9 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "f2elint-scan": "f2elint scan",
+    "f2elint-fix": "f2elint fix"
   },
   "browserslist": {
     "production": [
@@ -53,7 +49,14 @@
   },
   "devDependencies": {
     "autoprefixer": "^9",
+    "f2elint": "^2.2.0",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "f2elint commit-file-scan",
+      "commit-msg": "f2elint commit-msg-scan"
+    }
   }
 }

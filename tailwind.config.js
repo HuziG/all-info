@@ -12,10 +12,10 @@ module.exports = {
         '85vh': '85vh',
       },
       lineHeight: {
-        '16': '4rem',
-      }
+        16: '4rem',
+      },
     },
   },
   variants: {},
   plugins: [],
-}
+};

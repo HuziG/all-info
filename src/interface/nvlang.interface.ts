@@ -19,13 +19,13 @@ export interface NvLangData {
   showapi_res_code: number;
   showapi_fee_num: number;
   showapi_res_body: {
-    ret_code: number,
+    ret_code: number;
     pagebean: {
       contentlist: NvLangItemData[];
-      "allNum": number;
-      "allPages": number;
-      "currentPage": number;
-    }
+      allNum: number;
+      allPages: number;
+      currentPage: number;
+    };
   };
 }
 

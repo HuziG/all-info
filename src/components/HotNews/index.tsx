@@ -1,62 +1,65 @@
-import React, {useEffect, useState} from "react";
-import {getNews} from "../../api/news";
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import React, {useEffect, useState} from 'react';
+import {getNews} from '../../api/news';
+import {makeStyles, createStyles, Theme} from '@material-ui/core/styles';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import LinkIcon from '@material-ui/icons/Link';
-import LoadingMask from "../Loading";
-import { Resizable } from "re-resizable";
-import {HomeComponent} from "../../interface/home.component.interface";
+import LoadingMask from '../Loading';
+import {Resizable} from 're-resizable';
+import {HomeComponent} from '../../interface/home.component.interface';
 
 interface NewsItem {
-  title: string,
-  url: string,
-  id: number
+  title: string;
+  url: string;
+  id: number;
 }
 
 interface News {
-  description: string,
-  feed_url: string,
-  items: [NewsItem],
-  title: string,
-  version: string
+  description: string;
+  feed_url: string;
+  items: [NewsItem];
+  title: string;
+  version: string;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     typography: {
       padding: theme.spacing(2),
-      width: '400px'
+      width: '400px',
     },
   }),
 );
 
 function Index(props: HomeComponent) {
   const classes = useStyles();
-  const [loading, setLoading] = useState(true)
-  const [news, setNews] = useState<News | null>(null)
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null)
-  const [popoverIndex, setPopoverIndex] = useState<number | null>(null)
-  const [fullTitle, setFullTitle] = useState<string | null>(null)
-  const [width, setWidth] = useState(props.width)
-  const [height, setHeight] = useState(props.height)
+  const [loading, setLoading] = useState(true);
+  const [news, setNews] = useState<News | null>(null);
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+  const [popoverIndex, setPopoverIndex] = useState<number | null>(null);
+  const [fullTitle, setFullTitle] = useState<string | null>(null);
+  const [width, setWidth] = useState(props.width);
+  const [height, setHeight] = useState(props.height);
 
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popover' : undefined;
 
-  useEffect( () => {
+  useEffect(() => {
     (async function anyNameFunction() {
-      const data = await getNews()
-      setNews({ ...data, news })
-      setLoading(false)
+      const data = await getNews();
+      setNews({...data, news});
+      setLoading(false);
     })();
-  }, [])
+  }, []);
 
-  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>, index: number, fullTitle: string) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    index: number,
+  ) => {
     // @ts-ignore
-    setAnchorEl(event.currentTarget)
-    setPopoverIndex(index)
-    setFullTitle(fullTitle)
+    setAnchorEl(event.currentTarget);
+    setPopoverIndex(index);
+    setFullTitle(fullTitle);
   };
 
   const handleClose = () => {
@@ -66,7 +69,7 @@ function Index(props: HomeComponent) {
   return (
     <Resizable
       className={'scroll-hidden'}
-      size={{ width, height }}
+      size={{width, height}}
       onResizeStop={(e, direction, ref, d) => {
         setWidth(width + d.width);
         setHeight(height + d.height);
@@ -74,29 +77,30 @@ function Index(props: HomeComponent) {
     >
       <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
         <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold handle'}>
-          {/*新浪新闻*/}
+          新浪新闻
         </div>
 
-        {/*{ loading && <LoadingMask /> }*/}
+        {loading && <LoadingMask/>}
 
         <div className="bg-white overflow-y-auto h-full p-3 w-full">
-          {
-            news !== null && news.items.map((item, index) => (
+          {news !== null &&
+            news.items.map((item, index) => (
               <div
                 className="
                   truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
                 "
-                key={index}
+                key={item.title}
               >
                 <a
                   className="py-4 inline-block"
                   title={item.title}
                   key={item.url}
-                  target='_blank'
-                  onClick={(e) => handleClick(e, index, item.title)}
-                >{item.title}</a>
-                {
-                  popoverIndex === index &&
+                  target="_blank"
+                  onClick={(e) => handleClick(e, index)}
+                >
+                  {item.title}
+                </a>
+                {popoverIndex === index && (
                   <Popover
                     id={id}
                     open={open}
@@ -113,28 +117,27 @@ function Index(props: HomeComponent) {
                     }}
                     anchorPosition={{
                       left: 400,
-                      top: 200
+                      top: 200,
                     }}
                   >
                     <Typography className={classes.typography}>
                       <div>
                         {fullTitle}
-                        <a
-                          href={item.url}
-                          onClick={() => handleClose()}
-                          target='_blank'
-                        ><span className="text-sm text-indigo-600 font-bold"><LinkIcon /> 查看更多</span></a>
+                        <a href={item.url} onClick={() => handleClose()} target="_blank" rel="noreferrer">
+                          <span className="text-sm text-indigo-600 font-bold">
+                            <LinkIcon/> 查看更多
+                          </span>
+                        </a>
                       </div>
                     </Typography>
                   </Popover>
-                }
+                )}
               </div>
-            ))
-          }
+            ))}
         </div>
       </div>
     </Resizable>
-  )
+  );
 }
 
-export default Index
+export default Index;

@@ -1,5 +1,5 @@
-import {Button, Menu, MenuItem} from "@material-ui/core";
-import {useState} from "react";
+import {Button, Menu, MenuItem} from '@material-ui/core';
+import {useState} from 'react';
 
 function StyleMenu(props: any) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -13,15 +13,32 @@ function StyleMenu(props: any) {
     setAnchorEl(null);
   };
 
-  const handleCloseSelect = (style: string) => {
-    setStyle(style)
+  const handleCloseSelect = () => {
     props.childSetStyle({
-      style
-    })
+      style,
+    });
   };
 
-  const styleArr = ["日系", "欧美", "韩版", "英伦", "OL风", "学院",
-    "淑女", "性感", "复古", "街头", "休闲", "民族", "甜美", "运动", "可爱", "大码", "中老年", "其他"]
+  const styleArr = [
+    '日系',
+    '欧美',
+    '韩版',
+    '英伦',
+    'OL风',
+    '学院',
+    '淑女',
+    '性感',
+    '复古',
+    '街头',
+    '休闲',
+    '民族',
+    '甜美',
+    '运动',
+    '可爱',
+    '大码',
+    '中老年',
+    '其他',
+  ];
 
   return (
     <div className="inline-block">
@@ -32,7 +49,7 @@ function StyleMenu(props: any) {
         onClick={handleClick}
         style={{
           color: '#ffffff',
-          borderColor: '#ffffff'
+          borderColor: '#ffffff',
         }}
       >
         {style}
@@ -44,16 +61,17 @@ function StyleMenu(props: any) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        {
-          styleArr.map(item => (
-            <MenuItem onClick={handleClose} key={item}>
-              <span onClick={() => handleCloseSelect(item)}>{item}</span>
-            </MenuItem>
-          ))
-        }
+        {styleArr.map((item) => (
+          <MenuItem onClick={handleClose} key={item}>
+            <span onClick={() => {
+              setStyle(style);
+              handleCloseSelect();
+            }}>{item}</span>
+          </MenuItem>
+        ))}
       </Menu>
     </div>
-  )
+  );
 }
 
-export default StyleMenu
+export default StyleMenu;
