@@ -1,24 +1,15 @@
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Resizable} from "re-resizable";
 import LoadingMask from "../Loading";
-
+import useScript from "../../hook/useScript";
 
 function YiWeiReBang(props: HomeDrawerComponent) {
   const id = `ALLINFO_${props.name}`
   const [width, setWidth] = useState(props.params.width);
   const [height, setHeight] = useState(props.params.height);
 
-  useEffect(() => {
-    const myScript = document.createElement('script');
-    myScript.src = `${props.params.yiweiUrl}${id}`;
-    myScript.async = false;
-    document.body.appendChild(myScript);
-
-    return () => {
-      document.body.removeChild(myScript);
-    };
-  }, [])
+  useScript(`${props.params.yiweiUrl}${id}`)
 
   return (
     <Resizable

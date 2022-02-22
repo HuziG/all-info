@@ -1,23 +1,25 @@
 import Drawer from '@material-ui/core/Drawer';
 import React, {useEffect, useState} from 'react';
-import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import Draggable from 'react-draggable';
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
 import {COMPONENT_DATA_KEY} from "../../utils/env";
+import AddIcon from '@material-ui/icons/Add';
+import {components} from "./static/componentsList";
 
-const LocalStorageComponentData = localStorage.getItem(COMPONENT_DATA_KEY) || []
-
-// const handleSaveToLocal = (data: HomeDrawerComponent[]) => {
-//   localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(data))
-// }
+/**
+ * 代码获取，格式化完整数组
+ */
+let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]'
+LocalStorageComponentData = JSON.parse(LocalStorageComponentData)
+LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string; }) =>
+  components.find(cmp => cmp.label === item.label)
+)
 
 function Home() {
   const [drawer, setDrawer] = useState(false);
-  const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(
-    typeof LocalStorageComponentData === 'string' ? JSON.parse(LocalStorageComponentData) : []
-  );
+  const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
     console.log(cmp);
@@ -25,21 +27,21 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(componentsList);
-  }, [componentsList])
+    const _componentsList = JSON.parse(JSON.stringify(componentsList)).map((item: HomeDrawerComponent) => ({label: item.label}))
+    !drawer && localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(_componentsList))
+  }, [componentsList, drawer])
 
   return (
     <div>
       <div
         className={
-          'fixed right-10 bottom-5 z-20 w-16 h-16 flex items-center justify-center rounded-full cursor-pointer'
+          'fixed right-10 bottom-5 z-20 w-12 h-12 ' +
+          'flex items-center justify-center rounded-2xl cursor-pointer ' +
+          'bg-indigo-700 hover:bg-indigo-500 transition-all cursor-pointer'
         }
-        style={{
-          backgroundColor: '#3F51B5',
-        }}
         onClick={() => setDrawer(true)}
       >
-        <SettingsApplicationsIcon style={{color: '#ffffff'}}/>
+        <AddIcon style={{color: '#ffffff', fontSize: '2rem'}}/>
       </div>
 
       <Drawer anchor={'right'} open={drawer} onClose={() => setDrawer(false)}>
@@ -54,7 +56,7 @@ function Home() {
             defaultPosition={{x: item.params.x, y: item.params.y}}
             grid={[25, 25]}
             scale={1}
-            key={item.name}
+            key={item.label}
           >
             <div>
               <AsyncComponent name={item.name} data={item}/>

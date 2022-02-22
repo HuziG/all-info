@@ -12,6 +12,18 @@ export const components = [
     style: {color: '#0366FE'},
   },
   {
+    label: '微信财经榜',
+    name: 'YiWeiReBang',
+    params: {
+      width: 500,
+      height: 300,
+      x: 50,
+      y: 50,
+      yiweiUrl: 'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100009&css=card&select='
+    },
+    style: {color: '#40B035'},
+  },
+  {
     label: '新浪实时新闻',
     name: 'HotNews',
     params: {width: 500, height: 300, x: 50, y: 50},

@@ -2,19 +2,11 @@ import React, {useState} from 'react';
 import {HomeDrawerComponent} from '../../../interface/home.component.interface';
 import {components} from '../static/componentsList';
 import AddIcon from '@material-ui/icons/Add';
-import {COMPONENT_DATA_KEY} from "../../../utils/env";
-
-/**
- * 获取本地数组信息，过滤数组内容
- */
-const LocalComponent = localStorage.getItem(COMPONENT_DATA_KEY) || []
-const ComponentsMenu: HomeDrawerComponent[] = components.filter(
-  component => typeof LocalComponent === 'string' ?
-    JSON.parse(LocalComponent).find((item: HomeDrawerComponent) => item.name !== component.name) : true
-);
 
 function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void }) {
   const [mouseOverIndex, setMouseOverIndex] = useState<number | null>(null)
+
+  // const componentList = components.filter(item => props.existComponent)
 
   return (
     <div className={'p-3'}>
@@ -22,7 +14,7 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void
         选择喜欢的内容 🙂
       </div>
 
-      {ComponentsMenu.map((item, index) => (
+      {components.map((item, index) => (
         <div
           key={item.name}
           onClick={() => props.handleSelect(item)}
