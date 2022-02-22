@@ -4,10 +4,11 @@ function LoadingMask() {
   return (
     <div
       className={
-        'absolute z-50 t-0 l-0 bg-opacity-50 bg-black w-full h-full flex justify-center items-center'
+        'absolute z-50 t-0 l-0 w-full h-full flex ' +
+        'justify-center items-center border-2 border-indigo-600 rounded-md'
       }
     >
-      <AutorenewIcon className={'animate-spin text-indigo-600'} style={{ fontSize: '4rem' }} />
+      <AutorenewIcon className={'animate-spin text-indigo-600'} style={{fontSize: '4rem'}}/>
     </div>
   );
 }

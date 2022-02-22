@@ -52,7 +52,7 @@ function Index(props: HomeDrawerComponent) {
             >
               {peopleData !== null &&
                 peopleData.map((item) => (
-                  <SwiperSlide key={item.imgurl}>
+                  <SwiperSlide>
                     <img
                       src={item.imgurl}
                       className="swiper-lazy"

@@ -19,7 +19,7 @@ export const components = [
   },
   {
     label: '网易云评论',
-    name: 'MeiZi',
+    name: 'WangYiYun',
     params: {width: 500, height: 300, x: 50, y: 50},
     style: {color: '#D70016'},
   },
