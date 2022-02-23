@@ -76,8 +76,8 @@ function Index(props: HomeDrawerComponent) {
       }}
     >
       <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
-        <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold handle'}>
-          新浪新闻
+        <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold'}>
+          <span className={'handle'}>新浪新闻</span>
         </div>
 
         {loading && <LoadingMask/>}
