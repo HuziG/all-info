@@ -7,8 +7,6 @@ import {HomeDrawerComponent} from '../../interface/home.component.interface';
 import {COMPONENT_DATA_KEY} from "../../utils/env";
 import AddIcon from '@material-ui/icons/Add';
 import {components} from "./static/componentsList";
-import Switch from "../Switch";
-import {useDispatch, useMappedState} from "redux-react-hook";
 
 /**
  * 代码获取，格式化完整数组
@@ -22,8 +20,6 @@ LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string
 function Home() {
   const [drawer, setDrawer] = useState(false);
   const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
-  const resizeSwitch = useMappedState(state => state.resizeSwitch);
-  const dispatch = useDispatch();
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
     setComponentsList([...componentsList, cmp])
@@ -36,29 +32,6 @@ function Home() {
 
   return (
     <div>
-      {
-        !resizeSwitch ?
-          'resizeSwitch false' : 'resizeSwitch true'
-      }
-
-      <div>
-        <button onClick={() => dispatch({
-          type: 'drag_tag_open'
-        })}>
-          Open
-        </button>
-
-        <button onClick={() => dispatch({
-          type: 'drag_tag_close'
-        })}>
-          Close
-        </button>
-      </div>
-
-      <hr/>
-
-      <Switch/>
-
       <div
         className={
           'fixed right-10 bottom-5 z-20 w-12 h-12 ' +
