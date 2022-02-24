@@ -10,6 +10,8 @@ import {components} from "./static/componentsList";
 import {Fab} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import MenuIcon from '@material-ui/icons/Menu';
+import {useDispatch} from "redux-react-hook";
+import CmpContainer from "../../components/Common/CmpContainer";
 
 /**
  * 代码获取，格式化完整数组
@@ -20,15 +22,26 @@ LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string
   components.find(cmp => cmp.label === item.label)
 )
 
+let editType = 'drag_tag_open'
+
 function Home() {
+
   const [drawer, setDrawer] = useState(false);
   const [showOperateBut, setShowOperateBut] = useState(false);
   const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
-
+  const dispatch = useDispatch()
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
     setComponentsList([...componentsList, cmp])
   };
+
+  const handleOpenEdit = () => {
+    const result = editType === 'drag_tag_open' ? 'drag_tag_close' : 'drag_tag_open'
+    dispatch({
+      type: result
+    })
+    editType = result
+  }
 
   useEffect(() => {
     const _componentsList = JSON.parse(JSON.stringify(componentsList)).map((item: HomeDrawerComponent) => ({label: item.label}))
@@ -45,12 +58,12 @@ function Home() {
             showOperateBut &&
             <div>
               <div className={'absolute -top-16'}>
-                <Fab size="medium" color="secondary" aria-label="edit">
+                <Fab size="medium" color="secondary" aria-label="edit" onClick={() => setDrawer(true)}>
                   <AddIcon/>
                 </Fab>
               </div>
               <div className={'absolute -left-16'}>
-                <Fab size="medium" color="secondary" aria-label="edit" onClick={() => setDrawer(true)}>
+                <Fab size="medium" color="secondary" aria-label="edit" onClick={() => handleOpenEdit()}>
                   <EditIcon/>
                 </Fab>
               </div>
@@ -78,7 +91,9 @@ function Home() {
             key={item.label}
           >
             <div>
-              <AsyncComponent name={item.name} data={item}/>
+              <CmpContainer>
+                <AsyncComponent name={item.name} data={item}/>
+              </CmpContainer>
             </div>
           </Draggable>
         ))

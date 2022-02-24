@@ -4,6 +4,8 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
 import {Resizable} from 're-resizable';
+import DragTag from "../Common/DragTag";
+import DeleteTag from "../Common/DeleteTag";
 
 interface carton {
   pic: string;
@@ -72,6 +74,9 @@ function BilibiliCarton(props: HomeDrawerComponent) {
         setHeight(height + d.height);
       }}
     >
+      <DragTag/>
+      <DeleteTag/>
+
       <div id={`ALLINFO_${props.name}`}>
         <div className={'flex flex-col lg:flex-row items-center justify-between'}>
           <div className={cardStyle}>

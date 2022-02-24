@@ -1,5 +1,4 @@
 import {useMappedState} from "redux-react-hook";
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
 function DragTag() {
   const show = useMappedState(state => state.showDragTag);
@@ -10,11 +9,9 @@ function DragTag() {
         show &&
         <div
           className={
-            'absolute -bottom-5 -right-5 w-10 h-10 inline-block bg-gray-400 hover:bg-gray-300 ' +
-            'rounded-xl transition-all cursor-pointer absolute z-20'}>
-          <div className={'-rotate-45'}>
-            <KeyboardArrowDownIcon style={{fontSize: '2rem'}}/>
-          </div>
+            'absolute -bottom-3 -right-3 p-3 inline-block bg-gray-400 hover:bg-gray-300 ' +
+            'rounded-xl transition-all cursor-pointer absolute z-60 shadow'}>
+          <div className={'border-r-2 border-b-2 border-gray-900 w-3 h-3'}/>
         </div>
       }
     </div>

@@ -8,6 +8,8 @@ import LoadingMask from '../Loading';
 import {Resizable} from 're-resizable';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
 import DragTag from "../Common/DragTag";
+import DeleteTag from "../Common/DeleteTag";
+import ResizeTag from "../Common/ResizeTag";
 
 interface NewsItem {
   title: string;
@@ -75,23 +77,25 @@ function Index(props: HomeDrawerComponent) {
         setWidth(width + d.width);
         setHeight(height + d.height);
       }}
+      handleComponent={{
+        bottomRight: <ResizeTag/>,
+      }}
     >
       <DragTag/>
+      <DeleteTag/>
 
       <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
         <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold'}>
           新浪新闻
         </div>
 
-        {loading && <LoadingMask/>}
-
         <div className="bg-white overflow-y-auto h-full p-3 w-full">
+          {loading && <LoadingMask/>}
+
           {news !== null &&
             news.items.map((item, index) => (
               <div
-                className="
-                  truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600
-                "
+                className="truncate cursor-pointer border-t-2 border-gray-300 hover:text-indigo-600"
                 key={item.title}
               >
                 <a
