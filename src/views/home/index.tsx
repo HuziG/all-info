@@ -5,8 +5,11 @@ import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
 import {COMPONENT_DATA_KEY} from "../../utils/env";
-import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import {components} from "./static/componentsList";
+import {Fab} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import MenuIcon from '@material-ui/icons/Menu';
 
 /**
  * 代码获取，格式化完整数组
@@ -19,7 +22,9 @@ LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string
 
 function Home() {
   const [drawer, setDrawer] = useState(false);
+  const [showOperateBut, setShowOperateBut] = useState(false);
   const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
+
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
     setComponentsList([...componentsList, cmp])
@@ -33,14 +38,28 @@ function Home() {
   return (
     <div>
       <div
-        className={
-          'fixed right-10 bottom-5 z-20 w-12 h-12 ' +
-          'flex items-center justify-center rounded-2xl cursor-pointer ' +
-          'bg-indigo-700 hover:bg-indigo-500 transition-all cursor-pointer'
-        }
-        onClick={() => setDrawer(true)}
+        className={'fixed right-10 bottom-5 z-20'}
       >
-        <AddIcon style={{color: '#ffffff', fontSize: '2rem'}}/>
+        <div className={'relative'}>
+          {
+            showOperateBut &&
+            <div>
+              <div className={'absolute -top-16'}>
+                <Fab size="medium" color="secondary" aria-label="edit">
+                  <AddIcon/>
+                </Fab>
+              </div>
+              <div className={'absolute -left-16'}>
+                <Fab size="medium" color="secondary" aria-label="edit" onClick={() => setDrawer(true)}>
+                  <EditIcon/>
+                </Fab>
+              </div>
+            </div>
+          }
+          <Fab color="secondary" aria-label="edit" onClick={() => setShowOperateBut(!showOperateBut)}>
+            <MenuIcon/>
+          </Fab>
+        </div>
       </div>
 
       <Drawer anchor={'right'} open={drawer} onClose={() => setDrawer(false)}>

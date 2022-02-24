@@ -7,6 +7,7 @@ import LinkIcon from '@material-ui/icons/Link';
 import LoadingMask from '../Loading';
 import {Resizable} from 're-resizable';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
+import DragTag from "../Common/DragTag";
 
 interface NewsItem {
   title: string;
@@ -75,9 +76,11 @@ function Index(props: HomeDrawerComponent) {
         setHeight(height + d.height);
       }}
     >
+      <DragTag/>
+
       <div className="relative bg-white rounded-md overflow-hidden w-full h-full">
         <div className={'pt-5 pb-4 px-5 text-xl bg-red-500 text-white font-bold'}>
-          <span className={'handle'}>新浪新闻</span>
+          新浪新闻
         </div>
 
         {loading && <LoadingMask/>}

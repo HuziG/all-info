@@ -10,8 +10,8 @@ function DragTag() {
         show &&
         <div
           className={
-            'absolute -top-5 -right-5 w-10 h-10 inline-block bg-gray-400 hover:bg-gray-300 ' +
-            'rounded-xl transition-all cursor-pointer absolute z-20'}>
+            'absolute -top-5 -right-5 w-10 h-10 flex items-center justify-center inline-block bg-gray-400 hover:bg-gray-300 ' +
+            'rounded-xl transition-all cursor-pointer absolute z-20 handle'}>
           <ControlCameraIcon style={{fontSize: '2rem'}}/>
         </div>
       }
