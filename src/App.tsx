@@ -2,20 +2,25 @@ import React from 'react';
 import './App.css';
 import 'swiper/css';
 import * as dayjs from 'dayjs';
-import {StoreContext} from "redux-react-hook";
 import Home from './views/home';
-import {dragTagStore} from "./store";
+import rootReducer from "./store";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dayjs/locale/zh-cn');
 
 dayjs.locale('zh-cn');
 
+const store = createStore(
+  rootReducer,
+);
+
 function App() {
   return (
     <React.Fragment>
-      <StoreContext.Provider value={dragTagStore}>
+      <Provider store={store}>
         <Home/>
-      </StoreContext.Provider>
+      </Provider>
     </React.Fragment>
   );
 }

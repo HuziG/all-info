@@ -1,8 +1,8 @@
-import {useMappedState} from "redux-react-hook";
 import ControlCameraIcon from '@material-ui/icons/ControlCamera';
+import {useSelector} from "react-redux";
 
 function DragTag() {
-  const show = useMappedState(state => state.showDragTag);
+  const show = useSelector((state: any) => state.dragTagReducer.showEditTag);
 
   return (
     <div>

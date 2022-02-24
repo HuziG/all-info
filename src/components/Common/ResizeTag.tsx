@@ -1,7 +1,7 @@
-import {useMappedState} from "redux-react-hook";
+import {useSelector} from "react-redux";
 
 function DragTag() {
-  const show = useMappedState(state => state.showDragTag);
+  const show = useSelector((state: any) => state.dragTagReducer.showEditTag);
 
   return (
     <div>
@@ -9,8 +9,9 @@ function DragTag() {
         show &&
         <div
           className={
-            'absolute -bottom-3 -right-3 p-3 inline-block bg-gray-400 hover:bg-gray-300 ' +
-            'rounded-xl transition-all cursor-pointer absolute z-60 shadow'}>
+            'p-3 inline-block bg-gray-400 hover:bg-gray-300 ' +
+            'rounded-xl transition-all cursor-pointer z-60 shadow'}
+        >
           <div className={'border-r-2 border-b-2 border-gray-900 w-3 h-3'}/>
         </div>
       }

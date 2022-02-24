@@ -10,8 +10,8 @@ import {components} from "./static/componentsList";
 import {Fab} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import MenuIcon from '@material-ui/icons/Menu';
-import {useDispatch} from "redux-react-hook";
 import CmpContainer from "../../components/Common/CmpContainer";
+import {useDispatch} from "react-redux";
 
 /**
  * 代码获取，格式化完整数组
@@ -22,14 +22,20 @@ LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string
   components.find(cmp => cmp.label === item.label)
 )
 
-let editType = 'drag_tag_open'
+let editType = 'drag_tag_close'
 
 function Home() {
-
   const [drawer, setDrawer] = useState(false);
   const [showOperateBut, setShowOperateBut] = useState(false);
   const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch({
+      type: 'component_set_data',
+      payloads: LocalStorageComponentData
+    })
+  }, []);
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
     setComponentsList([...componentsList, cmp])

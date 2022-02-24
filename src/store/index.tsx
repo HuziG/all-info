@@ -1,4 +1,10 @@
-import {createStore} from 'redux';
-import reducer from "./dragTag.store";
+import {combineReducers} from 'redux';
+import dragTagReducer from "./editTag.reducer";
+import componentReducer from "./component.reducer";
 
-export const dragTagStore = createStore(reducer);
+const rootReducer = combineReducers({
+  dragTagReducer,
+  componentReducer
+});
+
+export default rootReducer

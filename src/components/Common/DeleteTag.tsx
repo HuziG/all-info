@@ -1,8 +1,10 @@
-import {useMappedState} from "redux-react-hook";
 import DeleteIcon from '@material-ui/icons/Delete';
+import {useSelector} from "react-redux";
 
 function DragTag() {
-  const show = useMappedState(state => state.showDragTag);
+  const show = useSelector((state: any) => state.dragTagReducer.showEditTag);
+
+  console.log('show', show);
 
   return (
     <div>

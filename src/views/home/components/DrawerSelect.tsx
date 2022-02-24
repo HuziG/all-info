@@ -6,8 +6,6 @@ import AddIcon from '@material-ui/icons/Add';
 function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void }) {
   const [mouseOverIndex, setMouseOverIndex] = useState<number | null>(null)
 
-  // const componentList = components.filter(item => props.existComponent)
-
   return (
     <div className={'p-3'}>
       <div className={'w-96 p-5 text-xl font-bold border-b-2 border-gray-200'}>
