@@ -1,6 +1,7 @@
 import Drawer from '@material-ui/core/Drawer';
 import React, {useEffect, useState} from 'react';
-import Draggable from 'react-draggable';
+// @ts-ignore
+import GridLayout from "react-grid-layout";
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
 import {HomeDrawerComponent} from '../../interface/home.component.interface';
@@ -10,7 +11,6 @@ import {components} from "./static/componentsList";
 import {Fab} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import MenuIcon from '@material-ui/icons/Menu';
-import CmpContainer from "../../components/Common/CmpContainer";
 import {useDispatch, useSelector} from "react-redux";
 import {saveLocalComponent} from "../../utils/utils";
 
@@ -57,6 +57,10 @@ function Home() {
     !drawer && saveLocalComponent(componentsList)
   }, [componentsList, drawer])
 
+  const onLayoutChange = (layout: any) => {
+    console.log("layout", layout);
+  };
+
   return (
     <div>
       <div
@@ -88,27 +92,19 @@ function Home() {
         <DrawerSelect handleSelect={handleSelect}/>
       </Drawer>
 
-      {
-        componentsList.length > 0 && componentsList.map((item: HomeDrawerComponent) => (
-          <Draggable
-            axis="both"
-            handle=".handle"
-            defaultPosition={{x: item.params.x, y: item.params.y}}
-            grid={[25, 25]}
-            scale={1}
-            key={item.label}
-          >
-            <div>
-              <CmpContainer
-                cmpKey={item.key ? item.key : item.name}
-                cmpParams={item.params}
-              >
-                <AsyncComponent name={item.name} data={item}/>
-              </CmpContainer>
+      <GridLayout
+        rowHeight={30}
+        width={1200}
+        onLayoutChange={onLayoutChange}
+      >
+        {
+          componentsList.length > 0 && componentsList.map((item: HomeDrawerComponent) => (
+            <div key={item.key || item.name} data-grid={item.grid} className={'overflow-hidden'}>
+              <AsyncComponent name={item.name} data={item}/>
             </div>
-          </Draggable>
-        ))
-      }
+          ))
+        }
+      </GridLayout>
     </div>
   );
 }

@@ -24,22 +24,19 @@ function LoadingMask(props: { getData: () => void; }) {
   }
 
   return (
-    <div>
-
-      <div
-        className={
-          'absolute z-50 w-full h-full flex ' +
-          'justify-center items-center rounded-md'
-        }
-      >
-        {
-          showTimeout ?
-            <div>
-              <Button startIcon={<RefreshIcon/>} color="primary" onClick={handleReGet}>重新请求</Button>
-            </div> :
-            <AutorenewIcon className={'animate-spin text-indigo-600'} style={{fontSize: '4rem'}}/>
-        }
-      </div>
+    <div
+      className={
+        'pt-10 flex ' +
+        'justify-center items-center rounded-md'
+      }
+    >
+      {
+        showTimeout ?
+          <div>
+            <Button startIcon={<RefreshIcon/>} color="primary" onClick={handleReGet}>重新请求</Button>
+          </div> :
+          <AutorenewIcon className={'animate-spin text-indigo-600'} style={{fontSize: '4rem'}}/>
+      }
     </div>
   );
 }

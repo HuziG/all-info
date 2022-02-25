@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {getWeek} from '../../api/bilibiliCarton';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
 interface carton {
   pic: string;
@@ -12,7 +11,7 @@ interface carton {
   redirect_url: string;
 }
 
-function BilibiliCarton(props: HomeDrawerComponent) {
+function BilibiliCarton() {
   dayjs.extend(relativeTime);
 
   const [weekCarton, setWeekCarton] = useState<carton[] | null>(null);
@@ -62,19 +61,20 @@ function BilibiliCarton(props: HomeDrawerComponent) {
   }, []);
 
   return (
-    <div id={`ALLINFO_${props.name}`}>
-      <div className={'flex flex-col lg:flex-row items-center justify-between'}>
-        <div className={cardStyle}>
-          <div
-            className={'py-5 px-3 text-white text-xl font-bold'}
-            style={{backgroundColor: '#FB7199'}}
-          >
-            <span className={'handle'}>Bilibili 番剧7天最热</span>
-          </div>
-          <div className={'overflow-y-auto h-96 pt-10 px-16 scroll-hidden'}>
-            {weekCarton && weekCarton.map((item, index) => cartonTemplate(item, index))}
-          </div>
-        </div>
+    <div className={cardStyle}>
+      <div
+        className={'py-5 px-3 text-white text-xl font-bold'}
+        style={{backgroundColor: '#FB7199'}}
+      >
+        <span className={'handle'}>Bilibili 番剧7天最热</span>
+      </div>
+      <div
+        className={'overflow-y-auto pt-10 px-16 scroll-hidden'}
+        style={{
+          height: '50rem'
+        }}
+      >
+        {weekCarton && weekCarton.map((item, index) => cartonTemplate(item, index))}
       </div>
     </div>
   );

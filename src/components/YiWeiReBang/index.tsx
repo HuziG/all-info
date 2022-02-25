@@ -5,7 +5,7 @@ import useScript from "../../hook/useScript";
 function YiWeiReBang(props: HomeDrawerComponent) {
   const id = `ALLINFO_${props.name}`
 
-  useScript(`${props.params.yiweiUrl}${id}`)
+  useScript(`${props.params && props.params.yiweiUrl}${id}`)
 
   return (
     <div id={id} className={'bg-white shadow'}>
