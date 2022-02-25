@@ -11,7 +11,8 @@ import {Fab} from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import MenuIcon from '@material-ui/icons/Menu';
 import CmpContainer from "../../components/Common/CmpContainer";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {saveLocalComponent} from "../../utils/utils";
 
 /**
  * 代码获取，格式化完整数组
@@ -27,8 +28,8 @@ let editType = 'drag_tag_close'
 function Home() {
   const [drawer, setDrawer] = useState(false);
   const [showOperateBut, setShowOperateBut] = useState(false);
-  const [componentsList, setComponentsList] = useState<HomeDrawerComponent[] | []>(LocalStorageComponentData);
   const dispatch = useDispatch()
+  const componentsList = useSelector((state: any) => state.componentReducer.components);
 
   useEffect(() => {
     dispatch({
@@ -38,7 +39,10 @@ function Home() {
   }, []);
 
   const handleSelect = (cmp: HomeDrawerComponent) => {
-    setComponentsList([...componentsList, cmp])
+    dispatch({
+      type: 'component_set_data',
+      payloads: [...componentsList, cmp]
+    })
   };
 
   const handleOpenEdit = () => {
@@ -50,8 +54,7 @@ function Home() {
   }
 
   useEffect(() => {
-    const _componentsList = JSON.parse(JSON.stringify(componentsList)).map((item: HomeDrawerComponent) => ({label: item.label}))
-    !drawer && localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(_componentsList))
+    !drawer && saveLocalComponent(componentsList)
   }, [componentsList, drawer])
 
   return (
@@ -90,14 +93,16 @@ function Home() {
           <Draggable
             axis="both"
             handle=".handle"
-            // defaultPosition={{x: item.params.x, y: item.params.y}}
-            defaultPosition={{x: 0, y: 0}}
+            defaultPosition={{x: item.params.x, y: item.params.y}}
             grid={[25, 25]}
             scale={1}
             key={item.label}
           >
             <div>
-              <CmpContainer>
+              <CmpContainer
+                cmpKey={item.key ? item.key : item.name}
+                cmpParams={item.params}
+              >
                 <AsyncComponent name={item.name} data={item}/>
               </CmpContainer>
             </div>

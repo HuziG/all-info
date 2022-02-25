@@ -3,10 +3,15 @@ import DragTag from "./DragTag";
 import DeleteTag from "./DeleteTag";
 import {Resizable} from "re-resizable";
 import ResizeTag from "./ResizeTag";
+import {HomeComponentParams} from "../../interface/home.component.interface";
 
-function CmpContainer(props: { children: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined }) {
-  const [width, setWidth] = useState(500);
-  const [height, setHeight] = useState(400);
+function CmpContainer(props: {
+  children: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined,
+  cmpKey: string,
+  cmpParams: HomeComponentParams
+}) {
+  const [width, setWidth] = useState(props.cmpParams.width);
+  const [height, setHeight] = useState(props.cmpParams.height);
 
   return (
     <div className={'relative'}>
@@ -21,7 +26,7 @@ function CmpContainer(props: { children: boolean | ReactChild | ReactFragment | 
         }}
       >
         <DragTag/>
-        <DeleteTag/>
+        <DeleteTag cmpKey={props.cmpKey}/>
 
         {props.children}
       </Resizable>

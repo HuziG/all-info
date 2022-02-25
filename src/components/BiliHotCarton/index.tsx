@@ -3,9 +3,6 @@ import {getWeek} from '../../api/bilibiliCarton';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
-import {Resizable} from 're-resizable';
-import DragTag from "../Common/DragTag";
-import DeleteTag from "../Common/DeleteTag";
 
 interface carton {
   pic: string;
@@ -20,8 +17,6 @@ function BilibiliCarton(props: HomeDrawerComponent) {
 
   const [weekCarton, setWeekCarton] = useState<carton[] | null>(null);
   const cardStyle = 'w-full rounded-md bg-white overflow-hidden lg:mt-0';
-  const [width, setWidth] = useState(props.params.width);
-  const [height, setHeight] = useState(props.params.height);
 
   const cartonTemplate = (item: carton, index: number) => {
     return (
@@ -67,32 +62,21 @@ function BilibiliCarton(props: HomeDrawerComponent) {
   }, []);
 
   return (
-    <Resizable
-      size={{width, height}}
-      onResizeStop={(e, direction, ref, d) => {
-        setWidth(width + d.width);
-        setHeight(height + d.height);
-      }}
-    >
-      <DragTag/>
-      <DeleteTag/>
-
-      <div id={`ALLINFO_${props.name}`}>
-        <div className={'flex flex-col lg:flex-row items-center justify-between'}>
-          <div className={cardStyle}>
-            <div
-              className={'py-5 px-3 text-white text-xl font-bold'}
-              style={{backgroundColor: '#FB7199'}}
-            >
-              <span className={'handle'}>Bilibili 番剧7天最热</span>
-            </div>
-            <div className={'overflow-y-auto h-96 pt-10 px-16 scroll-hidden'}>
-              {weekCarton && weekCarton.map((item, index) => cartonTemplate(item, index))}
-            </div>
+    <div id={`ALLINFO_${props.name}`}>
+      <div className={'flex flex-col lg:flex-row items-center justify-between'}>
+        <div className={cardStyle}>
+          <div
+            className={'py-5 px-3 text-white text-xl font-bold'}
+            style={{backgroundColor: '#FB7199'}}
+          >
+            <span className={'handle'}>Bilibili 番剧7天最热</span>
+          </div>
+          <div className={'overflow-y-auto h-96 pt-10 px-16 scroll-hidden'}>
+            {weekCarton && weekCarton.map((item, index) => cartonTemplate(item, index))}
           </div>
         </div>
       </div>
-    </Resizable>
+    </div>
   );
 }
 

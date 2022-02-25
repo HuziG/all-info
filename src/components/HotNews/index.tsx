@@ -41,12 +41,16 @@ function Index() {
   const id = open ? 'simple-popover' : undefined;
 
   useEffect(() => {
+    handleInitData()
+  }, []);
+
+  const handleInitData = () => {
     (async function anyNameFunction() {
       const data = await getNews();
       setNews({...data, news});
       setLoading(false);
     })();
-  }, []);
+  }
 
   const handleClick = (
     event: React.MouseEvent<HTMLAnchorElement>,
@@ -68,7 +72,7 @@ function Index() {
         新浪新闻
       </div>
 
-      {loading && <LoadingMask/>}
+      {loading && <LoadingMask getData={handleInitData}/>}
 
       <div className="bg-white overflow-y-auto p-3 w-full">
         {news !== null &&

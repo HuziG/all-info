@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './swiper.css';
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Mousewheel, Manipulation, Lazy} from 'swiper';
@@ -12,10 +12,14 @@ function Index(props: HomeDrawerComponent) {
   const [peopleData, setPeopleData] = useState<any[] | null>(null);
 
   useEffect(() => {
+    handleInitData();
+  }, []);
+
+  const handleInitData = () => {
     (async function anyNameFunction() {
       await handleGetNvLangPicture();
     })();
-  }, []);
+  }
 
   /**
    * 获取数据，设置
@@ -28,7 +32,7 @@ function Index(props: HomeDrawerComponent) {
 
   return (
     <div id={`ALLINFO_${props.name}`} className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
-      {loading && <LoadingMask/>}
+      {loading && <LoadingMask getData={handleInitData}/>}
 
       <div className="relative bg-white">
         <div className="border-8 border-indigo-600">

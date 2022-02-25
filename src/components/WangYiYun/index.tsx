@@ -23,6 +23,10 @@ function WangYiYun(props: HomeDrawerComponent) {
   const [height, setHeight] = useState(500);
 
   useEffect(() => {
+    handleInitData()
+  }, []);
+
+  const handleInitData = () => {
     (async function anyNameFunction() {
       const data = await getWangYiYunComment();
       setComments([
@@ -30,7 +34,7 @@ function WangYiYun(props: HomeDrawerComponent) {
       ]);
       setLoading(false);
     })();
-  }, []);
+  }
 
   const commentTemplate = (item: Comment) => {
     return (
@@ -118,7 +122,8 @@ function WangYiYun(props: HomeDrawerComponent) {
           backgroundColor: '#333333',
         }}
       >
-        {loading && <LoadingMask/>}
+        {loading && <LoadingMask getData={handleInitData}/>}
+
 
         <div
           className="w-full font-bold text-white top-0 z-10 left-0 h-16 leading-16 px-5"

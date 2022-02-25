@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {getNvLangPicture} from '../../api/taonvlang';
 import {
   NvLangItemData,
@@ -72,12 +72,16 @@ function Index(props: HomeDrawerComponent) {
    * 滚动至前
    */
   useEffect(() => {
+    handleInitData()
+  }, [peoplePicData]);
+
+  const handleInitData = () => {
     if (peoplePicData) {
       setTimeout(() => {
         photoSwiperRef.slideTo(0);
       }, 200);
     }
-  }, [peoplePicData]);
+  }
 
   const childSetStyle = (params: StyleMenuParams) => {
     setStyle(params.style);
@@ -89,7 +93,7 @@ function Index(props: HomeDrawerComponent) {
 
   return (
     <div id={`ALLINFO_${props.name}`} className="mt-10 lg:mt-0 relative rounded-md bg-black overflow-hidden ml-0">
-      {loading && <LoadingMask/>}
+      {loading && <LoadingMask getData={handleInitData}/>}
 
       <div
         className="absolute w-full font-bold text-white top-0 z-10 left-0 h-16 leading-16 px-5"

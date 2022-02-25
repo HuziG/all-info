@@ -1,17 +1,20 @@
 export interface HomeComponentParams {
-  width: number;
-  height: number;
-  x: number;
-  y: number;
   yiweiUrl?: string;
 }
 
 export interface HomeDrawerComponent {
+  key?: string;
   label: string;
   description?: string;
   name: string;
   style?: {
     color: string;
   };
-  params: HomeComponentParams;
+  params?: HomeComponentParams;
+  grid: {
+    x: number;
+    y: number;
+    w: number;
+    h: number;
+  }
 }

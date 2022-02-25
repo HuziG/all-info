@@ -1,29 +1,16 @@
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
-import React, {useState} from "react";
-import {Resizable} from "re-resizable";
-import LoadingMask from "../Loading";
+import React from "react";
 import useScript from "../../hook/useScript";
 
 function YiWeiReBang(props: HomeDrawerComponent) {
   const id = `ALLINFO_${props.name}`
-  const [width, setWidth] = useState(props.params.width);
-  const [height, setHeight] = useState(props.params.height);
 
   useScript(`${props.params.yiweiUrl}${id}`)
 
   return (
-    <Resizable
-      className={'scroll-hidden rounded-md overflow-hidden '}
-      size={{width, height}}
-      onResizeStop={(e, direction, ref, d) => {
-        setWidth(width + d.width);
-        setHeight(height + d.height);
-      }}
-    >
-      <div id={id} className={'bg-white'}>
-        <LoadingMask/>
-      </div>
-    </Resizable>
+    <div id={id} className={'bg-white shadow'}>
+      <div className={'h-96 flex items-center justify-center text-center'}>加载中</div>
+    </div>
   )
 }
 

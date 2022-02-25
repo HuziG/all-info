@@ -24,6 +24,10 @@ function MaoYan(props: HomeDrawerComponent) {
   const momentTime = moment();
 
   useEffect(() => {
+    handleInitData()
+  }, []);
+
+  const handleInitData = () => {
     (async function anyNameFunction() {
       const data = await getHotFilm();
       setHotFilms([...data.data.hot]);
@@ -33,7 +37,7 @@ function MaoYan(props: HomeDrawerComponent) {
 
       setLoading(false);
     })();
-  }, []);
+  }
 
   const getFilmTemplate = (item: Film, index: number) => {
     return (
@@ -80,7 +84,7 @@ function MaoYan(props: HomeDrawerComponent) {
         <div>{`${momentTime.year()} 年 ${momentTime.month() + 1} 月 ${momentTime.date()} 日`}</div>
       </div>
 
-      {loading && <LoadingMask/>}
+      {loading && <LoadingMask getData={handleInitData}/>}
 
       <div className="bg-white overflow-y-auto h-96 p-3 w-full">
         <div className={'flex flex-row items-center font-bold justify-around mb-3'}>
