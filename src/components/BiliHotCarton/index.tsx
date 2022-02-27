@@ -2,6 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {getWeek} from '../../api/bilibiliCarton';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import useResizeObserver from 'use-resize-observer';
+import {INFO_CARD_HEADER_STYLE, INFO_CARD_SCROLL_STYLE, INFO_CARD_STYLE} from "../../style";
+import ScrollBottomBlock from "../Common/ScrollBottomBlock";
 
 interface carton {
   pic: string;
@@ -14,13 +17,13 @@ interface carton {
 function BilibiliCarton() {
   dayjs.extend(relativeTime);
 
+  const {ref, height: scrollHeight} = useResizeObserver<HTMLDivElement>();
   const [weekCarton, setWeekCarton] = useState<carton[] | null>(null);
-  const cardStyle = 'w-full rounded-md bg-white overflow-hidden lg:mt-0';
 
   const cartonTemplate = (item: carton, index: number) => {
     return (
       <a href={item.redirect_url} target="_blank" rel="noreferrer">
-        <div className={'relative mb-16 cursor-pointer bilibili-carton transition-all'}>
+        <div className={'relative mb-10 cursor-pointer bilibili-carton transition-all'}>
           {index < 3 && (
             <div
               className={
@@ -61,20 +64,17 @@ function BilibiliCarton() {
   }, []);
 
   return (
-    <div className={cardStyle}>
+    <div ref={ref} className={INFO_CARD_STYLE}>
       <div
-        className={'py-5 px-3 text-white text-xl font-bold'}
+        className={INFO_CARD_HEADER_STYLE}
         style={{backgroundColor: '#FB7199'}}
       >
-        <span className={'handle'}>Bilibili 番剧7天最热</span>
+        Bilibili 番剧7天最热
       </div>
-      <div
-        className={'overflow-y-auto pt-10 px-16 scroll-hidden'}
-        style={{
-          height: '50rem'
-        }}
-      >
+
+      <div className={INFO_CARD_SCROLL_STYLE} style={{height: scrollHeight}}>
         {weekCarton && weekCarton.map((item, index) => cartonTemplate(item, index))}
+        <ScrollBottomBlock/>
       </div>
     </div>
   );

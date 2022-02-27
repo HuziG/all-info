@@ -74,7 +74,7 @@ function Index() {
 
       {loading && <LoadingMask getData={handleInitData}/>}
 
-      <div className="bg-white overflow-y-auto p-3 w-full">
+      <div className="bg-white p-3 w-full">
         {news !== null &&
           news.items.map((item, index) => (
             <div
@@ -114,7 +114,8 @@ function Index() {
                 </Popover>
               )}
             </div>
-          ))}
+          ))
+        }
       </div>
     </div>
   );
