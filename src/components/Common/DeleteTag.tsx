@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
 function DragTag(props: { cmpKey: string; }) {
-  const show = useSelector((state: any) => state.dragTagReducer.showEditTag);
+  const show = useSelector((state: any) => state.appReducer.editMode);
   const components = useSelector((state: any) => state.componentReducer.components);
   const dispatch = useDispatch()
 

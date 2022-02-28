@@ -8,7 +8,7 @@ export const components = [
   },
   {
     label: '知乎热榜',
-    name: 'YiWeiReBang',
+    name: 'YiWeiReBang-zhihurebang',
     key: 'zhihurebang',
     params: {
       yiweiUrl: 'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100015&css=card&select='
@@ -18,7 +18,7 @@ export const components = [
   },
   {
     label: '微信财经榜',
-    name: 'YiWeiReBang',
+    name: 'YiWeiReBang-weixinrebang',
     key: 'weixinrebang',
     params: {
       yiweiUrl: 'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100009&css=card&select='

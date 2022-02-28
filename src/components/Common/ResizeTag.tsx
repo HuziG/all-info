@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 
 function DragTag() {
-  const show = useSelector((state: any) => state.dragTagReducer.showEditTag);
+  const show = useSelector((state: any) => state.appReducer.editMode);
 
   return (
     <div>

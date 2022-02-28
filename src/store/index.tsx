@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
-import dragTagReducer from "./editTag.reducer";
+import appReducer from "./app.reducer";
 import componentReducer from "./component.reducer";
 
 const rootReducer = combineReducers({
-  dragTagReducer,
+  appReducer,
   componentReducer
 });
 

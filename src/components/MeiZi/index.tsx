@@ -33,7 +33,6 @@ function Index() {
   };
 
   useEffect(() => {
-    console.log('scrollHeight', scrollHeight)
   }, [scrollHeight])
 
   return (
