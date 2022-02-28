@@ -1,9 +1,10 @@
 import Fade from '@material-ui/core/Fade';
+import React from "react";
 
-function ResizeTag(props: any) {
+function ResizeTag(props: { editmode: any; }, ref: any) {
   return (
-    <div>
-      <Fade in={props.editMode}>
+    <div ref={ref}>
+      <Fade in={Boolean(props.editmode)}>
         <div
           style={{
             background: "#1876D2",
@@ -20,4 +21,4 @@ function ResizeTag(props: any) {
   )
 }
 
-export default ResizeTag
+export default React.forwardRef(ResizeTag)

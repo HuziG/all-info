@@ -4,18 +4,12 @@ import {useDispatch} from "react-redux";
 import {HomeDrawerComponent} from "../../../interface/home.component.interface";
 import Fade from '@material-ui/core/Fade';
 
-function DeleteTag(props: { editMode: boolean; cmpName: string; cmpList: HomeDrawerComponent[] }) {
+function DeleteTag(props: { editmode: any; cmpName: string; cmpList: HomeDrawerComponent[] }) {
   const dispatch = useDispatch()
 
   const handleDelete = () => {
     const _cmpList = JSON.parse(JSON.stringify(props.cmpList))
-    const deleteIndex = _cmpList.findIndex((item: { key: string; name: string; }) => {
-      if (item.key) {
-        return item.key === props.cmpName
-      } else {
-        return item.name === props.cmpName
-      }
-    })
+    const deleteIndex = _cmpList.findIndex(((item: { name: string; }) => item.name === props.cmpName))
     _cmpList.splice(deleteIndex, 1)
     dispatch({
       type: 'component_set_data',
@@ -25,7 +19,7 @@ function DeleteTag(props: { editMode: boolean; cmpName: string; cmpList: HomeDra
 
   return (
     <div>
-      <Fade in={props.editMode}>
+      <Fade in={Boolean(props.editmode)}>
         <div
           className={'bg-black text-white p-2 rounded-tr ' +
             'absolute left-0 bottom-0 z-50 flex bg-red-600 cursor-pointer'}

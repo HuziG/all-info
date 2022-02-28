@@ -4,11 +4,10 @@ import React, {useEffect, useState} from 'react';
 import GridLayout from "react-grid-layout";
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
-import {HomeDrawerComponent} from '../../interface/home.component.interface';
+import {HomeDrawerComponent, LocalComponent} from '../../interface/home.component.interface';
 import {COMPONENT_DATA_KEY} from "../../utils/env";
 import {components} from "./static/componentsList";
 import {useDispatch, useSelector} from "react-redux";
-// import {saveLocalComponent} from "../../utils/utils";
 import OperateButton from "./components/OperateButton";
 import ResizeTag from "./components/ResizeTag";
 import DragTag from "./components/DragTag";
@@ -20,8 +19,8 @@ import DeleteTag from "./components/DeleteTag";
 let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]'
 LocalStorageComponentData = JSON.parse(LocalStorageComponentData)
 console.log('LocalStorageComponentData', LocalStorageComponentData)
-LocalStorageComponentData = LocalStorageComponentData.map((item: { label: string; }) =>
-  components.find(cmp => cmp.label === item.label)
+LocalStorageComponentData = LocalStorageComponentData.map((item: LocalComponent) =>
+  ({...components.find(cmp => cmp.name === item.name), ...item})
 )
 
 function Home() {
@@ -46,10 +45,6 @@ function Home() {
     })
   };
 
-  // useEffect(() => {
-  //   !drawer && saveLocalComponent(componentsList)
-  // }, [componentsList, drawer])
-
   const onLayoutChange = (layout: any) => {
     console.log("layout", layout);
     setGridData(layout)
@@ -71,18 +66,18 @@ function Home() {
         isResizable={editMode}
         draggableHandle={'.ComponentDrag'}
         resizeHandles={["se"]}
-        resizeHandle={<ResizeTag editMode={editMode}/>}
+        resizeHandle={<ResizeTag editmode={editMode ? 1 : 0}/>}
         onLayoutChange={onLayoutChange}
       >
         {
           componentsList.length > 0 && componentsList.map((item: HomeDrawerComponent) => (
             <div
-              key={item.key || item.name}
+              key={item.name}
               data-grid={item.grid}
               className={`overflow-hidden`}>
 
-              <DragTag editMode={editMode}/>
-              <DeleteTag editMode={editMode} cmpName={item.key || item.name} cmpList={componentsList}/>
+              <DragTag editmode={editMode ? 1 : 0}/>
+              <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList}/>
               <AsyncComponent name={item.name} data={item}/>
             </div>
           ))

@@ -4,12 +4,10 @@ import Button from '@material-ui/core/Button';
 import {TIME_OUT} from "../../utils/env";
 import {useEffect, useState} from "react";
 
+let timeOutInstance: NodeJS.Timeout
+
 function LoadingMask(props: { getData: () => void; }) {
   const [showTimeout, setShowTimeout] = useState(false)
-
-  useEffect(() => {
-    handleSetTimeout()
-  }, [])
 
   const handleReGet = () => {
     setShowTimeout(false)
@@ -18,10 +16,17 @@ function LoadingMask(props: { getData: () => void; }) {
   }
 
   const handleSetTimeout = () => {
-    setTimeout(() => {
+    timeOutInstance = setTimeout(() => {
       setShowTimeout(true)
     }, TIME_OUT)
   }
+
+  useEffect(() => {
+    handleSetTimeout()
+    return function clear() {
+      clearTimeout(timeOutInstance)
+    }
+  }, [])
 
   return (
     <div

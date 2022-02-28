@@ -18,3 +18,13 @@ export interface HomeDrawerComponent {
     h: number;
   }
 }
+
+export interface LocalComponent {
+  "name": string,
+  "grid": {
+    "w": number,
+    "h": number,
+    "x": number,
+    "y": number,
+  }
+}
