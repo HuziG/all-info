@@ -1,0 +1,49 @@
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+  margin: .8rem 0;
+}
+
+.d-flex :first-child {
+  display: flex;
+}
+
+.hot-rank {
+  padding: 8px 10px;
+  justify-content: center;
+  color: #666;
+  font-size: 14px !important;
+  font-weight: bold;
+}
+
+.ml-auto {
+  flex: 0 0 auto;
+  text-align: right !important;
+  color: #666 !important;
+  padding: 8px 10px;
+}
+
+.card-header {
+  font-size: 20px;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #fff;
+  margin: 0 !important;
+}
+
+.card-body {
+  margin-top: 70px;
+}
+
+.ml-2 {
+  font-size: 16px;
+  line-height: 28px;
+  padding-right: 10px;
+}
+
+.ml-2:hover {
+  color: #333333;
+}
+

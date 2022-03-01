@@ -73,6 +73,10 @@ function OperateButton(props: any) {
 
         <Tooltip title="添加组件">
           <IconButton aria-label="delete" className={'mb-3'} onClick={() => {
+            setEditState(true)
+            dispatch({
+              type: 'edit_mode_open'
+            })
             props.openDrawer()
           }}>
             <AddIcon/>
