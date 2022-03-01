@@ -2,9 +2,13 @@ import React, {useState} from 'react';
 import {HomeDrawerComponent} from '../../../interface/home.component.interface';
 import {components} from '../static/componentsList';
 import AddIcon from '@material-ui/icons/Add';
+import {useSelector} from "react-redux";
 
 function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void }) {
   const [mouseOverIndex, setMouseOverIndex] = useState<number | null>(null)
+  const componentsList = useSelector((state: any) => state.componentReducer.components);
+
+  console.log('componentsList', componentsList)
 
   return (
     <div className={'p-3'}>
@@ -18,11 +22,12 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void
           onClick={() => props.handleSelect(item)}
           onMouseOver={() => setMouseOverIndex(index + 1)}
           onMouseLeave={() => setMouseOverIndex(null)}
-          className={'flex items-center justify-between cursor-pointer text-xl font-bold ' +
+          className={'items-center justify-between cursor-pointer text-xl font-bold ' +
             'my-2 px-5 hover:bg-gray-300 transition-all py-2 rounded-md'
           }
           style={{
-            color: item.style ? item.style.color : '#000000'
+            color: item.style ? item.style.color : '#000000',
+            display: componentsList.find((cmp: HomeDrawerComponent) => cmp.name === item.name) ? 'none' : 'flex'
           }}
         >
           {item.label}

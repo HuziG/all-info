@@ -21,7 +21,7 @@ function DeleteTag(props: { editmode: any; cmpName: string; cmpList: HomeDrawerC
     <div>
       <Fade in={Boolean(props.editmode)}>
         <div
-          className={'bg-black text-white p-2 rounded-tr ' +
+          className={'text-white p-2 rounded-tr rounded-bl ' +
             'absolute left-0 bottom-0 z-50 flex bg-red-600 cursor-pointer'}
           onClick={() => handleDelete()}
         >

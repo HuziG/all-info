@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {COMPONENT_DATA_KEY} from "../../../utils/env";
 import {LocalComponent} from "../../../interface/home.component.interface";
+import {toast} from 'react-toastify';
 
 function OperateButton(props: any) {
   const [showOperateBut, setShowOperateBut] = useState(false);
@@ -27,11 +28,24 @@ function OperateButton(props: any) {
         grid: {x: item.x, y: item.y, w: item.w, h: item.h}
       })
     })
+
     localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(saveData))
+
+    toast.success('😅 保存成功!', {
+      position: "bottom-center",
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true
+    });
+
     setEditState(false)
+
     dispatch({
       type: 'edit_mode_close'
     })
+
     // setShowOperateBut(false)
   }
 

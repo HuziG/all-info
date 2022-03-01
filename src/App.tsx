@@ -6,8 +6,10 @@ import Home from './views/home';
 import rootReducer from "./store";
 import {Provider} from "react-redux";
 import {createStore} from "redux";
+import {ToastContainer} from 'react-toastify';
 import '/node_modules/react-grid-layout/css/styles.css'
 import '/node_modules/react-resizable/css/styles.css'
+import 'react-toastify/dist/ReactToastify.css';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dayjs/locale/zh-cn');
 
@@ -22,6 +24,7 @@ function App() {
     <React.Fragment>
       <Provider store={store}>
         <Home/>
+        <ToastContainer/>
       </Provider>
     </React.Fragment>
   );

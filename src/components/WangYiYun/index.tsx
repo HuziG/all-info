@@ -3,7 +3,6 @@ import {useEffect, useState} from 'react';
 import {getWangYiYunComment} from '../../api/wangyiyun';
 import moment from 'moment';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import {Resizable} from 're-resizable';
 import {HomeDrawerComponent} from "../../interface/home.component.interface";
 
 interface Comment {
@@ -19,8 +18,6 @@ interface Comment {
 function WangYiYun(props: HomeDrawerComponent) {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState<Comment[] | null>([]);
-  const [width, setWidth] = useState(500);
-  const [height, setHeight] = useState(500);
 
   useEffect(() => {
     handleInitData()
@@ -107,13 +104,8 @@ function WangYiYun(props: HomeDrawerComponent) {
   };
 
   return (
-    <Resizable
+    <div
       className={'scroll-hidden'}
-      size={{width, height}}
-      onResizeStop={(e, direction, ref, d) => {
-        setWidth(width + d.width);
-        setHeight(height + d.height);
-      }}
     >
       <div
         id={`ALLINFO_${props.name}`}
@@ -146,7 +138,7 @@ function WangYiYun(props: HomeDrawerComponent) {
           {comments !== null && comments.map((item) => commentTemplate(item))}
         </div>
       </div>
-    </Resizable>
+    </div>
   );
 }
 
