@@ -1,7 +1,8 @@
 .d-flex {
   display: flex;
   justify-content: space-between;
-  margin: .8rem 0;
+  margin: 10px 0;
+  cursor: pointer;
 }
 
 .d-flex :first-child {
@@ -23,13 +24,17 @@
   padding: 8px 10px;
 }
 
+.io-hot-slug {
+  color: #fff !important;
+}
+
 .card-header {
   font-size: 20px;
   padding: 10px;
   position: fixed;
   top: 0;
   width: 100%;
-  background: #fff;
+  color: #fff;
   margin: 0 !important;
 }
 
@@ -43,7 +48,7 @@
   padding-right: 10px;
 }
 
-.ml-2:hover {
-  color: #333333;
-}
+/*.ml-2:hover {*/
+/*  color: #333333 !important;*/
+/*}*/
 

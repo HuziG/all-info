@@ -16,10 +16,24 @@ function YiWeiReBang(props: HomeDrawerComponent) {
     .card-header {
       background-color: ${props.style ? props.style.color : '#fff'}
     }
+
+    .ml-2{
+     border-radius: 5px;
+     transition: all .2s;
+     padding: 5px;
+     color: ${props.style ? props.style.color : '#333'};
+    }
+
+    .d-flex:hover{
+      .ml-2{
+        background-color: ${props.style ? props.style.color : '#fff'};
+        color: #fff;
+      }
+    }
   `
 
   return (
-    <div
+    <Container
       ref={ref}
       id={id}
       className={'bg-white shadow h-full overflow-y-auto scroll-hidden'}
@@ -27,8 +41,8 @@ function YiWeiReBang(props: HomeDrawerComponent) {
         height: scrollHeight,
       }}
     >
-      <div className={'flex items-center justify-center text-center'}>加载中</div>
-    </div>
+      <div className={'flex items-center justify-center text-center py-5 text-xl text-indigo-700'}>加载中</div>
+    </Container>
   )
 }
 
