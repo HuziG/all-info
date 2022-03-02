@@ -18,7 +18,6 @@ import DeleteTag from "./components/DeleteTag";
  */
 let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]'
 LocalStorageComponentData = JSON.parse(LocalStorageComponentData)
-console.log('LocalStorageComponentData', LocalStorageComponentData)
 LocalStorageComponentData = LocalStorageComponentData.map((item: LocalComponent) =>
   ({...components.find(cmp => cmp.name === item.name), ...item})
 )

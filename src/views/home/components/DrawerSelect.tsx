@@ -8,8 +8,6 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeDrawerComponent) => void
   const [mouseOverIndex, setMouseOverIndex] = useState<number | null>(null)
   const componentsList = useSelector((state: any) => state.componentReducer.components);
 
-  console.log('componentsList', componentsList)
-
   return (
     <div className={'p-3'}>
       <div className={'w-96 p-5 text-xl font-bold border-b-2 border-gray-200'}>

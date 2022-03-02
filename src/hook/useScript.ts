@@ -12,6 +12,7 @@ const useScript = (url: string) => {
     document.body.appendChild(myScript);
 
     return () => {
+      console.log('unmounted useScript')
       document.body.removeChild(myScript);
     };
   }, [])
