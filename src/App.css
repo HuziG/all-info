@@ -36,3 +36,7 @@
 .bilibili-carton:hover .title {
   color: #fb7199;
 }
+
+.scroll-hidden::-webkit-scrollbar {
+  width: 0 !important
+}

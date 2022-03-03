@@ -1,4 +1,4 @@
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
+import {HomeComponent} from "../../interface/home.component.interface";
 import React, {useCallback} from "react";
 import './index.css'
 import useResizeObserver from "use-resize-observer";
@@ -6,7 +6,7 @@ import useScript from "../../hook/useScript";
 // @ts-ignore
 import styled from "styled-components";
 
-function YiWeiReBang(props: HomeDrawerComponent) {
+function YiWeiReBang(props: HomeComponent) {
   const {ref, height: scrollHeight} = useResizeObserver<HTMLDivElement>();
   const id = `ALLINFO_${props.name.split('-')[1]}`
 

@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import {getNewest} from '../../api/bilibiliCarton';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
+import {HomeComponent} from "../../interface/home.component.interface";
 
 interface newestCarton {
   cover: string;
@@ -11,7 +11,7 @@ interface newestCarton {
   square_cover: string;
 }
 
-function BilibiliCarton(props: HomeDrawerComponent) {
+function BilibiliCarton(props: HomeComponent) {
   dayjs.extend(relativeTime);
 
   const [newestCarton, setNewestCarton] = useState<newestCarton[] | null>(null);

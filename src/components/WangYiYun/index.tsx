@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {getWangYiYunComment} from '../../api/wangyiyun';
 import moment from 'moment';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
+import {HomeComponent} from "../../interface/home.component.interface";
 
 interface Comment {
   avatar: string;
@@ -15,7 +15,7 @@ interface Comment {
   songPic: string;
 }
 
-function WangYiYun(props: HomeDrawerComponent) {
+function WangYiYun(props: HomeComponent) {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState<Comment[] | null>([]);
 

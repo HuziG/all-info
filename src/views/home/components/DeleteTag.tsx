@@ -1,10 +1,10 @@
 import DeleteIcon from '@material-ui/icons/Delete';
 import React from "react";
 import {useDispatch} from "react-redux";
-import {HomeDrawerComponent} from "../../../interface/home.component.interface";
+import {HomeComponent} from "../../../interface/home.component.interface";
 import Fade from '@material-ui/core/Fade';
 
-function DeleteTag(props: { editmode: any; cmpName: string; cmpList: HomeDrawerComponent[] }) {
+function DeleteTag(props: { editmode: any; cmpName: string; cmpList: HomeComponent[] }) {
   const dispatch = useDispatch()
 
   const handleDelete = () => {

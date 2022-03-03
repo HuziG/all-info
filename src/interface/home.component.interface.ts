@@ -2,21 +2,28 @@ export interface HomeComponentParams {
   yiweiUrl?: string;
 }
 
-export interface HomeDrawerComponent {
-  key?: string;
+export interface HomeComponent {
   label: string;
-  description?: string;
   name: string;
+  key?: string;
+  "grid": {
+    "w": number,
+    "h": number,
+    "x": number,
+    "y": number,
+  };
+  params?: HomeComponentParams;
   style?: {
     color: string;
   };
-  params?: HomeComponentParams;
-  grid: {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-  }
+}
+
+export interface HomeDrawerComponent {
+  label: string;
+  key?: string;
+  description?: string;
+  icon?: string;
+  children: HomeComponent[],
 }
 
 export interface LocalComponent {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {getHotFilm, getComingFilm} from '../../api/maoyan';
 import LoadingMask from '../Loading';
 import moment from 'moment';
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
+import {HomeComponent} from "../../interface/home.component.interface";
 
 interface Film {
   cat: string;
@@ -16,7 +16,7 @@ interface Film {
   showInfo: string;
 }
 
-function MaoYan(props: HomeDrawerComponent) {
+function MaoYan(props: HomeComponent) {
   const [loading, setLoading] = useState(true);
   const [hotFilms, setHotFilms] = useState<Film[] | null>(null);
   const [comingFilms, setComingFilms] = useState<Film[] | null>(null);

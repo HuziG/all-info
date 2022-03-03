@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import GridLayout from "react-grid-layout";
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
-import {HomeDrawerComponent, LocalComponent} from '../../interface/home.component.interface';
+import {HomeComponent, LocalComponent} from '../../interface/home.component.interface';
 import {COMPONENT_DATA_KEY} from "../../utils/env";
 import {components} from "./static/componentsList";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,6 +12,9 @@ import OperateButton from "./components/OperateButton";
 import ResizeTag from "./components/ResizeTag";
 import DragTag from "./components/DragTag";
 import DeleteTag from "./components/DeleteTag";
+import {mapComponents} from "../../utils/utils";
+
+const hasMapComponents = mapComponents(components)
 
 /**
  * 代码获取，格式化完整数组
@@ -19,7 +22,7 @@ import DeleteTag from "./components/DeleteTag";
 let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]'
 LocalStorageComponentData = JSON.parse(LocalStorageComponentData)
 LocalStorageComponentData = LocalStorageComponentData.map((item: LocalComponent) =>
-  ({...components.find(cmp => cmp.name === item.name), ...item})
+  ({...hasMapComponents.find((cmp: HomeComponent) => cmp.name === item.name), ...item})
 )
 
 function Home() {
@@ -37,7 +40,7 @@ function Home() {
     })
   }, []);
 
-  const handleSelect = (cmp: HomeDrawerComponent) => {
+  const handleSelect = (cmp: HomeComponent) => {
     dispatch({
       type: 'component_set_data',
       payloads: [...componentsList, cmp]
@@ -69,7 +72,7 @@ function Home() {
         onLayoutChange={onLayoutChange}
       >
         {
-          componentsList.length > 0 && componentsList.map((item: HomeDrawerComponent) => (
+          componentsList.length > 0 && componentsList.map((item: HomeComponent) => (
             <div
               key={item.name}
               data-grid={item.grid}

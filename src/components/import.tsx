@@ -1,7 +1,7 @@
-import {HomeDrawerComponent} from '../interface/home.component.interface';
+import {HomeComponent} from '../interface/home.component.interface';
 import React from "react";
 
-function GetComponent(props: { name: any; data: HomeDrawerComponent; }) {
+function GetComponent(props: { name: any; data: HomeComponent; }) {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const components = require(`./${props.name.split('-')[0]}/index`).default;
   return components(props.data);

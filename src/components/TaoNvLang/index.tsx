@@ -13,9 +13,9 @@ import {Mousewheel, Manipulation, Lazy, FreeMode} from 'swiper';
 import 'swiper/css/lazy';
 import {Button} from '@material-ui/core';
 import LoadingMask from '../Loading';
-import {HomeDrawerComponent} from "../../interface/home.component.interface";
+import {HomeComponent} from "../../interface/home.component.interface";
 
-function Index(props: HomeDrawerComponent) {
+function Index(props: HomeComponent) {
   const [loading, setLoading] = useState(true);
   const [photoSwiperRef, setPhotoSwiperRef] = useState<any>(null);
   const [avatarSwiperRef, setAvatarSwiperRef] = useState<any>(null);
