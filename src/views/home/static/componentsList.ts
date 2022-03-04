@@ -591,7 +591,7 @@ export const components = [
           yiweiUrl: 'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100066&select='
         },
         grid: {x: 0, y: 0, w: 3, h: 6},
-        style: {color: '#333333'},
+        style: {color: '#0086F0'},
       },
       {
         label: 'COONAV跨境眼热点资讯',
