@@ -20,6 +20,7 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
             <div
               className={'w-20 text-gray-900 my-4 opacity-70 hover:opacity-100 font-bold cursor-pointer'}
               onClick={() => setShowIndex(index)}
+              key={item.label}
             >
               {item.label}
             </div>

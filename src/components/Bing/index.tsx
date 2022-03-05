@@ -3,11 +3,15 @@ import useResizeObserver from "use-resize-observer";
 import {INFO_CARD_STYLE} from "../../style";
 import LoadingMask from "../Loading";
 import {getBingPic} from "../../api/picture";
+import {BingPicData} from "../../interface/bing.interface";
+import {BING_PIC_HOST} from "../../utils/env";
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 function Bing() {
   const [loading, setLoading] = useState(true);
   const {ref, height: scrollHeight} = useResizeObserver<HTMLDivElement>();
-  const [pic, setPic] = useState<any[] | null>(null);
+  const [pic, setPic] = useState<BingPicData | null>(null);
+  const [showLocation, setShowLocation] = useState(false)
 
   useEffect(() => {
     handleInitData();
@@ -24,8 +28,7 @@ function Bing() {
    */
   const handleGetNvLangPicture = async () => {
     const data = await getBingPic();
-    console.log(data)
-    setPic([...data.data]);
+    setPic({...data});
     setLoading(false);
   };
 
@@ -38,12 +41,56 @@ function Bing() {
         loading ?
           <LoadingMask getData={handleInitData}/> :
           <div
-            className="flex flex-col align-center justify-center bg-black"
+            className="relative flex flex-col align-center justify-center bg-black"
             style={{
               height: scrollHeight
             }}
           >
-            {pic}
+            <div
+              className={'absolute top-1 left-1 ' +
+                'bg-black bg-opacity-75 text-white py-1 px-2 text-sm rounded-md'}
+            >
+              Bing 壁纸
+            </div>
+
+            {pic?.images &&
+              <img className={'w-full h-full object-cover'} src={BING_PIC_HOST + pic.images[0].url}
+                   alt={'error bing pic'}/>
+            }
+
+            {pic?.images &&
+              <div
+                className={'absolute flex items-center flex-end text-right ' +
+                  'bg-black bg-opacity-75 text-white py-1 px-2 text-md rounded-md right-3 bottom-3'}
+                onMouseEnter={() => setShowLocation(true)}
+              >
+                <LocationOnIcon style={{fontSize: '1rem', marginRight: '.3rem'}}/>
+                {pic.images[0].title}
+
+                {(() => {
+                  const image = pic.images[0].copyright
+                  return (
+                    <div
+                      onMouseLeave={() => setShowLocation(false)}
+                    >
+                      {showLocation &&
+                        <div
+                          className={'cursor-pointer absolute right-0 -top-20 text-xl bg-black bg-opacity-75 rounded-md py-3 px-5'}>
+                          <a className={'hover:underline'} href={pic.images[0].copyrightlink} target={'_blank'}
+                             rel="noreferrer">
+                            {image.slice(0, image.indexOf('('))}
+                          </a>
+                          <div
+                            className={'text-gray-300 text-sm pt-1'}>{image.slice(image.indexOf('('), image.length)}</div>
+                          <div className={'absolute w-full'}/>
+                        </div>
+                      }
+                    </div>
+                  )
+                })()}
+
+              </div>
+            }
           </div>
       }
     </div>
