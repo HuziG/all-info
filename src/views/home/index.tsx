@@ -12,7 +12,9 @@ import OperateButton from "./components/OperateButton";
 import ResizeTag from "./components/ResizeTag";
 import DragTag from "./components/DragTag";
 import DeleteTag from "./components/DeleteTag";
-import {mapComponents} from "../../utils/utils";
+import {mapComponents, saveGridData} from "../../utils/utils";
+import Header from "../../components/Header";
+import NullBlock from "./components/NullBlock";
 
 const hasMapComponents = mapComponents(components)
 
@@ -48,17 +50,28 @@ function Home() {
   };
 
   const onLayoutChange = (layout: any) => {
-    console.log("layout", layout);
     setGridData(layout)
   };
+
+  const handleCloseDrawer = async () => {
+    setDrawer(false)
+    await saveGridData(gridData)
+  }
 
   return (
     <div>
       <OperateButton openDrawer={() => setDrawer(true)} gridData={gridData}/>
 
-      <Drawer anchor={'right'} open={drawer} onClose={() => setDrawer(false)}>
+      <Drawer anchor={'right'} open={drawer} onClose={() => handleCloseDrawer()}>
         <DrawerSelect handleSelect={handleSelect}/>
       </Drawer>
+
+      <Header/>
+
+      {
+        componentsList.length === 0 &&
+        <NullBlock setDrawer={setDrawer}/>
+      }
 
       <GridLayout
         className={'relative'}

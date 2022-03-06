@@ -71,8 +71,9 @@ function Bing() {
                     <div>
                       {showLocation &&
                         <div
-                          className={'cursor-pointer text-xl py-3 border-b-2 border-gray-300'}>
-                          <a className={'hover:underline'} href={pic.images[0].copyrightlink} target={'_blank'}
+                          className={'text-xl py-3 mb-3 border-b-2 border-gray-300'}>
+                          <a className={'cursor-pointer hover:underline'} href={pic.images[0].copyrightlink}
+                             target={'_blank'}
                              rel="noreferrer">
                             {image.slice(0, image.indexOf('('))}
                           </a>
@@ -85,7 +86,7 @@ function Bing() {
                   )
                 })()}
 
-                <div className={'pt-2'}>
+                <div>
                   <LocationOnIcon style={{fontSize: '1rem', marginRight: '.3rem'}}/>
                   {pic.images[0].title}
                 </div>

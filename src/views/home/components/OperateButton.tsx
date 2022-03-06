@@ -3,14 +3,16 @@ import AddIcon from "@material-ui/icons/Add";
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import React, {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
-import {COMPONENT_DATA_KEY} from "../../../utils/env";
-import {LocalComponent} from "../../../interface/home.component.interface";
+import {useDispatch, useSelector} from "react-redux";
 import {toast} from 'react-toastify';
+import {clearGridData, saveGridData} from "../../../utils/utils";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 function OperateButton(props: any) {
   const [showOperateBut, setShowOperateBut] = useState(false);
   const [editState, setEditState] = useState(false);
+  const componentsList = useSelector((state: any) => state.componentReducer.components);
+
   const dispatch = useDispatch()
 
   const handleOpenEdit = () => {
@@ -21,32 +23,21 @@ function OperateButton(props: any) {
   }
 
   const handleSave = () => {
-    const saveData: LocalComponent[] = []
-    props.gridData.forEach((item: { i: any; x: any; y: any; w: any; h: any; }) => {
-      saveData.push({
-        name: item.i,
-        grid: {x: item.x, y: item.y, w: item.w, h: item.h}
+    saveGridData(props.gridData).then(() => {
+      toast.success('😅 保存成功!', {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+
+      setEditState(false)
+      dispatch({
+        type: 'edit_mode_close'
       })
     })
-
-    localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(saveData))
-
-    toast.success('😅 保存成功!', {
-      position: "bottom-center",
-      autoClose: 1000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true
-    });
-
-    setEditState(false)
-
-    dispatch({
-      type: 'edit_mode_close'
-    })
-
-    // setShowOperateBut(false)
   }
 
   useEffect(() => {
@@ -96,6 +87,21 @@ function OperateButton(props: any) {
             <AddIcon/>
           </IconButton>
         </Tooltip>
+
+        {
+          componentsList.length !== 0 &&
+          <Tooltip title="清除组件">
+            <IconButton aria-label="delete" className={'mb-3'} onClick={() => {
+              clearGridData()
+              dispatch({
+                type: 'component_set_data',
+                payloads: []
+              })
+            }}>
+              <DeleteIcon/>
+            </IconButton>
+          </Tooltip>
+        }
       </div>
     }
 
