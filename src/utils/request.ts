@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: 'http://0.0.0.0:9000',
+  // baseURL: 'http://0.0.0.0:9000',
+  baseURL: 'https://service-dpw12r2n-1258462188.sh.apigw.tencentcs.com',
 });
 
 const request = async (config: string) => {

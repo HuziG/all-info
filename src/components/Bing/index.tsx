@@ -60,22 +60,18 @@ function Bing() {
 
             {pic?.images &&
               <div
-                className={'absolute flex items-center flex-end text-right ' +
+                className={'absolute flex flex-col text-right ' +
                   'bg-black bg-opacity-75 text-white py-1 px-2 text-md rounded-md right-3 bottom-3'}
                 onMouseEnter={() => setShowLocation(true)}
+                onMouseLeave={() => setShowLocation(false)}
               >
-                <LocationOnIcon style={{fontSize: '1rem', marginRight: '.3rem'}}/>
-                {pic.images[0].title}
-
                 {(() => {
                   const image = pic.images[0].copyright
                   return (
-                    <div
-                      onMouseLeave={() => setShowLocation(false)}
-                    >
+                    <div>
                       {showLocation &&
                         <div
-                          className={'cursor-pointer absolute right-0 -top-20 text-xl bg-black bg-opacity-75 rounded-md py-3 px-5'}>
+                          className={'cursor-pointer text-xl py-3 border-b-2 border-gray-300'}>
                           <a className={'hover:underline'} href={pic.images[0].copyrightlink} target={'_blank'}
                              rel="noreferrer">
                             {image.slice(0, image.indexOf('('))}
@@ -89,6 +85,10 @@ function Bing() {
                   )
                 })()}
 
+                <div className={'pt-2'}>
+                  <LocationOnIcon style={{fontSize: '1rem', marginRight: '.3rem'}}/>
+                  {pic.images[0].title}
+                </div>
               </div>
             }
           </div>
