@@ -19,14 +19,11 @@ function Bing() {
 
   const handleInitData = () => {
     (async function anyNameFunction() {
-      await handleGetNvLangPicture();
+      await handleGetBingPicture();
     })();
   }
 
-  /**
-   * 获取数据，设置
-   */
-  const handleGetNvLangPicture = async () => {
+  const handleGetBingPicture = async () => {
     const data = await getBingPic();
     setPic({...data});
     setLoading(false);
