@@ -661,4 +661,32 @@ export const components = [
       },
     ]
   },
+  {
+    label: '音乐与影视',
+    key: 'yinyueyingshi',
+    icon: '<MusicNoteIcon />',
+    children: [
+      {
+        label: '歌曲飙升榜',
+        name: 'KuWoMusic-UpList',
+        childPath: 'UpList',
+        grid: {x: 0, y: 0, w: 3, h: 6},
+        style: {color: '#499C54'},
+      },
+      {
+        label: '热歌榜',
+        name: 'KuWoMusic-HotList',
+        childPath: 'HotList',
+        grid: {x: 0, y: 0, w: 3, h: 6},
+        style: {color: '#DE5449'},
+      },
+      {
+        label: '新歌榜',
+        name: 'KuWoMusic-NewestList',
+        childPath: 'NewestList',
+        grid: {x: 0, y: 0, w: 3, h: 6},
+        style: {color: '#3578EE'},
+      },
+    ]
+  },
 ];

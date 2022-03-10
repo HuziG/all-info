@@ -6,6 +6,7 @@ export interface HomeComponent {
   label: string;
   name: string;
   key?: string;
+  childPath?: string;
   "grid": {
     "w": number,
     "h": number,

@@ -2,8 +2,7 @@ import {HomeComponent} from '../interface/home.component.interface';
 import React from "react";
 
 function GetComponent(props: { name: any; data: HomeComponent; }) {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const components = require(`./${props.name.split('-')[0]}/index`).default;
+  const components = require(`./${props.name.split('-')[0]}/${props.data.childPath ? props.data.childPath : 'index'}`).default;
   return components(props.data);
 }
 

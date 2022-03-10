@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
 import {HomeComponent, HomeDrawerComponent} from '../../../interface/home.component.interface';
-// import {useSelector} from "react-redux";
 import {components} from "../static/componentsList";
 
 function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
   const [showIndex, setShowIndex] = useState(0)
-  const classWidth = 'w-40'
-  // const componentsList = useSelector((state: any) => state.componentReducer.components);
 
   return (
     <div className={'scroll-hidden overflow-y-hidden'}>
@@ -15,10 +12,10 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
       </div>
 
       <div className={'flex relative'}>
-        <div className={`${classWidth} bg-gray-100 py-1 text-md px-4 absolute left-0 h-screen`}>
+        <div className={`w-40 bg-gray-100 py-1 text-md px-4 absolute left-0 h-screen`}>
           {components.map((item: HomeDrawerComponent, index) => (
             <div
-              className={'w-20 text-gray-900 my-4 opacity-70 hover:opacity-100 font-bold cursor-pointer'}
+              className={`w-20 text-gray-900 my-4 opacity-60 hover:opacity-100 font-bold cursor-pointer ${showIndex === index ? 'opacity-100' : ''}`}
               onClick={() => setShowIndex(index)}
               key={item.label}
             >
@@ -26,7 +23,7 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
             </div>
           ))}
         </div>
-        <div className={`${classWidth}`}/>
+        <div className={`w-40`}/>
         <div className={'w-80 h-screen overflow-y-auto px-2 pt-2'}>
           {
             components[showIndex].children.map((cmp: HomeComponent) => (
@@ -41,7 +38,6 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
                 }}
               >
                 {cmp.label}
-                {/* {mouseOverIndex && mouseOverIndex === index + 1 && <AddIcon/>} */}
               </div>
             ))
           }
