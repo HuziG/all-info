@@ -25,7 +25,7 @@ function Bing() {
 
   const handleGetBingPicture = async () => {
     const data = await getBingPic();
-    setPic({...data});
+    setPic({...data.data});
     setLoading(false);
   };
 

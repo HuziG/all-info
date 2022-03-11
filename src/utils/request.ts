@@ -9,8 +9,8 @@ const instance = axios.create({
 const request = async (config: string) => {
   const {data} = await instance(config);
 
-  if (data.code === 0) {
-    return data.data;
+  if ([0, 200].includes(data.code)) {
+    return data;
   }
 
   if (data.code === -1) {
