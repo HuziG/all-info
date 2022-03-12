@@ -647,12 +647,19 @@ export const components = [
     key: 'tupianbizhi',
     icon: '<ImageIcon />',
     children: [
-      // {
-      //   label: '妹子图',
-      //   name: 'MeiZi',
-      //   grid: {x: 0, y: 0, w: 3, h: 6},
-      //   style: {color: '#4F46E5'},
-      // },
+      {
+        label: '妹子图',
+        name: 'MeiZi',
+        grid: {x: 0, y: 0, w: 3, h: 6},
+        style: {color: '#4F46E5'},
+      },
+      {
+        label: '高清妹子图',
+        name: 'MeiZi',
+        childPath: 'hdPic',
+        grid: {x: 0, y: 0, w: 3, h: 6},
+        style: {color: '#4F46E5'},
+      },
       {
         label: '必应壁纸',
         name: 'Bing',

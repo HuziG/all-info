@@ -14,7 +14,9 @@ function YiWeiReBang(props: HomeComponent) {
 
   const Container = styled.div`
     .card-header {
-      background-color: ${props.style ? props.style.color : '#fff'}
+      background-color: ${props.style ? props.style.color : '#fff'};
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
     }
 
     .ml-2{
@@ -36,7 +38,7 @@ function YiWeiReBang(props: HomeComponent) {
     return <Container
       ref={ref}
       id={id}
-      className={'bg-white shadow h-full overflow-y-auto scroll-hidden'}
+      className={'bg-white h-full overflow-y-auto scroll-hidden rounded-xl'}
       style={{
         height: scrollHeight,
       }}

@@ -22,7 +22,9 @@ function MusicItem({item, index}: {
         {index + 1}
       </span>
 
-      <img className={'w-10 h-10 rounded-md ml-2'} src={item.pic}/>
+      <img className={'w-10 h-10 rounded-md ml-2'} style={{
+        paddingRight: 0
+      }} src={item.pic}/>
 
       <span className={'text-sm inline-block w-2/4 px-2 ml-2 flex items-center'}>
         <a className={'cursor-pointer hover:underline'} href={`${SONG_HOST}${item.id}`} target="_blank"
