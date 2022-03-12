@@ -3,8 +3,8 @@ import {INFO_CARD_HEADER_STYLE, INFO_CARD_STYLE} from "../../style";
 import useResizeObserver from 'use-resize-observer';
 import {Music} from "../../interface/music.interface";
 import {getHotMusic} from "../../api/music";
-import {MusicListTemplate, ScrollContainer} from "./public";
-
+import MusicItem from "./MusicItem";
+import WhatshotIcon from '@material-ui/icons/Whatshot';
 
 function HotList() {
   const {ref, height: scrollHeight} = useResizeObserver<HTMLDivElement>();
@@ -22,17 +22,16 @@ function HotList() {
         className={INFO_CARD_HEADER_STYLE}
         style={{backgroundColor: '#DD001B'}}
       >
-        热歌榜
+        热歌榜 <WhatshotIcon style={{marginLeft: '.5rem'}}/>
       </div>
 
-      <ScrollContainer>
-        <div id={'scroll-container'} className={'overflow-y-auto text-white p-2'}
-             style={{height: scrollHeight, backgroundColor: '#20221F'}}>
-          {musicList && musicList.map((item: Music, index: number) => MusicListTemplate(item, index))}
+      <div id={'scroll-container'} className={'overflow-y-auto text-white p-2'}
+           style={{height: scrollHeight, backgroundColor: '#20221F'}}>
+        {musicList && musicList.map((item: Music, index: number) =>
+          <MusicItem key={item.id} item={item} index={index}/>)}
 
-          <div className={'h-14'}/>
-        </div>
-      </ScrollContainer>
+        <div className={'h-14'}/>
+      </div>
     </div>
   )
 }
