@@ -1,5 +1,5 @@
 function ScrollBottomBlock() {
-  return <div className={'h-10'}/>
+  return <div className={'h-10'} />;
 }
 
-export default ScrollBottomBlock
+export default ScrollBottomBlock;

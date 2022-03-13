@@ -2,7 +2,7 @@
  * 加载 script 标签 hook
  */
 
-import {useEffect} from "react";
+import { useEffect } from 'react';
 
 const useScript = (url: string) => {
   useEffect(() => {
@@ -12,10 +12,10 @@ const useScript = (url: string) => {
     document.body.appendChild(myScript);
 
     return () => {
-      console.log('unmounted useScript')
+      console.log('unmounted useScript');
       document.body.removeChild(myScript);
     };
-  }, [])
-}
+  }, []);
+};
 
 export default useScript;

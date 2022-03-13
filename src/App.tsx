@@ -3,28 +3,26 @@ import './App.css';
 import 'swiper/css';
 import * as dayjs from 'dayjs';
 import Home from './views/home';
-import rootReducer from "./store";
-import {Provider} from "react-redux";
-import {createStore} from "redux";
-import {ToastContainer} from 'react-toastify';
-import '/node_modules/react-grid-layout/css/styles.css'
-import '/node_modules/react-resizable/css/styles.css'
+import rootReducer from './store';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import { ToastContainer } from 'react-toastify';
+import '/node_modules/react-grid-layout/css/styles.css';
+import '/node_modules/react-resizable/css/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dayjs/locale/zh-cn');
 
 dayjs.locale('zh-cn');
 
-const store = createStore(
-  rootReducer,
-);
+const store = createStore(rootReducer);
 
 function App() {
   return (
     <React.Fragment>
       <Provider store={store}>
-        <Home/>
-        <ToastContainer/>
+        <Home />
+        <ToastContainer />
       </Provider>
     </React.Fragment>
   );

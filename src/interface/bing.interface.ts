@@ -6,5 +6,5 @@ export interface Image {
 }
 
 export interface BingPicData {
-  images: Image[]
+  images: Image[];
 }

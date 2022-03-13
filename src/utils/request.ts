@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 const request = async (config: string) => {
-  const {data} = await instance(config);
+  const { data } = await instance(config);
 
   if ([0, 200].includes(data.code)) {
     return data;

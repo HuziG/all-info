@@ -7,11 +7,11 @@ export interface HomeComponent {
   name: string;
   key?: string;
   childPath?: string;
-  "grid": {
-    "w": number,
-    "h": number,
-    "x": number,
-    "y": number,
+  grid: {
+    w: number;
+    h: number;
+    x: number;
+    y: number;
   };
   params?: HomeComponentParams;
   style?: {
@@ -24,15 +24,15 @@ export interface HomeDrawerComponent {
   key?: string;
   description?: string;
   icon?: string;
-  children: HomeComponent[],
+  children: HomeComponent[];
 }
 
 export interface LocalComponent {
-  "name": string,
-  "grid": {
-    "w": number,
-    "h": number,
-    "x": number,
-    "y": number,
-  }
+  name: string;
+  grid: {
+    w: number;
+    h: number;
+    x: number;
+    y: number;
+  };
 }
