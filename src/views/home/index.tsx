@@ -5,6 +5,8 @@ import GridLayout from "react-grid-layout";
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
 import {HomeComponent, LocalComponent} from '../../interface/home.component.interface';
+import Header from "../../components/Header";
+import {mapComponents, saveGridData} from "../../utils/utils";
 import {COMPONENT_DATA_KEY} from "../../utils/env";
 import {components} from "./static/componentsList";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,8 +14,7 @@ import OperateButton from "./components/OperateButton";
 import ResizeTag from "./components/ResizeTag";
 import DragTag from "./components/DragTag";
 import DeleteTag from "./components/DeleteTag";
-import {mapComponents, saveGridData} from "../../utils/utils";
-import Header from "../../components/Header";
+import {toast} from 'react-toastify';
 import NullBlock from "./components/NullBlock";
 
 const hasMapComponents = mapComponents(components)
@@ -22,8 +23,7 @@ const hasMapComponents = mapComponents(components)
  * 代码获取，格式化完整数组
  */
 let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]'
-LocalStorageComponentData = JSON.parse(LocalStorageComponentData)
-LocalStorageComponentData = LocalStorageComponentData.map((item: LocalComponent) =>
+LocalStorageComponentData = JSON.parse(LocalStorageComponentData).map((item: LocalComponent) =>
   ({...hasMapComponents.find((cmp: HomeComponent) => cmp.name === item.name), ...item})
 )
 
@@ -43,6 +43,19 @@ function Home() {
   }, []);
 
   const handleSelect = (cmp: HomeComponent) => {
+    if (componentsList.find((item: HomeComponent) => item.name === cmp.name)) {
+      toast.warning('😅 组件不可重复添加!', {
+        position: "bottom-center",
+        autoClose: 1000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      });
+      
+      return false
+    }
+
     dispatch({
       type: 'component_set_data',
       payloads: [...componentsList, cmp]
