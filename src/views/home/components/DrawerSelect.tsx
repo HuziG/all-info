@@ -30,14 +30,18 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
               key={cmp.name}
               onClick={() => props.handleSelect(cmp)}
               className={
-                'items-center justify-between cursor-pointer text-xl font-bold ' +
+                'items-center justify-between cursor-pointer ' +
                 'px-5 py-3 hover:bg-gray-200 transition-all rounded-md'
               }
-              style={{
-                color: cmp.style ? cmp.style.color : '#000000',
-              }}
+              
             >
-              {cmp.label}
+              <span 
+                className={'text-xl font-bold'}
+                style={{
+                  color: cmp.style ? cmp.style.color : '#000000',
+                }}
+              >{cmp.label}</span>
+              <div className={'text-sm mt-1 text-gray-500'}>{cmp.description}</div>
             </div>
           ))}
           <div className={'h-28'} />

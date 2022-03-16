@@ -10,5 +10,15 @@ export interface TaoQiangGouItem {
   item_description: string;
   zk_final_price: string; // 在售价
   quanhoujia: string; // 券后价
-  url: string; // 跳转链接
+  click_url: string; // 跳转链接
+}
+
+export interface QiangGouComponentProps {
+  params: {
+    hideVolume: boolean,
+    titleText: string;
+    titleTextColor: string;
+    titleBgColor: string;
+    materialid: number;
+  }
 }

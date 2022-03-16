@@ -1,5 +1,8 @@
 export interface HomeComponentParams {
   yiweiUrl?: string;
+  titleText?: string,
+  titleBgColor?: string,
+  materialid?: number
 }
 
 export interface HomeComponent {
@@ -7,6 +10,7 @@ export interface HomeComponent {
   name: string;
   key?: string;
   childPath?: string;
+  description?: string;
   grid: {
     w: number;
     h: number;
@@ -22,7 +26,6 @@ export interface HomeComponent {
 export interface HomeDrawerComponent {
   label: string;
   key?: string;
-  description?: string;
   icon?: string;
   children: HomeComponent[];
 }

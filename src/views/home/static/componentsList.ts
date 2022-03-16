@@ -761,11 +761,109 @@ export const components = [
     key: 'gouwu',
     children: [
       {
-        label: '淘抢购/聚划算',
+        label: '聚划算单品爆款',
         name: 'Shopping-taoqianggou',
-        childPath: 'TaoQiangGou',
-        grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#499C54' },
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleText: '聚划算单品爆款',
+          titleBgColor: '#FD2839',
+          materialid: 31371
+        },
+        style: { color: '#FD2839' },
+      },
+      {
+        label: '天猫国际爆款',
+        name: 'Shopping-tianmaoguojibaokuan',
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleText: '天猫国际爆款',
+          titleBgColor: '#7C48DB',
+          materialid: 44413
+        },
+        style: { color: '#7C48DB' },
+      },
+      {
+        label: '天天特卖',
+        name: 'Shopping-tiantiantemai',
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleText: '天天特卖',
+          titleBgColor: '#FF5000',
+          materialid: 31362
+        },
+        style: { color: '#FF5000' },
+      },
+      {
+        label: '潮流范',
+        name: 'Shopping-chaoliufan',
+        childPath: 'QiangGou',
+        description: '淘宝ifashion、潮电街、酷动城为主的商品',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleText: '潮流范',
+          titleBgColor: '#7C48DB',
+          materialid: 4093
+        },
+        style: { color: '#7C48DB' },
+      },
+      {
+        label: '口碑',
+        name: 'Shopping-koubei',
+        childPath: 'QiangGou',
+        description: '汉堡王/真功夫 等餐饮优惠券',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          hideVolume: true,
+          titleText: '口碑',
+          titleBgColor: '#F76744',
+          materialid: 19810
+        },
+        style: { color: '#F76744' },
+      },
+      {
+        label: '飞猪品质酒店',
+        name: 'Shopping-fzjiudian',
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          hideVolume: true,
+          titleText: '飞猪品质酒店',
+          titleTextColor: '#333',
+          titleBgColor: '#FFB701',
+          materialid: 27913
+        },
+        style: { color: '#FFB701' },
+      },
+      {
+        label: '飞猪门票',
+        name: 'Shopping-fzmenpiao',
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          hideVolume: true,
+          titleText: '飞猪门票',
+          titleTextColor: '#333',
+          titleBgColor: '#FFB701',
+          materialid: 19811
+        },
+        style: { color: '#FFB701' },
+      },
+      {
+        label: '飞猪酒店自助餐',
+        name: 'Shopping-fzzizhucan',
+        childPath: 'QiangGou',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          hideVolume: true,
+          titleText: '飞猪酒店自助餐',
+          titleTextColor: '#333',
+          titleBgColor: '#FFB701',
+          materialid: 27914
+        },
+        style: { color: '#FFB701' },
       },
     ],
   },
