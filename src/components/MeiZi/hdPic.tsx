@@ -5,7 +5,7 @@ import './swiper.css';
 import 'swiper/css/lazy';
 import useResizeObserver from 'use-resize-observer';
 import { INFO_CARD_STYLE } from '../../style';
-import { getMeiZiList } from '../../api/meizi';
+import { getMeiZiHdPic } from '../../api/meizi';
 import LoadingMask from '../Loading';
 
 function HdPic() {
@@ -27,8 +27,7 @@ function HdPic() {
    * 获取数据，设置
    */
   const handleGetNvLangPicture = async () => {
-    const data = await getMeiZiList();
-
+    const { data } = await getMeiZiHdPic();
     setPeopleData([...data.data]);
     setLoading(false);
   };

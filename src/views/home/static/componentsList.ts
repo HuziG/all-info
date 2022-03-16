@@ -708,12 +708,12 @@ export const components = [
     label: '图片与壁纸',
     key: 'tupianbizhi',
     children: [
-      {
-        label: '妹子图',
-        name: 'MeiZi',
-        grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#4F46E5' },
-      },
+      // {
+      //   label: '妹子图',
+      //   name: 'MeiZi',
+      //   grid: { x: 0, y: 0, w: 3, h: 6 },
+      //   style: { color: '#4F46E5' },
+      // },
       {
         label: '高清妹子图',
         name: 'MeiZi',
