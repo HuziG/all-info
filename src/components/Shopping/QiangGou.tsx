@@ -7,11 +7,13 @@ import { INFO_CARD_HEADER_STYLE, INFO_CARD_STYLE } from '../../style';
 import ProductItem from './ProductItem';
 // @ts-ignore
 import styled from 'styled-components';
+import LoadingMask from '../Loading';
 
 function TaoQiangGou({ params }: QiangGouComponentProps) {
   const { ref, height: scrollHeight } = useResizeObserver<HTMLDivElement>();
   const [productList, setProductList] = useState<TaoQiangGouItem[] | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   const ColumnLayout = styled.div`
     column-count: 3;
@@ -44,6 +46,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
     }).then(({ data }) => {
       try {
         setProductList([...data.data]);
+        setLoading(false)
       } catch(e) {
         console.log(data)
       }
@@ -65,6 +68,8 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
         className={'overflow-y-auto p-2'}
         style={{ height: scrollHeight }}
       >
+       { loading && <LoadingMask getData={handleGetData} /> }
+
         <ColumnLayout>
           {productList &&
             productList.map((item: TaoQiangGouItem) => (

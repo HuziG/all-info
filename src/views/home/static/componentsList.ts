@@ -808,7 +808,13 @@ export const components = [
           materialid: 4093
         },
         style: { color: '#7C48DB' },
-      },
+      }
+    ],
+  },
+  {
+    label: '本地生活',
+    key: 'gouwu',
+    children: [
       {
         label: '口碑',
         name: 'Shopping-koubei',
@@ -823,6 +829,12 @@ export const components = [
         },
         style: { color: '#F76744' },
       },
+    ]
+  },
+  {
+    label: '旅行与酒店',
+    key: 'gouwu',
+    children: [
       {
         label: '飞猪品质酒店',
         name: 'Shopping-fzjiudian',
@@ -865,6 +877,6 @@ export const components = [
         },
         style: { color: '#FFB701' },
       },
-    ],
-  },
+    ]
+  }
 ];
