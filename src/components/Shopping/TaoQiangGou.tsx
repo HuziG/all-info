@@ -39,7 +39,7 @@ function TaoQiangGou() {
     getTaoQiangGou({
       page: currentPage,
     }).then(({ data }) => {
-      setProductList([...data.data.list]);
+      setProductList([...data.data]);
     });
   };
 
