@@ -714,11 +714,20 @@ export const components = [
       //   grid: { x: 0, y: 0, w: 3, h: 6 },
       //   style: { color: '#4F46E5' },
       // },
+      // {
+      //   label: '高清妹子图',
+      //   name: 'MeiZi',
+      //   childPath: 'hdPic',
+      //   grid: { x: 0, y: 0, w: 3, h: 6 },
+      //   style: { color: '#4F46E5' },
+      // },
       {
-        label: '高清妹子图',
-        name: 'MeiZi',
-        childPath: 'hdPic',
+        label: '二次元图',
+        name: 'PictureRandom',
         grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
+          picUrl: 'https://api.ixiaowai.cn/api/api.php',
+        },
         style: { color: '#4F46E5' },
       },
       {

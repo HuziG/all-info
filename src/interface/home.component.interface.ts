@@ -3,6 +3,7 @@ export interface HomeComponentParams {
   titleText?: string,
   titleBgColor?: string,
   materialid?: number
+  picUrl?: string
 }
 
 export interface HomeComponent {
