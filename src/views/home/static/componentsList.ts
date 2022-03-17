@@ -723,10 +723,28 @@ export const components = [
       // },
       {
         label: '二次元图',
-        name: 'PictureRandom',
+        name: 'PictureRandom-erciyun',
         grid: { x: 0, y: 0, w: 3, h: 6 },
         params: {
           picUrl: 'https://api.ixiaowai.cn/api/api.php',
+        },
+        style: { color: '#4F46E5' },
+      },
+      {
+        label: '妹子图',
+        name: 'PictureRandom-meizi',
+        grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
+          picUrl: 'http://api.botwl.cn/api/meinvtu?n=1',
+        },
+        style: { color: '#4F46E5' },
+      },
+      {
+        label: 'Cosplay',
+        name: 'PictureRandom-cosplay',
+        grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
+          picUrl: 'https://imgapi.cn/cos.php',
         },
         style: { color: '#4F46E5' },
       },

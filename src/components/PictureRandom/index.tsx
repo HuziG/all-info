@@ -1,7 +1,7 @@
-import Button from "@material-ui/core/Button";
 import { useEffect, useState } from "react";
 import { INFO_CARD_STYLE } from "../../style";
 import LoadingMask from "../Loading";
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 function PictureRandom({ params }: {
   params: { picUrl: string }
@@ -39,8 +39,11 @@ function PictureRandom({ params }: {
           alt={'error'}
         />
 
-        <div className={'absolute right-10 bottom-10'}>
-          <Button color="primary" onClick={handleReload}>换张图片</Button>
+        <div 
+          className={'absolute right-3 bottom-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-50 bg-black bg-opacity-70'}
+          onClick={handleReload}  
+        >
+          <SkipNextIcon style={{ color: '#fff' }} />
         </div>
       </div>
     }
