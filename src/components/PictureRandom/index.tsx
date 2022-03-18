@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { INFO_CARD_STYLE } from "../../style";
-import LoadingMask from "../Loading";
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import LottieAnimation from "../Common/LottieAnimation";
+import * as animationData from '../../assets/lottie/image-load.json'
+import LoadingWrapper from "../Common/LoadingWrapper";
 
 function PictureRandom({ params }: {
   params: { picUrl: string }
 }) {
   const [loading, setLoading] = useState(true);
+  const [imgLoading, setImgLoading] = useState(false);
   const [picUrl, setPicUrl] = useState('')
 
   useEffect(() => {
@@ -16,27 +19,42 @@ function PictureRandom({ params }: {
   useEffect(() => {
     if (picUrl === '') {
       setLoading(true)
+      setImgLoading(true)
     } else {
       setLoading(false)
     }
   }, [picUrl])
 
   const handleReload = () => {
+    setImgLoading(true)
+    setLoading(true)
+
     setPicUrl('')
     setTimeout(() => {
       setPicUrl(`${params.picUrl  }?${  Math.random() * 1000}`)
     }, 1000)
   }
 
-  return <div className={`relative bg-black border-8 border-indigo-600 ${INFO_CARD_STYLE}`}>
+  const loadFinishImage = () => {
+    console.log('loadFinishImage')
+    setImgLoading(false)
+  }
+
+  return <div 
+      className={`relative bg-black border-8 ${INFO_CARD_STYLE}`}
+      style={{
+        borderColor: '#FFCC2A'
+      }}
+    >
     {
       !loading &&
       <div className={'h-full w-full'}>
         <img
-          className={'object-cover'}
+          className={`object-cover ${imgLoading ? 'opacity-0' : ''} `}
           src={picUrl}
           style={{ width: '100%', height: '100%' }}
           alt={'error'}
+          onLoad={() => loadFinishImage()}
         />
 
         <div 
@@ -49,8 +67,10 @@ function PictureRandom({ params }: {
     }
 
     {
-      loading && 
-      <LoadingMask getData={handleReload} />
+      imgLoading &&
+      <LoadingWrapper>
+        <LottieAnimation width={130} height={130} animationData={animationData} />
+      </LoadingWrapper>
     }
   </div>
 }
