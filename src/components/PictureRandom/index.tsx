@@ -31,7 +31,7 @@ function PictureRandom({ params }: {
 
     setPicUrl('')
     setTimeout(() => {
-      setPicUrl(`${params.picUrl  }?${  Math.random() * 1000}`)
+      setPicUrl(`${params.picUrl}${params.picUrl.indexOf('?') === -1 ? '?' : '&'}${Math.random() * 1000}`)
     }, 1000)
   }
 
@@ -48,9 +48,9 @@ function PictureRandom({ params }: {
     >
     {
       !loading &&
-      <div className={'h-full w-full'}>
+      <div className={`h-full w-full ${imgLoading ? 'opacity-0' : ''}`}>
         <img
-          className={`object-cover ${imgLoading ? 'opacity-0' : ''} `}
+          className={`object-cover`}
           src={picUrl}
           style={{ width: '100%', height: '100%' }}
           alt={'error'}

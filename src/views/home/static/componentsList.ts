@@ -708,19 +708,6 @@ export const components = [
     label: '图片与壁纸',
     key: 'tupianbizhi',
     children: [
-      // {
-      //   label: '妹子图',
-      //   name: 'MeiZi',
-      //   grid: { x: 0, y: 0, w: 3, h: 6 },
-      //   style: { color: '#4F46E5' },
-      // },
-      // {
-      //   label: '高清妹子图',
-      //   name: 'MeiZi',
-      //   childPath: 'hdPic',
-      //   grid: { x: 0, y: 0, w: 3, h: 6 },
-      //   style: { color: '#4F46E5' },
-      // },
       {
         label: '二次元图',
         name: 'PictureRandom-erciyun',
@@ -731,11 +718,38 @@ export const components = [
         style: { color: '#4F46E5' },
       },
       {
+        label: '二次元图-大图',
+        name: 'PictureRandom-erciyunbig',
+        grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
+          picUrl: 'https://www.dmoe.cc/random.php',
+        },
+        style: { color: '#4F46E5' },
+      },
+      {
         label: '妹子图',
         name: 'PictureRandom-meizi',
         grid: { x: 0, y: 0, w: 3, h: 6 },
         params: {
+          picUrl: 'https://api.tanmantang.com/api/rand.php?cid=6',
+        },
+        style: { color: '#4F46E5' },
+      },
+      {
+        label: '妹子图-2',
+        name: 'PictureRandom-meizi2',
+        grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
           picUrl: 'http://api.botwl.cn/api/meinvtu?n=1',
+        },
+        style: { color: '#4F46E5' },
+      },
+      {
+        label: '妹子图-3',
+        name: 'PictureRandom-meizi3',
+        grid: { x: 0, y: 0, w: 3, h: 6 },
+        params: {
+          picUrl: 'https://imgapi.cn/api.php',
         },
         style: { color: '#4F46E5' },
       },
