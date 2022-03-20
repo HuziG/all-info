@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { INFO_CARD_STYLE } from "../../style";
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import LottieAnimation from "../Common/LottieAnimation";
-import * as animationData from '../../assets/lottie/image-load.json'
 import LoadingWrapper from "../Common/LoadingWrapper";
 
 function PictureRandom({ params }: {
@@ -69,7 +68,7 @@ function PictureRandom({ params }: {
     {
       imgLoading &&
       <LoadingWrapper>
-        <LottieAnimation width={130} height={130} animationData={animationData} />
+        <LottieAnimation width={130} height={130} />
       </LoadingWrapper>
     }
   </div>

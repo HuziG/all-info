@@ -1,22 +1,18 @@
-import Lottie from 'react-lottie';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 function LottieAnimation(props: {
   width: number
   height: number
-  animationData: any
 }) {
   return <div>
-    <Lottie 
-      options={{
-        loop: true,
-        autoplay: true, 
-        animationData: props.animationData,
-        rendererSettings: {
-          preserveAspectRatio: 'xMidYMid slice'
-        }
+    <Player
+      autoplay
+      loop
+      src="https://assets9.lottiefiles.com/datafiles/9jPPC5ogUyD6oQq/data.json"
+      style={{
+        width: props.width,
+        height: props.height
       }}
-      height={props.height}
-      width={props.width}
     />
   </div>
 }
