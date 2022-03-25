@@ -21,7 +21,7 @@ function Header() {
 
   return (
     <div className={'pt-5 px-16 overflow-hidden flex items-center justify-between'}>
-      <span className={'text-xl font-bold'}>聚合信息板</span>
+      <span className={'text-xl font-bold'}>百变信息板</span>
 
       <div className={'float-right'}>
         <Tooltip title="邮箱联系">
