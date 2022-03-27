@@ -736,15 +736,6 @@ export const components = [
         style: { color: '#4F46E5' },
       },
       {
-        label: '妹子图-2',
-        name: 'PictureRandom-meizi2',
-        grid: { x: 0, y: 0, w: 3, h: 6 },
-        params: {
-          picUrl: 'http://api.botwl.cn/api/meinvtu?n=1',
-        },
-        style: { color: '#4F46E5' },
-      },
-      {
         label: '妹子图-3',
         name: 'PictureRandom-meizi3',
         grid: { x: 0, y: 0, w: 3, h: 6 },
