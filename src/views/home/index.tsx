@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import GridLayout from 'react-grid-layout';
 import AsyncComponent from '../../components/import';
 import DrawerSelect from './components/DrawerSelect';
+import MobileLayout from './components/MobileLayout'
 import { HomeComponent, LocalComponent } from '../../interface/home.component.interface';
 import Header from '../../components/Header';
 import { mapComponents, saveGridData } from '../../utils/utils';
@@ -84,8 +85,12 @@ function Home() {
 
       {componentsList.length === 0 && <NullBlock setDrawer={setDrawer} />}
 
+      <div className={'lg:hidden'}>
+        <MobileLayout componentsList={componentsList} />
+      </div>
+
       <GridLayout
-        className={'relative'}
+        className={'hidden lg:inline-block relative'}
         rowHeight={30}
         width={width}
         isDraggable={editMode}

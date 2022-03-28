@@ -49,21 +49,21 @@ function PictureRandom({ params }: {
       !loading &&
       <div className={`h-full w-full ${imgLoading ? 'opacity-0' : ''}`}>
         <img
-          className={`object-cover`}
+          className={`object-contain sm:object-cover`}
           src={picUrl}
           style={{ width: '100%', height: '100%' }}
           alt={'error'}
           onLoad={() => loadFinishImage()}
         />
-
-        <div 
-          className={'absolute right-3 bottom-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-50 bg-black bg-opacity-70'}
-          onClick={handleReload}  
-        >
-          <SkipNextIcon style={{ color: '#fff' }} />
-        </div>
       </div>
     }
+
+    <div 
+      className={'z-40 absolute right-3 bottom-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-50 bg-black bg-opacity-70'}
+      onClick={handleReload}  
+    >
+      <SkipNextIcon style={{ color: '#fff' }} />
+    </div>
 
     {
       imgLoading &&

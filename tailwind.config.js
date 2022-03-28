@@ -4,6 +4,9 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
+      width: {
+        '40vw': '40vw',
+      },
       height: {
         '40vh': '40vh',
         '50vh': '50vh',

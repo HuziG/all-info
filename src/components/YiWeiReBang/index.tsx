@@ -39,7 +39,7 @@ function YiWeiReBang(props: HomeComponent) {
       <Container
         ref={ref}
         id={id}
-        className={'bg-white h-full overflow-y-auto scroll-hidden rounded-xl'}
+        className={'bg-white w-full h-full overflow-y-auto scroll-hidden rounded-xl'}
         style={{
           height: scrollHeight,
         }}

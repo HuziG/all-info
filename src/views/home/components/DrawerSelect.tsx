@@ -6,11 +6,11 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
   const [showIndex, setShowIndex] = useState(0);
 
   return (
-    <div className={'scroll-hidden overflow-y-hidden'}>
+    <div className={'scroll-hidden overflow-y-hidden w-screen sm:w-40vw'}>
       <div className={'p-5 text-xl font-bold border-b-2 border-gray-200'}>添加内容 🏓</div>
 
       <div className={'flex relative'}>
-        <div className={`w-40 bg-gray-100 py-1 text-md px-4 absolute left-0 h-screen`}>
+        <div className={`w-1/3 sm:w-40 bg-gray-100 py-1 text-md px-4 h-screen overflow-x-hidden`}>
           {components.map((item: HomeDrawerComponent, index) => (
             <div
               className={`w-20 text-gray-900 my-4 opacity-60 hover:opacity-100 font-bold cursor-pointer ${
@@ -23,8 +23,7 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
             </div>
           ))}
         </div>
-        <div className={`w-40`} />
-        <div className={'w-80 h-screen overflow-y-auto px-2 pt-2'}>
+        <div className={'w-2/3 sm:w-80 h-screen overflow-y-auto px-2 pt-2'}>
           {components[showIndex].children.map((cmp: HomeComponent) => (
             <div
               key={cmp.name}
