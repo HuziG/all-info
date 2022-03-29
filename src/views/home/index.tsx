@@ -101,7 +101,7 @@ function Home() {
         <MobileLayout>
           {componentsList.length > 0 &&
             componentsList.map((item: HomeComponent) => (
-              <SwiperSlide key={item.name} data-grid={item.grid} className={`overflow-hidden`}>
+              <SwiperSlide key={item.name} className={`overflow-hidden`}>
                 <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
                 <AsyncComponent name={item.name} data={item} />
               </SwiperSlide>

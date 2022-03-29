@@ -11,7 +11,7 @@ function ResizeTag(props: { editmode: any }, ref: any) {
             cursor: 'se-resize',
             zIndex: '999',
           }}
-          className={'p-3 absolute right-0 bottom-0 rounded-tl rounded-br '}
+          className={'p-3 absolute right-0 bottom-0 rounded'}
           {...props}
         >
           <div className={'w-3 h-3 border-r-2 border-b-2 border-white'} />

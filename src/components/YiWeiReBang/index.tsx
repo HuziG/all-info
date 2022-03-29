@@ -18,14 +18,12 @@ function YiWeiReBang(props: HomeComponent) {
       border-top-left-radius: 0.75rem;
       border-top-right-radius: 0.75rem;
     }
-
     .ml-2 {
       border-radius: 5px;
       transition: all 0.2s;
       padding: 5px;
       color: ${props.style ? props.style.color : '#333'};
     }
-
     .d-flex:hover {
       .ml-2 {
         background-color: ${props.style ? props.style.color : '#fff'};
