@@ -35,21 +35,17 @@ function PictureRandom({ params }: {
   }
 
   const loadFinishImage = () => {
-    console.log('loadFinishImage')
     setImgLoading(false)
   }
 
   return <div 
-      className={`relative bg-black border-8 ${INFO_CARD_STYLE}`}
-      style={{
-        borderColor: '#FFCC2A'
-      }}
+      className={`relative border-8 bg-black border-pink-600 ${INFO_CARD_STYLE}`}
     >
     {
       !loading &&
-      <div className={`h-full w-full ${imgLoading ? 'opacity-0' : ''}`}>
+      <div className={`h-full w-full bg-black ${imgLoading ? 'opacity-0' : ''}`}>
         <img
-          className={`object-contain sm:object-cover`}
+          className={`object-scale-down sm:object-cover`}
           src={picUrl}
           style={{ width: '100%', height: '100%' }}
           alt={'error'}
@@ -59,7 +55,7 @@ function PictureRandom({ params }: {
     }
 
     <div 
-      className={'z-40 absolute right-3 bottom-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer hover:bg-opacity-50 bg-black bg-opacity-70'}
+      className={'z-40 absolute right-3 bottom-3 w-10 h-10 flex items-center justify-center rounded-full cursor-pointer bg-pink-600 hover:bg-opacity-70'}
       onClick={handleReload}  
     >
       <SkipNextIcon style={{ color: '#fff' }} />

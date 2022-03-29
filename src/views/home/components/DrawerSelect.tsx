@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HomeComponent, HomeDrawerComponent } from '../../../interface/home.component.interface';
 import { components } from '../static/componentsList';
+import Button from '@material-ui/core/Button';
 
-function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void }) {
+function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void, handleHide: () => void }) {
   const [showIndex, setShowIndex] = useState(0);
 
   return (
     <div className={'scroll-hidden overflow-y-hidden w-screen sm:w-40vw'}>
+      <div className={'absolute left-5 bottom-5 z-50'}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => props.handleHide()}
+        >
+          退出抽屉
+        </Button>
+      </div>
+
       <div className={'p-5 text-xl font-bold border-b-2 border-gray-200'}>添加内容 🏓</div>
 
       <div className={'flex relative'}>

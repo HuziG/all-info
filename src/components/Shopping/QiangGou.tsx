@@ -19,6 +19,10 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
     column-count: 3;
     column-gap: 10px;
 
+    @media (max-width: 500px) {
+      column-count: 2;
+    }
+
     .product-desc{
       overflow:hidden;
       white-space:nowrap;

@@ -1,5 +1,5 @@
 import Drawer from '@material-ui/core/Drawer';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 // @ts-ignore
 import GridLayout from 'react-grid-layout';
 import AsyncComponent from '../../components/import';
@@ -17,6 +17,8 @@ import DragTag from './components/DragTag';
 import DeleteTag from './components/DeleteTag';
 import { toast } from 'react-toastify';
 import NullBlock from './components/NullBlock';
+import { SwiperSlide } from "swiper/react";
+
 
 const hasMapComponents = mapComponents(components);
 
@@ -62,6 +64,15 @@ function Home() {
       type: 'component_set_data',
       payloads: [...componentsList, cmp],
     });
+
+    toast.success('😘 添加成功!', {
+      position: 'bottom-center',
+      autoClose: 1000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   const onLayoutChange = (layout: any) => {
@@ -76,19 +87,29 @@ function Home() {
   return (
     <div>
       <OperateButton openDrawer={() => setDrawer(true)} gridData={gridData} />
-
+      
       <Drawer anchor={'right'} open={drawer} onClose={() => handleCloseDrawer()}>
-        <DrawerSelect handleSelect={handleSelect} />
+        <DrawerSelect handleSelect={handleSelect} handleHide={handleCloseDrawer} />
       </Drawer>
 
       <Header />
 
       {componentsList.length === 0 && <NullBlock setDrawer={setDrawer} />}
 
+      {/* 移动端布局 */}
       <div className={'lg:hidden'}>
-        <MobileLayout componentsList={componentsList} />
+        <MobileLayout>
+          {componentsList.length > 0 &&
+            componentsList.map((item: HomeComponent) => (
+              <SwiperSlide key={item.name} data-grid={item.grid} className={`overflow-hidden`}>
+                <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
+                <AsyncComponent name={item.name} data={item} />
+              </SwiperSlide>
+          ))}
+        </MobileLayout>
       </div>
 
+      {/* pc布局 */}
       <GridLayout
         className={'hidden lg:inline-block relative'}
         rowHeight={30}

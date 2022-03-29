@@ -2,11 +2,12 @@ import { Fab, IconButton, Tooltip } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { clearGridData, saveGridData } from '../../../utils/utils';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
 
 function OperateButton(props: any) {
   const [showOperateBut, setShowOperateBut] = useState(false);
@@ -14,6 +15,8 @@ function OperateButton(props: any) {
   const componentsList = useSelector((state: any) => state.componentReducer.components);
 
   const dispatch = useDispatch();
+
+  const operateIconStyle = 'mb-3 bg-white text-black'
 
   const handleOpenEdit = () => {
     setEditState(true);
@@ -52,12 +55,12 @@ function OperateButton(props: any) {
   return (
     <div className={'fixed right-10 bottom-5 z-20'}>
       {showOperateBut && (
-        <div className={'flex flex-col items-center justify-center'}>
+        <div className={'flex flex-col items-center justify-center mb-12 ml-20 lg:mb-0 lg:ml-0'}>
           {editState ? (
             <Tooltip title="保存">
               <IconButton
                 aria-label="delete"
-                className={'mb-3'}
+                className={operateIconStyle}
                 onClick={() => {
                   handleSave();
                 }}
@@ -69,7 +72,7 @@ function OperateButton(props: any) {
             <Tooltip title="编辑布局">
               <IconButton
                 aria-label="delete"
-                className={'mb-3'}
+                className={operateIconStyle}
                 onClick={() => {
                   handleOpenEdit();
                 }}
@@ -82,7 +85,7 @@ function OperateButton(props: any) {
           <Tooltip title="添加组件">
             <IconButton
               aria-label="delete"
-              className={'mb-3'}
+              className={operateIconStyle}
               onClick={() => {
                 setEditState(true);
                 dispatch({
@@ -97,28 +100,38 @@ function OperateButton(props: any) {
 
           {componentsList.length !== 0 && (
             <Tooltip title="清除组件">
-              <IconButton
-                aria-label="delete"
-                className={'mb-3'}
-                onClick={() => {
-                  clearGridData();
-                  dispatch({
-                    type: 'component_set_data',
-                    payloads: [],
-                  });
-                }}
-              >
-                <DeleteIcon />
-              </IconButton>
+                <IconButton
+                  aria-label="delete"
+                  className={operateIconStyle}
+                  onClick={() => {
+                    clearGridData();
+                    dispatch({
+                      type: 'component_set_data',
+                      payloads: [],
+                    });
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
             </Tooltip>
           )}
         </div>
       )}
 
-      <div className={`relative transition-all ${showOperateBut ? 'rotate-45' : ''}`}>
+      <div className={`hidden lg:inline-block relative transition-all ${showOperateBut ? 'rotate-45' : ''}`}>
         <Fab color="secondary" aria-label="edit" onClick={() => setShowOperateBut(!showOperateBut)}>
           <AddIcon style={{ fontSize: '2rem' }} />
         </Fab>
+      </div>
+
+      <div className={'lg:hidden absolute bottom-2 right-2 w-10'}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setShowOperateBut(!showOperateBut)}
+        >
+          编辑
+        </Button>
       </div>
     </div>
   );

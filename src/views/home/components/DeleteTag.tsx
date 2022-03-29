@@ -22,8 +22,9 @@ function DeleteTag(props: { editmode: any; cmpName: string; cmpList: HomeCompone
       <Fade in={Boolean(props.editmode)}>
         <div
           className={
-            'text-white p-2 rounded-tr rounded-bl ' +
-            'absolute left-0 bottom-0 z-50 flex bg-red-600 cursor-pointer'
+            'text-white p-2 lg:rounded-tr lg:rounded-bl rounded ' +
+            'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-0 lg:bottom-0 ' + 
+            'z-50 flex bg-red-600 cursor-pointer'
           }
           onClick={() => handleDelete()}
         >

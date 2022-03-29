@@ -1,21 +1,15 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { HomeComponent } from '../../../interface/home.component.interface';
-import AsyncComponent from '../../../components/import';
+import { Swiper } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-
 import "../style/swiper.css";
 
-function MobileLayout (props: { componentsList: HomeComponent[] }) {
+import { ReactChild, ReactFragment, ReactPortal } from "react";
+
+function MobileLayout (props: { children: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) {
   return <div className={`border-box px-3`}>
     <Swiper className="cmp-swiper-wrapper" loop>
-      {props.componentsList.length > 0 &&
-        props.componentsList.map((item: HomeComponent) => (
-          <SwiperSlide key={item.name} data-grid={item.grid} className={`overflow-hidden`}>
-            <AsyncComponent name={item.name} data={item} />
-          </SwiperSlide>
-      ))}
+      {props.children}
     </Swiper>
   </div>
 }
