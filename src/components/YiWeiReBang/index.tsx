@@ -43,7 +43,7 @@ function YiWeiReBang(props: HomeComponent) {
         }}
       >
         <div
-          className={'flex items-center justify-center text-center py-5 text-xl text-indigo-700'}
+          className={'flex items-center justify-center text-center py-10 text-xl text-indigo-700'}
         >
           加载中...
         </div>

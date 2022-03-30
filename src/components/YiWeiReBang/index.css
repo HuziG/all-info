@@ -10,11 +10,12 @@
 }
 
 .hot-rank {
-  padding: 8px 10px;
-  justify-content: center;
   color: #666;
-  font-size: 14px !important;
-  font-weight: bold;
+  font-size: 14px!important;
+  font-weight: 700;
+  justify-content: center;
+  padding: 0 10px;
+  line-height: 28px !important;
 }
 
 .ml-auto {
@@ -45,7 +46,8 @@
 .ml-2 {
   font-size: 16px;
   line-height: 28px;
-  padding-right: 10px;
+  text-align: left;
+  padding: 0px 5px 5px 5px !important;
 }
 
 /*.ml-2:hover {*/
