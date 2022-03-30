@@ -709,13 +709,26 @@ export const components = [
     key: 'tupianbizhi',
     children: [
       {
+        label: '必应壁纸',
+        name: 'Bing',
+        grid: { x: 0, y: 0, w: 6, h: 4 },
+        style: { color: '#3578EE' },
+      },
+      {
+        label: '米哈游随机图',
+        name: 'MiYouPic',
+        grid: { x: 0, y: 0, w: 6, h: 4 },
+        style: { color: '#77E2FF' },
+        description: '来自米游社区的手稿漫画图',
+      },
+      {
         label: '二次元图',
         name: 'PictureRandom-erciyun',
         grid: { x: 0, y: 0, w: 3, h: 6 },
         params: {
           picUrl: 'https://api.ixiaowai.cn/api/api.php',
         },
-        style: { color: '#4F46E5' },
+        style: { color: '#DA2777' },
       },
       {
         label: '二次元图-大图',
@@ -724,7 +737,7 @@ export const components = [
         params: {
           picUrl: 'https://www.dmoe.cc/random.php',
         },
-        style: { color: '#4F46E5' },
+        style: { color: '#DA2777' },
       },
       {
         label: '妹子图',
@@ -733,7 +746,7 @@ export const components = [
         params: {
           picUrl: 'https://api.tanmantang.com/api/rand.php?cid=6',
         },
-        style: { color: '#4F46E5' },
+        style: { color: '#DA2777' },
       },
       {
         label: '妹子图-3',
@@ -742,7 +755,7 @@ export const components = [
         params: {
           picUrl: 'https://imgapi.cn/api.php',
         },
-        style: { color: '#4F46E5' },
+        style: { color: '#DA2777' },
       },
       {
         label: 'Cosplay',
@@ -751,14 +764,8 @@ export const components = [
         params: {
           picUrl: 'https://imgapi.cn/cos.php',
         },
-        style: { color: '#4F46E5' },
-      },
-      {
-        label: '必应壁纸',
-        name: 'Bing',
-        grid: { x: 0, y: 0, w: 6, h: 4 },
-        style: { color: '#3578EE' },
-      },
+        style: { color: '#DA2777' },
+      }
     ],
   },
   {
