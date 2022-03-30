@@ -40,7 +40,7 @@ function Home() {
   const [gridData, setGridData] = useState({});
   const [width] = useState(document.documentElement.clientWidth);
   const dispatch = useDispatch();
-  const isMobile = useMedia({maxWidth: '1024px'});
+  const isMobile = useMedia({ maxWidth: '1024px' });
 
   useEffect(() => {
     dispatch({
@@ -90,7 +90,7 @@ function Home() {
   return (
     <div>
       <OperateButton openDrawer={() => setDrawer(true)} gridData={gridData} />
-      
+
       <Drawer anchor={'right'} open={drawer} onClose={() => handleCloseDrawer()}>
         <DrawerSelect handleSelect={handleSelect} handleHide={handleCloseDrawer} />
       </Drawer>
@@ -110,31 +110,33 @@ function Home() {
                 <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
                 <AsyncComponent name={item.name} data={item} />
               </SwiperSlide>
-          ))}
+            ))}
         </MobileLayout>
       }
 
       {/* pc布局 */}
-      <GridLayout
-        className={'hidden lg:inline-block relative'}
-        rowHeight={30}
-        width={width}
-        isDraggable={editMode}
-        isResizable={editMode}
-        draggableHandle={'.ComponentDrag'}
-        resizeHandles={['se']}
-        resizeHandle={<ResizeTag editmode={editMode ? 1 : 0} />}
-        onLayoutChange={onLayoutChange}
-      >
-        {componentsList.length > 0 &&
-          componentsList.map((item: HomeComponent) => (
-            <div key={item.name} data-grid={item.grid} className={`overflow-hidden`}>
-              <DragTag editmode={editMode ? 1 : 0} />
-              <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
-              <AsyncComponent name={item.name} data={item} />
-            </div>
-          ))}
-      </GridLayout>
+      {
+        !isMobile && <GridLayout
+          className={'hidden lg:inline-block relative'}
+          rowHeight={30}
+          width={width}
+          isDraggable={editMode}
+          isResizable={editMode}
+          draggableHandle={'.ComponentDrag'}
+          resizeHandles={['se']}
+          resizeHandle={<ResizeTag editmode={editMode ? 1 : 0} />}
+          onLayoutChange={onLayoutChange}
+        >
+          {componentsList.length > 0 &&
+            componentsList.map((item: HomeComponent) => (
+              <div key={item.name} data-grid={item.grid} className={`overflow-hidden`}>
+                <DragTag editmode={editMode ? 1 : 0} />
+                <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
+                <AsyncComponent name={item.name} data={item} />
+              </div>
+            ))}
+        </GridLayout>
+      }
     </div>
   );
 }
