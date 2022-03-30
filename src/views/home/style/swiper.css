@@ -8,6 +8,8 @@
 }
 
 .swiper-slide {
+  border-radius: 1rem;
+  overflow: hidden;
   text-align: center;
   font-size: 18px;
   /* Center slide text vertically */
