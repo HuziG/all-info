@@ -14,11 +14,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import OperateButton from './components/OperateButton';
 import ResizeTag from './components/ResizeTag';
 import DragTag from './components/DragTag';
+import LeftMoveTag from './components/LeftMoveTag';
+import RightMoveTag from './components/RightMoveTag';
 import DeleteTag from './components/DeleteTag';
 import { toast } from 'react-toastify';
 import NullBlock from './components/NullBlock';
 import { SwiperSlide } from "swiper/react";
-
+import useMedia from 'use-media';
 
 const hasMapComponents = mapComponents(components);
 
@@ -38,6 +40,7 @@ function Home() {
   const [gridData, setGridData] = useState({});
   const [width] = useState(document.documentElement.clientWidth);
   const dispatch = useDispatch();
+  const isMobile = useMedia({maxWidth: '1024px'});
 
   useEffect(() => {
     dispatch({
@@ -97,17 +100,19 @@ function Home() {
       {componentsList.length === 0 && <NullBlock setDrawer={setDrawer} />}
 
       {/* 移动端布局 */}
-      <div className={'lg:hidden'}>
-        <MobileLayout>
+      {
+        isMobile && <MobileLayout>
           {componentsList.length > 0 &&
             componentsList.map((item: HomeComponent) => (
               <SwiperSlide key={item.name} className={`overflow-hidden`}>
+                <LeftMoveTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
+                <RightMoveTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
                 <DeleteTag editmode={editMode ? 1 : 0} cmpName={item.name} cmpList={componentsList} />
                 <AsyncComponent name={item.name} data={item} />
               </SwiperSlide>
           ))}
         </MobileLayout>
-      </div>
+      }
 
       {/* pc布局 */}
       <GridLayout
