@@ -22,6 +22,8 @@ import NullBlock from './components/NullBlock';
 import { SwiperSlide } from "swiper/react";
 import useMedia from 'use-media';
 
+const isEmpty = require('lodash.isempty');
+
 const hasMapComponents = mapComponents(components);
 
 /**
@@ -84,7 +86,14 @@ function Home() {
 
   const handleCloseDrawer = async () => {
     setDrawer(false);
-    await saveGridData(gridData);
+
+    // 处理手机端无gridData的情况
+    const saveData: LocalComponent[] = isEmpty(gridData) ? componentsList.map((item: HomeComponent) => ({
+      i: item.name,
+      w: 1, h: 1, x: 1, y: 1
+    })) : gridData
+
+    await saveGridData(saveData);
   };
 
   return (

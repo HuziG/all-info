@@ -8,6 +8,10 @@ import { toast } from 'react-toastify';
 import { clearGridData, saveGridData } from '../../../utils/utils';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Button from '@material-ui/core/Button';
+import { HomeComponent, LocalComponent } from '../../../interface/home.component.interface';
+
+const isEmpty = require('lodash.isempty');
+
 
 function OperateButton(props: any) {
   const [showOperateBut, setShowOperateBut] = useState(false);
@@ -26,7 +30,13 @@ function OperateButton(props: any) {
   };
 
   const handleSave = () => {
-    saveGridData(props.gridData).then(() => {
+    // 处理手机端无gridData的情况
+    const saveData: LocalComponent[] = isEmpty(props.gridData) ? componentsList.map((item: HomeComponent) => ({
+      i: item.name,
+      w: 1, h: 1, x: 1, y: 1
+    })) : props.gridData
+
+    saveGridData(saveData).then(() => {
       toast.success('😘 保存成功!', {
         position: 'bottom-center',
         autoClose: 1000,
@@ -37,6 +47,7 @@ function OperateButton(props: any) {
       });
 
       setEditState(false);
+
       dispatch({
         type: 'edit_mode_close',
       });
@@ -100,19 +111,19 @@ function OperateButton(props: any) {
 
           {componentsList.length !== 0 && (
             <Tooltip title="清除组件">
-                <IconButton
-                  aria-label="delete"
-                  className={operateIconStyle}
-                  onClick={() => {
-                    clearGridData();
-                    dispatch({
-                      type: 'component_set_data',
-                      payloads: [],
-                    });
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
+              <IconButton
+                aria-label="delete"
+                className={operateIconStyle}
+                onClick={() => {
+                  clearGridData();
+                  dispatch({
+                    type: 'component_set_data',
+                    payloads: [],
+                  });
+                }}
+              >
+                <DeleteIcon />
+              </IconButton>
             </Tooltip>
           )}
         </div>
