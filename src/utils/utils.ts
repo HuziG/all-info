@@ -25,3 +25,16 @@ export const saveGridData = (gridData: any) => {
 export const clearGridData = () => {
   localStorage.setItem(COMPONENT_DATA_KEY, '');
 };
+
+export const setDarkCss = (dark: boolean) => {
+  let backgroundColor = ''
+
+  if (dark) {
+    backgroundColor = '#121212'
+  } else {
+    backgroundColor = '#eeeeee'
+  }
+
+  document.getElementsByTagName('html')[0].className = dark ? 'dark' : ''
+  document.getElementsByTagName('body')[0].style.backgroundColor = backgroundColor
+}

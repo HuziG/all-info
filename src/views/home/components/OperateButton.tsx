@@ -12,7 +12,6 @@ import { HomeComponent, LocalComponent } from '../../../interface/home.component
 
 const isEmpty = require('lodash.isempty');
 
-
 function OperateButton(props: any) {
   const [showOperateBut, setShowOperateBut] = useState(false);
   const [editState, setEditState] = useState(false);
@@ -20,7 +19,7 @@ function OperateButton(props: any) {
 
   const dispatch = useDispatch();
 
-  const operateIconStyle = 'mb-3 bg-white text-black'
+  const operateIconStyle = 'mb-3 bg-white dark:bg-dark-card-bg text-black dark:text-main-title'
 
   const handleOpenEdit = () => {
     setEditState(true);

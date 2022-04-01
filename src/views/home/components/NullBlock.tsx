@@ -22,7 +22,7 @@ function NullBlock(props: { setDrawer: (arg0: boolean) => void }) {
       </Button>
 
       <div className={'text-center py-8'}>
-        <Button onClick={handleAddInfo}>选择困难症？一键添加内容!</Button>
+        <Button onClick={handleAddInfo} className={'dark:text-main-title'}>选择困难症？一键添加内容!</Button>
       </div>
     </div>
   );

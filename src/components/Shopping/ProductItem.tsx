@@ -1,24 +1,23 @@
 import { TaoQiangGouItem } from '../../interface/taoqianggou.inerface';
 
 function ProductItem(
-  { item, titleBgColor, hideVolume }: 
-  { item: TaoQiangGouItem, titleBgColor: string, hideVolume: boolean }) 
-{
+  { item, titleBgColor, hideVolume }:
+    { item: TaoQiangGouItem, titleBgColor: string, hideVolume: boolean }) {
   const handleClickCard = () => {
     window.open(`https:${item.click_url}`)
   }
-  
-  return <div 
-    className={'p-1 rounded-xl h-full overflow-auto cursor-pointer transition-all hover:border-4'} 
+
+  return <div
+    className={'p-1 rounded-xl h-full overflow-auto cursor-pointer transition-all hover:border-4'}
     style={{
       borderColor: titleBgColor
     }}
     onClick={handleClickCard}
   >
-    <img 
+    <img
       className={'rounded-xl bg-gray-400 overflow-hidden'}
-      src={item.pict_url} 
-      alt='error' 
+      src={item.pict_url}
+      alt='error'
     />
     <div className={'py-1'}>
       {/* <span 
@@ -31,12 +30,12 @@ function ProductItem(
           item.user_type === '1' ? '天猫' : '淘宝'
         }
       </span> */}
-      <span className={'product-title text-sm'}>{item.title}</span>
+      <span className={'product-title text-sm dark:text-main-title'}>{item.title}</span>
       {
-        item.item_description && 
-        <div className={'product-desc text-xs text-gray-500 py-2'}>{item.item_description}</div>
+        item.item_description &&
+        <div className={'product-desc text-xs text-gray-500 py-2 dark:text-vice-title'}>{item.item_description}</div>
       }
-      
+
       <div>
         <div className={'inline-block'} style={{
           color: '#FF5601'
@@ -46,8 +45,8 @@ function ProductItem(
           <span className={'text-xs mr-1'}>券后价</span>
         </div>
         {
-          !hideVolume && 
-          <span className={'text-xs text-gray-500'}>
+          !hideVolume &&
+          <span className={'text-xs text-gray-500 dark:text-vice-title'}>
             {String(item.volume).length >= 5 ? `${Number(item.volume) / 10000}万+ ` : item.volume} 付款
           </span>
         }

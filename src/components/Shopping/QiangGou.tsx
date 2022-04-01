@@ -51,7 +51,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
       try {
         setProductList([...data.data]);
         setLoading(false)
-      } catch(e) {
+      } catch (e) {
         console.log(data)
       }
     });
@@ -63,7 +63,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
         <span style={{
           color: params.titleTextColor || ''
         }}>
-        {params.titleText}
+          {params.titleText}
         </span>
       </div>
 
@@ -72,7 +72,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
         className={'overflow-y-auto p-2'}
         style={{ height: scrollHeight }}
       >
-       { loading && <LoadingMask getData={handleGetData} /> }
+        {loading && <LoadingMask getData={handleGetData} />}
 
         <ColumnLayout>
           {productList &&
@@ -85,6 +85,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
           <div className="flex items-center justify-center my-5">
             {currentPage === 1 || (
               <Button
+                className={'dark:text-main-title'}
                 onClick={() => {
                   setCurrentPage(currentPage - 1);
                 }}
@@ -92,7 +93,11 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
                 上一页
               </Button>
             )}
-            <Button onClick={() => setCurrentPage(currentPage + 1)}>下一页</Button>
+            <Button
+              className={'dark:text-main-title'}
+              onClick={() => setCurrentPage(currentPage + 1)}>
+              下一页
+            </Button>
           </div>
         )}
 

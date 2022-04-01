@@ -5,16 +5,22 @@ import useResizeObserver from 'use-resize-observer';
 import useScript from '../../hook/useScript';
 // @ts-ignore
 import styled from 'styled-components';
+import useDarkMode from 'use-dark-mode';
 
 function YiWeiReBang(props: HomeComponent) {
   const { ref, height: scrollHeight } = useResizeObserver<HTMLDivElement>();
   const id = `ALLINFO_${props.name.split('-')[1]}`;
+  const darkMode = useDarkMode(false);
 
   useScript(`${props.params && props.params.yiweiUrl}${id}`);
 
+  const useDefaultColor = darkMode.value ? '#E3E3E3' : '#333'
+
+  const useDefaultHoverColor = darkMode.value ? '' : '#fff'
+
   const Container = styled.div`
     .card-header {
-      background-color: ${props.style ? props.style.color : '#fff'};
+      background-color: ${props.style ? props.style.color : '#333'};
       border-top-left-radius: 0.75rem;
       border-top-right-radius: 0.75rem;
     }
@@ -22,11 +28,11 @@ function YiWeiReBang(props: HomeComponent) {
       border-radius: 5px;
       transition: all 0.2s;
       padding: 5px;
-      color: ${props.style ? props.style.color : '#333'};
+      color: ${props.style ? props.style.color : useDefaultColor};
     }
     .d-flex:hover {
       .ml-2 {
-        background-color: ${props.style ? props.style.color : '#fff'};
+        background-color: ${props.style ? props.style.color : useDefaultHoverColor};
         color: #fff;
       }
     }
@@ -37,13 +43,13 @@ function YiWeiReBang(props: HomeComponent) {
       <Container
         ref={ref}
         id={id}
-        className={'bg-white w-full h-full overflow-y-auto scroll-hidden rounded-xl'}
+        className={'bg-white dark:bg-dark-card-bg w-full h-full overflow-y-auto scroll-hidden rounded-xl'}
         style={{
           height: scrollHeight,
         }}
       >
         <div
-          className={'flex items-center justify-center text-center py-10 text-xl text-indigo-700'}
+          className={'flex dark:text-main-title items-center justify-center text-center py-10 text-xl text-indigo-700'}
         >
           加载中...
         </div>
