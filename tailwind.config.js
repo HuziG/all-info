@@ -1,7 +1,7 @@
 module.exports = {
   important: true,
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'class',
   theme: {
     extend: {
       width: {
@@ -16,6 +16,14 @@ module.exports = {
       },
       lineHeight: {
         16: '4rem',
+      },
+      textColor: {
+        'main-title': '#E3E3E3',
+        'vice-title': '#A9A9A9'
+      },
+      backgroundColor: {
+        'dark-card-bg': '#272727',
+        'dark-bg': '#121212'
       },
     },
   },
