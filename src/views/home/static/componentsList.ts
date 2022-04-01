@@ -12,7 +12,7 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100000&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#1822DD' },
+        style: { color: '#4F6EF2' },
       },
       {
         label: '36氪人气榜',
@@ -177,7 +177,7 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100015&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
+        style: { color: '#0066FF' },
       },
       {
         label: '电商报7X24h快讯',
@@ -220,7 +220,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100019&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '抖音热点榜',
@@ -242,7 +241,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100021&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '知无不言头条',
@@ -253,7 +251,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100022&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '哔哩哔哩每周必看',
@@ -275,7 +272,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100025&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '派代最新热帖',
@@ -286,7 +282,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100026&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: 'IT之家资讯热榜',
@@ -297,7 +292,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100027&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: 'IT之家最新资讯',
@@ -308,7 +302,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100028&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '百度贴吧热议榜',
@@ -319,7 +312,7 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100029&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#1822DD' },
+        style: { color: '#4F6EF2' },
       },
       {
         label: '虎扑步行街热帖',
@@ -341,7 +334,7 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100033&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#1822DD' },
+        style: { color: '#4F6EF2' },
       },
       {
         label: '看帮网 男频热门',
@@ -352,7 +345,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100034&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '知轩藏书',
@@ -363,7 +355,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100035&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '哔哩哔哩综合热门',
@@ -418,7 +409,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100040&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '美食天下-餐饮行业资讯',
@@ -429,7 +419,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100041&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '赢商网-餐饮行业资讯',
@@ -440,7 +429,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100042&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '中国产业信息网',
@@ -451,7 +439,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100043&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '勺子课堂-餐饮行业资讯',
@@ -462,7 +449,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100044&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '小红书社区精选',
@@ -495,7 +481,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100051&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '律动快讯',
@@ -506,7 +491,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100052&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '亿恩网最新资讯',
@@ -517,7 +501,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100054&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '派代最受关注主题',
@@ -528,7 +511,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100055&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '优设网最新文章',
@@ -605,7 +587,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100062&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '真刷最新热门',
@@ -616,7 +597,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100063&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '电商运营问答',
@@ -627,7 +607,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100064&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: 'COONAV白鲸出海资讯',
@@ -638,7 +617,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100065&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: 'COONAV亿欧最新资讯',
@@ -660,7 +638,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100067&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: 'COONAV创蓝论坛最新热门',
@@ -671,7 +648,6 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100068&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '百度电影榜',
@@ -682,7 +658,7 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100069&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#1822DD' },
+        style: { color: '#4F6EF2' },
       },
       {
         label: 'IMDB爱影库',
@@ -693,14 +669,12 @@ export const components = [
             'https://ionews.top/hot.php?key=ZxUfvKLKuDdSJAl1TKP2EWtlIBzG8T&id=100070&select=',
         },
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
       {
         label: '砖块',
         name: 'BlockTest',
         params: {},
         grid: { x: 0, y: 0, w: 3, h: 6 },
-        style: { color: '#333333' },
       },
     ],
   },
@@ -713,13 +687,6 @@ export const components = [
         name: 'Bing',
         grid: { x: 0, y: 0, w: 6, h: 4 },
         style: { color: '#3578EE' },
-      },
-      {
-        label: '米哈游随机图',
-        name: 'MiYouPic',
-        grid: { x: 0, y: 0, w: 6, h: 4 },
-        style: { color: '#77E2FF' },
-        description: '来自米游社区的手稿漫画图',
       },
       {
         label: '二次元图',
@@ -794,6 +761,18 @@ export const components = [
         style: { color: '#3578EE' },
       },
     ],
+  },
+  {
+    label: '论坛与社区',
+    key: 'tupianbizhi',
+    children: [
+      {
+        label: '米游社区活动',
+        name: 'MiYouActivity',
+        grid: { x: 0, y: 0, w: 6, h: 4 },
+        style: { color: '#77E2FF' }
+      }
+    ]
   },
   {
     label: '购物',
