@@ -38,3 +38,16 @@ export const setDarkCss = (dark: boolean) => {
   document.getElementsByTagName('html')[0].className = dark ? 'dark' : ''
   document.getElementsByTagName('body')[0].style.backgroundColor = backgroundColor
 }
+
+export const clearNullCmp = (clearIndexArray: number[]) => {
+  if (clearIndexArray.length > 0) {
+    let localData: any = localStorage.getItem(COMPONENT_DATA_KEY)
+    if (localData) {
+      localData = JSON.parse(localData)
+      clearIndexArray.forEach(index => {
+        localData.splice(index, 1)
+      })
+      localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(localData))
+    } 
+  }
+}

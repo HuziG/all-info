@@ -7,7 +7,7 @@ import DrawerSelect from './components/DrawerSelect';
 import MobileLayout from './components/MobileLayout'
 import { HomeComponent, LocalComponent } from '../../interface/home.component.interface';
 import Header from '../../components/Header';
-import { mapComponents, saveGridData } from '../../utils/utils';
+import { clearNullCmp, mapComponents, saveGridData } from '../../utils/utils';
 import { COMPONENT_DATA_KEY } from '../../utils/env';
 import { components } from './static/componentsList';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,17 +23,32 @@ import { SwiperSlide } from "swiper/react";
 import useMedia from 'use-media';
 
 const isEmpty = require('lodash.isempty');
+const _Compact = require('lodash.compact');
 
 const hasMapComponents = mapComponents(components);
+
+const clearIndexArray: number[] = []
 
 /**
  * 代码获取，格式化完整数组
  */
 let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) || '[]';
-LocalStorageComponentData = JSON.parse(LocalStorageComponentData).map((item: LocalComponent) => ({
-  ...hasMapComponents.find((cmp: HomeComponent) => cmp.name === item.name),
-  ...item,
-}));
+LocalStorageComponentData = JSON.parse(LocalStorageComponentData).map((item: LocalComponent, index: number) => {
+  const findResult = hasMapComponents.find((cmp: HomeComponent) => cmp.name === item.name)
+  if (findResult) {
+    return ({
+      ...findResult,
+      ...item,
+    })
+  } else {
+    clearIndexArray.push(index)
+    return null
+  }
+});
+
+LocalStorageComponentData = _Compact(LocalStorageComponentData)
+
+clearNullCmp(clearIndexArray)
 
 function Home() {
   const [drawer, setDrawer] = useState(false);
@@ -84,7 +99,7 @@ function Home() {
     setGridData(layout);
   };
 
-  const handleCloseDrawer = async () => {
+  const handleLocalComponent = async () => {
     setDrawer(false);
 
     // 处理手机端无gridData的情况
@@ -100,8 +115,8 @@ function Home() {
     <div>
       <OperateButton openDrawer={() => setDrawer(true)} gridData={gridData} />
 
-      <Drawer anchor={'right'} open={drawer} onClose={() => handleCloseDrawer()}>
-        <DrawerSelect handleSelect={handleSelect} handleHide={handleCloseDrawer} />
+      <Drawer anchor={'right'} open={drawer} onClose={() => handleLocalComponent()}>
+        <DrawerSelect handleSelect={handleSelect} handleHide={handleLocalComponent} />
       </Drawer>
 
       <Header />

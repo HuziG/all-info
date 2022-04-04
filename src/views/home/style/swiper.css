@@ -11,4 +11,5 @@
   border-radius: 1rem;
   overflow: hidden;
   font-size: 18px;
+  text-align: left !important;
 }
