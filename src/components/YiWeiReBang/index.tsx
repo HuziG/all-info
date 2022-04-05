@@ -10,13 +10,15 @@ import useDarkMode from 'use-dark-mode';
 function YiWeiReBang(props: HomeComponent) {
   const { ref, height: scrollHeight } = useResizeObserver<HTMLDivElement>();
   const id = `ALLINFO_${props.name.split('-')[1]}`;
-  const darkMode = useDarkMode(false);
+  const darkMode = useDarkMode(false, {
+    storageKey: 'ALL_INFO_DARK_MODE'
+  });
 
   useScript(`${props.params && props.params.yiweiUrl}${id}`);
 
-  const useDefaultColor = darkMode.value ? '#E3E3E3' : '#333'
+  const useDefaultColor = darkMode.value ? '#333' : '#eee'
 
-  const useDefaultHoverColor = darkMode.value ? '' : '#fff'
+  const useDefaultHoverColor = darkMode.value ? '#fff' : ''
 
   const Container = styled.div`
     .card-header {

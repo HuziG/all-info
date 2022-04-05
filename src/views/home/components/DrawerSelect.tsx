@@ -24,7 +24,7 @@ function DrawerSelect(props: { handleSelect: (arg0: HomeComponent) => void, hand
         <div className={`w-1/3 sm:w-40 bg-gray-100 py-1 text-md px-4 h-screen overflow-x-hidden`}>
           {components.map((item: HomeDrawerComponent, index) => (
             <div
-              className={`w-20 text-gray-900 my-4 opacity-60 hover:opacity-100 text-sm sm:text-lg font-bold cursor-pointer ${showIndex === index ? 'opacity-100' : ''
+              className={`text-gray-900 my-4 opacity-60 hover:opacity-100 text-sm sm:text-base font-bold cursor-pointer ${showIndex === index ? 'opacity-100' : ''
                 }`}
               onClick={() => setShowIndex(index)}
               key={item.label}
