@@ -826,6 +826,17 @@ export const components = [
           materialid: 4093
         },
         style: { color: '#7C48DB' },
+      },
+      {
+        label: '京东精选',
+        name: 'JingDong-jingxuan',
+        childPath: 'JingXuan',
+        description: '京东多品类精选商品',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleBgColor: '#E2251B'        
+        },
+        style: { color: '#E2251B' },
       }
     ],
   },
