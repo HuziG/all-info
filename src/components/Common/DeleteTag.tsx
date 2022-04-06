@@ -14,8 +14,6 @@ function DragTag(props: { cmpKey: string }) {
     );
     _components.splice(findIndex, 1);
 
-    console.log('_data', _components);
-
     dispatch({
       type: 'component_set_data',
       payloads: [..._components],
