@@ -13,7 +13,21 @@ export interface TaoQiangGouItem {
   click_url: string; // 跳转链接
 }
 
+export interface JdJingXuanItem {
+  skuId: number;
+  imageInfo: {
+    imageList: Array<{url: string}>
+  }
+  materialUrl: string
+  skuName: string
+  priceInfo: {
+    lowestPrice: number
+  }
+  goodCommentsShare: number
+}
+
 export interface QiangGouComponentProps {
+  name: string
   params: {
     hideVolume: boolean,
     titleText: string;

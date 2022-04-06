@@ -39,4 +39,6 @@ export interface LocalComponent {
     x: number;
     y: number;
   };
+  params?: any
 }
+
