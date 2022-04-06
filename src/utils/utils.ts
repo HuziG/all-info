@@ -1,6 +1,5 @@
 import { LocalComponent } from '../interface/home.component.interface';
 import { COMPONENT_DATA_KEY } from './env';
-import { useSelector } from 'react-redux';
 
 export const mapComponents = (cmp: any[]) => {
   return cmp.reduce((total, item) => [...item.children, ...total], []);
@@ -49,5 +48,28 @@ export const clearNullCmp = (clearIndexArray: number[]) => {
       })
       localStorage.setItem(COMPONENT_DATA_KEY, JSON.stringify(localData))
     } 
+  }
+}
+
+export const localCmpParams = (otherParams: Array<{
+  name: string,
+  params: any
+}>) => {
+  let localData = localStorage[COMPONENT_DATA_KEY]
+
+  if (localData) {
+    localData = JSON.parse(localStorage[COMPONENT_DATA_KEY])
+
+    localData.forEach((item: LocalComponent) => {
+      const findResult = otherParams.find(
+        (cmp: {name:string}) => cmp.name === item.name
+      )
+
+      if (findResult) {
+        item.params = findResult.params
+      }
+    })    
+
+    localStorage[COMPONENT_DATA_KEY] = JSON.stringify(localData)
   }
 }

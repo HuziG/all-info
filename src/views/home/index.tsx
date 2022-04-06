@@ -36,9 +36,13 @@ let LocalStorageComponentData: any = localStorage.getItem(COMPONENT_DATA_KEY) ||
 LocalStorageComponentData = JSON.parse(LocalStorageComponentData).map((item: LocalComponent, index: number) => {
   const findResult = hasMapComponents.find((cmp: HomeComponent) => cmp.name === item.name)
   if (findResult) {
+    // 本地 params 与线上 params 合并
+    const params = { ...findResult.params, ...item.params }
+
     return ({
       ...findResult,
       ...item,
+      params
     })
   } else {
     clearIndexArray.push(index)
