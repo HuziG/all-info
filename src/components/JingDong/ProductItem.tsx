@@ -3,8 +3,11 @@ import { JdJingXuanItem } from '../../interface/taoqianggou.inerface';
 function ProductItem(
   { item, titleBgColor }:
     { item: JdJingXuanItem, titleBgColor: string }) {
+
+  console.log(item)
+
   const handleClickCard = () => {
-    window.open(`https://www.${item.materialUrl}`)
+    window.open(`https://${item.materialUrl}`)
   }
 
   return <div

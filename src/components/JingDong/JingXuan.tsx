@@ -11,6 +11,7 @@ import LoadingMask from '../Loading';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { localCmpParams } from '../../utils/utils';
+import { Menu, MenuItem } from "@material-ui/core";
 
 function TaoQiangGou({ params, name }: any) {
   const { ref, height: scrollHeight } = useResizeObserver<HTMLDivElement>();
@@ -30,6 +31,7 @@ function TaoQiangGou({ params, name }: any) {
   ])
   const [selectClassId, setSelectClassId] = useState(params.selectClassId || classList[0].value)
   const [loading, setLoading] = useState(true);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const scrollArrowStyle = `hidden sm:flex bg-gray-700 bg-opacity-90 hover:bg-opacity-100 cursor-pointer flex items-center justify-center absolute top-2 w-8 h-8`
 
   const ColumnLayout = styled.div`
@@ -62,6 +64,10 @@ function TaoQiangGou({ params, name }: any) {
     ])
   }, [currentPage, selectClassId]);
 
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
   const handleGetData = () => {
     setProductList(null)
 
@@ -74,16 +80,48 @@ function TaoQiangGou({ params, name }: any) {
     });
   };
 
-  console.log(params)
-
   return (
     <div ref={ref} className={INFO_CARD_STYLE}>
-      <div className={INFO_CARD_HEADER_STYLE} style={{ backgroundColor: params.titleBgColor }}>
+      <div className={`${INFO_CARD_HEADER_STYLE} flex items-center justify-between`} style={{ backgroundColor: params.titleBgColor }}>
         京东精选
+
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          variant="outlined"
+          onClick={handleClick}
+          style={{
+            color: '#ffffff',
+            borderColor: '#ffffff',
+          }}
+        >
+          {(() => {
+            return (classList.find(item => item.value === selectClassId) as any).label
+          })()}
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={() => setAnchorEl(null)}
+        >
+          {
+            classList !== null && classList.map((item, index) => (
+              <MenuItem onClick={() => {
+                setSelectClassId(item.value)
+                setCurrentPage(1)
+                setAnchorEl(null)
+              }} key={index}>
+                <span>{item.label}</span>
+              </MenuItem>
+            ))
+          }
+        </Menu>
       </div>
 
-      <div className={'relative overflow-y-auto whitespace-nowrap my-1 px-1 scroll-hidden'}>
-        < div className={`${scrollArrowStyle} left-0 rounded-r-md`}>
+      {/* <div className={'relative overflow-y-auto whitespace-nowrap my-1 px-1 scroll-hidden'}>
+        <div className={`${scrollArrowStyle} left-0 rounded-r-md`}>
           <ChevronLeftIcon style={{
             color: '#fff'
           }} />
@@ -107,7 +145,7 @@ function TaoQiangGou({ params, name }: any) {
             color: '#fff'
           }} />
         </div>
-      </div>
+      </div> */}
 
       <div
         id={'scroll-container'}
@@ -142,7 +180,7 @@ function TaoQiangGou({ params, name }: any) {
           </div>
         )}
 
-        <div className={'h-20'} />
+        <div className={'h-24'} />
       </div>
 
 
