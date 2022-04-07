@@ -18,7 +18,7 @@ function YiWeiReBang(props: HomeComponent) {
 
   const useDefaultColor = darkMode.value ? '#333' : '#eee'
 
-  const useDefaultHoverColor = darkMode.value ? '#fff' : ''
+  const useDefaultHoverColor = darkMode.value ? '#333' : ''
 
   const Container = styled.div`
     .card-header {
@@ -45,7 +45,7 @@ function YiWeiReBang(props: HomeComponent) {
       <Container
         ref={ref}
         id={id}
-        className={'bg-white dark:bg-dark-card-bg w-full h-full overflow-y-auto scroll-hidden rounded-xl'}
+        className={'yiweirebang bg-white dark:bg-dark-card-bg w-full h-full overflow-y-auto scroll-hidden rounded-xl'}
         style={{
           height: scrollHeight,
         }}
