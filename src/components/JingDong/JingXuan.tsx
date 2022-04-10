@@ -32,6 +32,7 @@ function TaoQiangGou({ params, name }: any) {
   const [selectClassId, setSelectClassId] = useState(params.selectClassId || classList[0].value)
   const [loading, setLoading] = useState(true);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [showNextPage, setShowNextPage] = useState(true)
   const scrollArrowStyle = `hidden sm:flex bg-gray-700 bg-opacity-90 hover:bg-opacity-100 cursor-pointer flex items-center justify-center absolute top-2 w-8 h-8`
 
   const ColumnLayout = styled.div`
@@ -75,6 +76,10 @@ function TaoQiangGou({ params, name }: any) {
       pageIndex: currentPage,
       eliteId: selectClassId
     }).then(({ data }) => {
+      if (data.data.list.length >= data.data.totalCount) {
+        setShowNextPage(false)
+      }
+
       setProductList([...data.data.list]);
       setLoading(false)
     });
@@ -120,33 +125,6 @@ function TaoQiangGou({ params, name }: any) {
         </Menu>
       </div>
 
-      {/* <div className={'relative overflow-y-auto whitespace-nowrap my-1 px-1 scroll-hidden'}>
-        <div className={`${scrollArrowStyle} left-0 rounded-r-md`}>
-          <ChevronLeftIcon style={{
-            color: '#fff'
-          }} />
-        </div>
-
-        {classList.map(item =>
-          <div
-            className={`w-32 inline-block text-center py-1 my-1 rounded-md text-sm cursor-pointer ${selectClassId === item.value ? 'bg-red-500 text-white' : ''}`}
-            style={{
-              color: params.titleBgColor,
-            }}
-            onClick={() => {
-              setSelectClassId(item.value)
-            }}
-          >
-            {item.label}
-          </div>)}
-
-        <div className={`${scrollArrowStyle} right-0 rounded-l-md`}>
-          <ChevronRightIcon style={{
-            color: '#fff'
-          }} />
-        </div>
-      </div> */}
-
       <div
         id={'scroll-container'}
         className={'overflow-y-auto p-2'}
@@ -172,11 +150,14 @@ function TaoQiangGou({ params, name }: any) {
                 上一页
               </Button>
             )}
-            <Button
-              className={'dark:text-main-title'}
-              onClick={() => setCurrentPage(currentPage + 1)}>
-              下一页
-            </Button>
+            {
+              showNextPage &&
+              <Button
+                className={'dark:text-main-title'}
+                onClick={() => setCurrentPage(currentPage + 1)}>
+                下一页
+              </Button>
+            }
           </div>
         )}
 

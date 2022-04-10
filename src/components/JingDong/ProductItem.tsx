@@ -4,8 +4,6 @@ function ProductItem(
   { item, titleBgColor }:
     { item: JdJingXuanItem, titleBgColor: string }) {
 
-  console.log(item)
-
   const handleClickCard = () => {
     window.open(`https://${item.materialUrl}`)
   }
