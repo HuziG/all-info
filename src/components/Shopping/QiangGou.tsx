@@ -43,6 +43,7 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
 
   const handleGetData = () => {
     setProductList(null)
+    setLoading(true)
 
     getTaoQiangGou({
       page: currentPage,
@@ -50,10 +51,11 @@ function TaoQiangGou({ params }: QiangGouComponentProps) {
     }).then(({ data }) => {
       try {
         setProductList([...data.data]);
-        setLoading(false)
       } catch (e) {
         console.log(data)
       }
+
+      setLoading(false)
     });
   };
 

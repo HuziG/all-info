@@ -837,6 +837,16 @@ export const components = [
           titleBgColor: '#E2251B'        
         },
         style: { color: '#E2251B' },
+      },
+      {
+        label: '唯品会精选',
+        name: 'WeiPinHui-jingxuan',
+        childPath: 'JingXuan',
+        grid: { x: 0, y: 0, w: 5, h: 15 },
+        params: {
+          titleBgColor: '#FD038C'        
+        },
+        style: { color: '#FD038C' },
       }
     ],
   },

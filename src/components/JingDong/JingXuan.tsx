@@ -71,6 +71,7 @@ function TaoQiangGou({ params, name }: any) {
 
   const handleGetData = () => {
     setProductList(null)
+    setLoading(true)
 
     getJdJingXuan({
       pageIndex: currentPage,

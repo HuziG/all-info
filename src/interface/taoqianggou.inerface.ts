@@ -26,6 +26,20 @@ export interface JdJingXuanItem {
   goodCommentsShare: number
 }
 
+export interface WphJingXuanItem {
+  goodsId: string;
+  goodsName: string;
+  brandName: string;
+  vipPrice: number;
+  goodsMainPicture: string;
+  storeInfo: {
+    storeName: string;
+    storeId: string;
+  }
+  discount: string;
+  destUrl: string;
+}
+
 export interface QiangGouComponentProps {
   name: string
   params: {
