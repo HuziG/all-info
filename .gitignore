@@ -41,8 +41,6 @@ build/Release
 node_modules/
 jspm_packages/
 build/
-
-# Product
 src/api/
 
 # TypeScript v1 declaration files
