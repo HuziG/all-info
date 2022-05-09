@@ -1,53 +1,67 @@
-# Getting Started with Create React App
+# 随意定制化内容的信息板 —— 百变信息板
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+基于 react 搭建
 
-## Available Scripts
+## 产品预览
 
-In the project directory, you can run:
+![image-20220509144156471](/readme_img/image-20220509144156471.png)
 
-### `yarn start`
+![image-20220509144332159](/readme_img/image-20220509144332159.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="./readme_img/image-20220509144422233.png" width="200px" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![image-20220509144332159](/readme_img/image-20220509145345384.png)
 
-### `yarn test`
+## 开始体验
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
-information.
+访问域名
 
-### `yarn build`
+[产品地址](www.jinmai.store)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+或：观看视频介绍
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+[bilibili视频地址](https://www.bilibili.com/video/BV1VF411u7tZ/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 产品介绍
 
-### `yarn eject`
+百变信息板支持内容的个性化定制，随意拖拽与布局，看自己最想看的内容。产品内含有一个信息组件库，
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+可以从中选择内容进行定制
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
+产品支持夜间、白天模式的切换
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right
-into your project so you have full control over them. All of the commands except `eject` will still work, but they will
-point to the copied scripts so you can tweak them. At this point you’re on your own.
+产品支持移动端的适配
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+## 产品开发相关
 
-## Learn More
+typescript 编写
 
-You can learn more in
-the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+web框架：react（hook全量使用）
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+状态管理：react-hook
+
+网络请求：axios
+
+UI框架：material-ui react 版
+
+时间处理：moment
+
+原子 css 支持：tailwindcss
+
+style 定义：styled-component
+
+组件懒加载机制：require.default api
+
+拖拽库：react-grid-layout
+
+动画库：lottie
+
+服务端框架：nestjs
+
+程序服务部署：腾讯云 serverless
+
+## 有没有朋友一起干事情的哇 🤩
+
+想提供内容推广或整合意向的，可以联系
+
+邮箱：1067408814@qq.com
