@@ -16,7 +16,7 @@
 
 访问域名
 
-[产品地址]([www.jinmai.store](https://www.jinmai.store/))
+[产品地址](https://www.jinmai.store/)
 
 或：观看视频介绍
 
